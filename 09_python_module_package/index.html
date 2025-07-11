@@ -1,0 +1,3083 @@
+
+<!doctype html>
+<html lang="ko" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="MKDocs로 작성한 테스트 문서입니다.">
+      
+      
+        <meta name="author" content="ExpandSource">
+      
+      
+        <link rel="canonical" href="https://euskate.github.io/mkdocs-test/09_python_module_package/">
+      
+      
+        <link rel="prev" href="../08_python_exception_handling/">
+      
+      
+        <link rel="next" href="../10_python_database_guide/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.15">
+    
+    
+      
+        <title>9장. 모듈과 패키지 - MKDocs 테스트</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.342714a4.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Gowun+Dodum:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Gowun Dodum";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="light-blue" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#9" class="md-skip">
+          콘텐츠로 이동
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="상단/헤더">
+    <a href=".." title="MKDocs 테스트" class="md-header__button md-logo" aria-label="MKDocs 테스트" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            MKDocs 테스트
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              9장. 모듈과 패키지
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="light-blue" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="light-blue" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="검색" placeholder="검색" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="검색">
+        
+        <button type="reset" class="md-search__icon md-icon" title="지우기" aria-label="지우기" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            검색 초기화
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="탭" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Welcome to MkDocs
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../02_cleaned_python_tutorial/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Python 기초 - 2장 정리
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../03_python_list_tutorial/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  3장 자료구조 - 리스트(List)
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../04_python_flow_control/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  4장. 흐름 제어(Control Flow)
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../05_python_function_chapter/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  5장. 함수(Function)
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../06_python_file_io/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  06 python file io
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../07_python_class_guide_unit/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  파이썬 클래스와 객체지향 프로그래밍 🎮
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../07_python_class_oop/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  객체지향 프로그래밍 가이드
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../08_python_exception_handling/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  8장. 예외 처리 (Exception Handling)
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+  
+    
+  
+  9장. 모듈과 패키지
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../10_python_database_guide/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  🧭 10장. 파이썬과 MySQL 연동
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../11_gui-tkinter/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Chapter 11: GUI 프로그래밍 (Tkinter)
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../test/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  테스트
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="네비게이션" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="MKDocs 테스트" class="md-nav__button md-logo" aria-label="MKDocs 테스트" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    MKDocs 테스트
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Welcome to MkDocs
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02_cleaned_python_tutorial/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Python 기초 - 2장 정리
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03_python_list_tutorial/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    3장 자료구조 - 리스트(List)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04_python_flow_control/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    4장. 흐름 제어(Control Flow)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05_python_function_chapter/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    5장. 함수(Function)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06_python_file_io/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    06 python file io
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07_python_class_guide_unit/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    파이썬 클래스와 객체지향 프로그래밍 🎮
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07_python_class_oop/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    객체지향 프로그래밍 가이드
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08_python_exception_handling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    8장. 예외 처리 (Exception Handling)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    9장. 모듈과 패키지
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    9장. 모듈과 패키지
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="목차">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      목차
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      학습 목표
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      9-1. 모듈이란?
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9-1. 모듈이란?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      모듈의 정의와 필요성
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      9-2. 모듈 불러오기
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9-2. 모듈 불러오기">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      모듈을 불러오는 기본 문법
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-import" class="md-nav__link">
+    <span class="md-ellipsis">
+      예제 1: import 기본
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-import-as" class="md-nav__link">
+    <span class="md-ellipsis">
+      예제 2: import ... as (별명)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-from-import" class="md-nav__link">
+    <span class="md-ellipsis">
+      예제 3: from ... import ...
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-from-import" class="md-nav__link">
+    <span class="md-ellipsis">
+      예제 4: from ... import *
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#chatgpt" class="md-nav__link">
+    <span class="md-ellipsis">
+      💬 ChatGPT에게 물어볼 질문
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      9-3. 사용자 정의 모듈 만들기
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9-3. 사용자 정의 모듈 만들기">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      사용자 정의 모듈이란?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-calcpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      1단계: calc.py 만들기
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-mainpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      2단계: main.py에서 사용하기
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-from" class="md-nav__link">
+    <span class="md-ellipsis">
+      3단계: from 방식도 사용 가능
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      4단계: 별칭으로 간결하게
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#greetingpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      실습: greeting.py 만들기
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#chatgpt_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      💬 ChatGPT에게 물어볼 질문
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-4-__name__-__main__" class="md-nav__link">
+    <span class="md-ellipsis">
+      9-4. 모듈의 실행 확인: __name__ == "__main__"
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9-4. 모듈의 실행 확인: __name__ == &#34;__main__&#34;">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      목적
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mytoolpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      예제: mytool.py
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="예제: mytool.py">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      경우 ①: 직접 실행
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-import" class="md-nav__link">
+    <span class="md-ellipsis">
+      경우 ②: 다른 파일에서 import
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#calculatorpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      응용 예: calculator.py
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#chatgpt_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      💬 ChatGPT에게 물어볼 질문
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-5" class="md-nav__link">
+    <span class="md-ellipsis">
+      9-5. 패키지란?
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9-5. 패키지란?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#package" class="md-nav__link">
+    <span class="md-ellipsis">
+      패키지(Package)란?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      패키지 기본 구조 예시
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      사용 예시
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="사용 예시">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      1단계: 폴더 구성
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      2단계: 모듈 작성
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-mainpy-import" class="md-nav__link">
+    <span class="md-ellipsis">
+      3단계: main.py에서 import
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#__init__py" class="md-nav__link">
+    <span class="md-ellipsis">
+      __init__.py는 뭐하는 파일인가요?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#chatgpt_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      💬 ChatGPT에게 물어볼 질문
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-6" class="md-nav__link">
+    <span class="md-ellipsis">
+      9-6. 패키지 사용법
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9-6. 패키지 사용법">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      예제 폴더 구조
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#import-1-import" class="md-nav__link">
+    <span class="md-ellipsis">
+      import 방법 ①: 모듈 전체 import
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#import-2-import" class="md-nav__link">
+    <span class="md-ellipsis">
+      import 방법 ②: 모듈 내 함수만 import
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#import-3-as" class="md-nav__link">
+    <span class="md-ellipsis">
+      import 방법 ③: as로 별명 붙이기
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      패키지 내부에서 다른 모듈 사용하기
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#chatgpt_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      💬 ChatGPT에게 물어볼 질문
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-7" class="md-nav__link">
+    <span class="md-ellipsis">
+      9-7. 내장 모듈 소개
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9-7. 내장 모듈 소개">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      내장 모듈이란?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      주요 내장 모듈
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-datetime" class="md-nav__link">
+    <span class="md-ellipsis">
+      예제 1: datetime
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-random" class="md-nav__link">
+    <span class="md-ellipsis">
+      예제 2: random
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-os" class="md-nav__link">
+    <span class="md-ellipsis">
+      예제 3: os – 파일 시스템 다루기
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-sys" class="md-nav__link">
+    <span class="md-ellipsis">
+      예제 4: sys – 파이썬 실행 관련 정보
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-time" class="md-nav__link">
+    <span class="md-ellipsis">
+      예제 5: time – 시간 지연
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      활용 예제: 프로그램 실행 시간 측정
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#chatgpt_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      💬 ChatGPT에게 물어볼 질문
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-8" class="md-nav__link">
+    <span class="md-ellipsis">
+      9-8. 외부 모듈 사용하기
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9-8. 외부 모듈 사용하기">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      외부 모듈이란?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pip" class="md-nav__link">
+    <span class="md-ellipsis">
+      pip 기본 명령어
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-pyperclip" class="md-nav__link">
+    <span class="md-ellipsis">
+      예제 1: pyperclip (클립보드 복사/붙여넣기)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="예제 1: pyperclip (클립보드 복사/붙여넣기)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      설치
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      사용 예
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-requests" class="md-nav__link">
+    <span class="md-ellipsis">
+      예제 2: requests (웹 요청)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#faker" class="md-nav__link">
+    <span class="md-ellipsis">
+      외부 모듈 Faker 사용하기
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="외부 모듈 Faker 사용하기">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#faker_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Faker란?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      설치 방법
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      기본 사용 예시
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      다양한 더미 데이터 생성
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_19" class="md-nav__link">
+    <span class="md-ellipsis">
+      여러 개 생성하기
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_20" class="md-nav__link">
+    <span class="md-ellipsis">
+      구조화된 테스트 데이터 만들기
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#chatgpt_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      💬 ChatGPT에게 물어볼 질문
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-9" class="md-nav__link">
+    <span class="md-ellipsis">
+      9-9. 실습: 나만의 유틸리티 모듈 만들기
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9-9. 실습: 나만의 유틸리티 모듈 만들기">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_21" class="md-nav__link">
+    <span class="md-ellipsis">
+      목표
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-1-utilpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 1. util.py 만들기
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-mainpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 2. main.py에서 사용
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 3. 패키지로 구성해 보기
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#chatgpt_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      💬 ChatGPT에게 물어볼 질문
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      9장 마무리 요약
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9장 마무리 요약">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_22" class="md-nav__link">
+    <span class="md-ellipsis">
+      핵심 개념 키워드
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_23" class="md-nav__link">
+    <span class="md-ellipsis">
+      예제 중심 주제 흐름
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10_python_database_guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🧭 10장. 파이썬과 MySQL 연동
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../11_gui-tkinter/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 11: GUI 프로그래밍 (Tkinter)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../test/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    테스트
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="목차">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      목차
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      학습 목표
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      9-1. 모듈이란?
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9-1. 모듈이란?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      모듈의 정의와 필요성
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      9-2. 모듈 불러오기
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9-2. 모듈 불러오기">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      모듈을 불러오는 기본 문법
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-import" class="md-nav__link">
+    <span class="md-ellipsis">
+      예제 1: import 기본
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-import-as" class="md-nav__link">
+    <span class="md-ellipsis">
+      예제 2: import ... as (별명)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-from-import" class="md-nav__link">
+    <span class="md-ellipsis">
+      예제 3: from ... import ...
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-from-import" class="md-nav__link">
+    <span class="md-ellipsis">
+      예제 4: from ... import *
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#chatgpt" class="md-nav__link">
+    <span class="md-ellipsis">
+      💬 ChatGPT에게 물어볼 질문
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      9-3. 사용자 정의 모듈 만들기
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9-3. 사용자 정의 모듈 만들기">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      사용자 정의 모듈이란?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-calcpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      1단계: calc.py 만들기
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-mainpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      2단계: main.py에서 사용하기
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-from" class="md-nav__link">
+    <span class="md-ellipsis">
+      3단계: from 방식도 사용 가능
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      4단계: 별칭으로 간결하게
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#greetingpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      실습: greeting.py 만들기
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#chatgpt_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      💬 ChatGPT에게 물어볼 질문
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-4-__name__-__main__" class="md-nav__link">
+    <span class="md-ellipsis">
+      9-4. 모듈의 실행 확인: __name__ == "__main__"
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9-4. 모듈의 실행 확인: __name__ == &#34;__main__&#34;">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      목적
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mytoolpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      예제: mytool.py
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="예제: mytool.py">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      경우 ①: 직접 실행
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-import" class="md-nav__link">
+    <span class="md-ellipsis">
+      경우 ②: 다른 파일에서 import
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#calculatorpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      응용 예: calculator.py
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#chatgpt_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      💬 ChatGPT에게 물어볼 질문
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-5" class="md-nav__link">
+    <span class="md-ellipsis">
+      9-5. 패키지란?
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9-5. 패키지란?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#package" class="md-nav__link">
+    <span class="md-ellipsis">
+      패키지(Package)란?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      패키지 기본 구조 예시
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      사용 예시
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="사용 예시">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      1단계: 폴더 구성
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      2단계: 모듈 작성
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-mainpy-import" class="md-nav__link">
+    <span class="md-ellipsis">
+      3단계: main.py에서 import
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#__init__py" class="md-nav__link">
+    <span class="md-ellipsis">
+      __init__.py는 뭐하는 파일인가요?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#chatgpt_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      💬 ChatGPT에게 물어볼 질문
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-6" class="md-nav__link">
+    <span class="md-ellipsis">
+      9-6. 패키지 사용법
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9-6. 패키지 사용법">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      예제 폴더 구조
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#import-1-import" class="md-nav__link">
+    <span class="md-ellipsis">
+      import 방법 ①: 모듈 전체 import
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#import-2-import" class="md-nav__link">
+    <span class="md-ellipsis">
+      import 방법 ②: 모듈 내 함수만 import
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#import-3-as" class="md-nav__link">
+    <span class="md-ellipsis">
+      import 방법 ③: as로 별명 붙이기
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      패키지 내부에서 다른 모듈 사용하기
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#chatgpt_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      💬 ChatGPT에게 물어볼 질문
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-7" class="md-nav__link">
+    <span class="md-ellipsis">
+      9-7. 내장 모듈 소개
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9-7. 내장 모듈 소개">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      내장 모듈이란?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      주요 내장 모듈
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-datetime" class="md-nav__link">
+    <span class="md-ellipsis">
+      예제 1: datetime
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-random" class="md-nav__link">
+    <span class="md-ellipsis">
+      예제 2: random
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-os" class="md-nav__link">
+    <span class="md-ellipsis">
+      예제 3: os – 파일 시스템 다루기
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-sys" class="md-nav__link">
+    <span class="md-ellipsis">
+      예제 4: sys – 파이썬 실행 관련 정보
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-time" class="md-nav__link">
+    <span class="md-ellipsis">
+      예제 5: time – 시간 지연
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      활용 예제: 프로그램 실행 시간 측정
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#chatgpt_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      💬 ChatGPT에게 물어볼 질문
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-8" class="md-nav__link">
+    <span class="md-ellipsis">
+      9-8. 외부 모듈 사용하기
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9-8. 외부 모듈 사용하기">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      외부 모듈이란?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pip" class="md-nav__link">
+    <span class="md-ellipsis">
+      pip 기본 명령어
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-pyperclip" class="md-nav__link">
+    <span class="md-ellipsis">
+      예제 1: pyperclip (클립보드 복사/붙여넣기)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="예제 1: pyperclip (클립보드 복사/붙여넣기)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      설치
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      사용 예
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-requests" class="md-nav__link">
+    <span class="md-ellipsis">
+      예제 2: requests (웹 요청)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#faker" class="md-nav__link">
+    <span class="md-ellipsis">
+      외부 모듈 Faker 사용하기
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="외부 모듈 Faker 사용하기">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#faker_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Faker란?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      설치 방법
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      기본 사용 예시
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      다양한 더미 데이터 생성
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_19" class="md-nav__link">
+    <span class="md-ellipsis">
+      여러 개 생성하기
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_20" class="md-nav__link">
+    <span class="md-ellipsis">
+      구조화된 테스트 데이터 만들기
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#chatgpt_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      💬 ChatGPT에게 물어볼 질문
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-9" class="md-nav__link">
+    <span class="md-ellipsis">
+      9-9. 실습: 나만의 유틸리티 모듈 만들기
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9-9. 실습: 나만의 유틸리티 모듈 만들기">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_21" class="md-nav__link">
+    <span class="md-ellipsis">
+      목표
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-1-utilpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 1. util.py 만들기
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-mainpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 2. main.py에서 사용
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 3. 패키지로 구성해 보기
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#chatgpt_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      💬 ChatGPT에게 물어볼 질문
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      9장 마무리 요약
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9장 마무리 요약">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_22" class="md-nav__link">
+    <span class="md-ellipsis">
+      핵심 개념 키워드
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_23" class="md-nav__link">
+    <span class="md-ellipsis">
+      예제 중심 주제 흐름
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="9">9장. 모듈과 패키지<a class="headerlink" href="#9" title="Permanent link">&para;</a></h1>
+<h2 id="_1">학습 목표<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<ul>
+<li>코드가 많아지면 기능별로 <strong>파일을 나누는 구조화</strong>가 필요함을 이해</li>
+<li>모듈과 패키지를 이용해 <strong>코드를 나누고 불러오는 법</strong>을 익힌다</li>
+<li><code>import</code>, <code>from ... import</code>, <code>as</code>, <code>__name__ == "__main__"</code> 문법을 이해한다</li>
+<li><strong>내장 모듈</strong>, <strong>외부 모듈(pip)</strong>, <strong>사용자 정의 모듈</strong> 모두 사용할 수 있게 한다</li>
+<li>실습을 통해 실제로 <strong>나만의 유틸 모듈</strong>을 만들어 활용해본다</li>
+</ul>
+<h2 id="9-1">9-1. 모듈이란?<a class="headerlink" href="#9-1" title="Permanent link">&para;</a></h2>
+<h3 id="_2">모듈의 정의와 필요성<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<p>모듈(Module)은 파이썬 코드가 담긴 <code>.py</code> 파일입니다. 코드가 많아지면 기능별로 파일을 나누는 구조화가 필요합니다.</p>
+<h2 id="9-2">9-2. 모듈 불러오기<a class="headerlink" href="#9-2" title="Permanent link">&para;</a></h2>
+<h3 id="_3">모듈을 불러오는 기본 문법<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>방법</th>
+<th>예시</th>
+<th>설명</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>import 모듈명</code></td>
+<td><code>import math</code></td>
+<td>전체 불러오기</td>
+</tr>
+<tr>
+<td><code>import 모듈명 as 별칭</code></td>
+<td><code>import math as m</code></td>
+<td>별명으로 간편하게</td>
+</tr>
+<tr>
+<td><code>from 모듈 import 함수</code></td>
+<td><code>from math import sqrt</code></td>
+<td>특정 함수만 불러오기</td>
+</tr>
+<tr>
+<td><code>from 모듈 import *</code></td>
+<td><code>from math import *</code></td>
+<td>전부 불러오기 (권장❌)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="1-import">예제 1: <code>import</code> 기본<a class="headerlink" href="#1-import" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a><a href="#__codelineno-0-1"><span class="linenos" data-linenos="1 "></span></a><span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2"></a><a href="#__codelineno-0-2"><span class="linenos" data-linenos="2 "></span></a>
+<a id="__codelineno-0-3" name="__codelineno-0-3"></a><a href="#__codelineno-0-3"><span class="linenos" data-linenos="3 "></span></a><span class="nb">print</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">25</span><span class="p">))</span>     <span class="c1"># 5.0</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4"></a><a href="#__codelineno-0-4"><span class="linenos" data-linenos="4 "></span></a><span class="nb">print</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>           <span class="c1"># 3.1415...</span>
+</code></pre></div>
+<h3 id="2-import-as">예제 2: <code>import ... as</code> (별명)<a class="headerlink" href="#2-import-as" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1"></a><a href="#__codelineno-1-1"><span class="linenos" data-linenos="1 "></span></a><span class="kn">import</span><span class="w"> </span><span class="nn">math</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">m</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2"></a><a href="#__codelineno-1-2"><span class="linenos" data-linenos="2 "></span></a>
+<a id="__codelineno-1-3" name="__codelineno-1-3"></a><a href="#__codelineno-1-3"><span class="linenos" data-linenos="3 "></span></a><span class="nb">print</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">16</span><span class="p">))</span>        <span class="c1"># 4.0</span>
+</code></pre></div>
+<h3 id="3-from-import">예제 3: <code>from ... import ...</code><a class="headerlink" href="#3-from-import" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a><a href="#__codelineno-2-1"><span class="linenos" data-linenos="1 "></span></a><span class="kn">from</span><span class="w"> </span><span class="nn">math</span><span class="w"> </span><span class="kn">import</span> <span class="n">sqrt</span><span class="p">,</span> <span class="n">pi</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2"></a><a href="#__codelineno-2-2"><span class="linenos" data-linenos="2 "></span></a>
+<a id="__codelineno-2-3" name="__codelineno-2-3"></a><a href="#__codelineno-2-3"><span class="linenos" data-linenos="3 "></span></a><span class="nb">print</span><span class="p">(</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">9</span><span class="p">))</span>           <span class="c1"># 3.0</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4"></a><a href="#__codelineno-2-4"><span class="linenos" data-linenos="4 "></span></a><span class="nb">print</span><span class="p">(</span><span class="n">pi</span><span class="p">)</span>                <span class="c1"># 3.1415...</span>
+</code></pre></div>
+<h3 id="4-from-import">예제 4: <code>from ... import *</code><a class="headerlink" href="#4-from-import" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1"></a><a href="#__codelineno-3-1"><span class="linenos" data-linenos="1 "></span></a><span class="kn">from</span><span class="w"> </span><span class="nn">math</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2"></a><a href="#__codelineno-3-2"><span class="linenos" data-linenos="2 "></span></a>
+<a id="__codelineno-3-3" name="__codelineno-3-3"></a><a href="#__codelineno-3-3"><span class="linenos" data-linenos="3 "></span></a><span class="nb">print</span><span class="p">(</span><span class="n">sin</span><span class="p">(</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">2</span><span class="p">))</span>       <span class="c1"># 1.0</span>
+</code></pre></div>
+<blockquote>
+<p>모든 함수가 import되지만, <strong>이름 충돌 위험이 있어 권장되지 않음</strong></p>
+</blockquote>
+<h3 id="chatgpt">💬 ChatGPT에게 물어볼 질문<a class="headerlink" href="#chatgpt" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p><strong>"<code>import</code>와 <code>from import</code> 중 어떤 걸 더 자주 쓰나요? 실무에서는?"</strong></p>
+</blockquote>
+<h2 id="9-3">9-3. 사용자 정의 모듈 만들기<a class="headerlink" href="#9-3" title="Permanent link">&para;</a></h2>
+<h3 id="_4">사용자 정의 모듈이란?<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<p>내가 만든 <code>.py</code> 파일을 모듈처럼 불러와 사용하는 것입니다.</p>
+<p>✅ 조건: <strong>같은 폴더 안에 있어야 한다</strong> (또는 <code>sys.path</code>에 등록)</p>
+<h3 id="1-calcpy">1단계: <code>calc.py</code> 만들기<a class="headerlink" href="#1-calcpy" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1"></a><a href="#__codelineno-4-1"><span class="linenos" data-linenos=" 1 "></span></a><span class="c1"># calc.py</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2"></a><a href="#__codelineno-4-2"><span class="linenos" data-linenos=" 2 "></span></a>
+<a id="__codelineno-4-3" name="__codelineno-4-3"></a><a href="#__codelineno-4-3"><span class="linenos" data-linenos=" 3 "></span></a><span class="k">def</span><span class="w"> </span><span class="nf">add</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4"></a><a href="#__codelineno-4-4"><span class="linenos" data-linenos=" 4 "></span></a>    <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5"></a><a href="#__codelineno-4-5"><span class="linenos" data-linenos=" 5 "></span></a>
+<a id="__codelineno-4-6" name="__codelineno-4-6"></a><a href="#__codelineno-4-6"><span class="linenos" data-linenos=" 6 "></span></a><span class="k">def</span><span class="w"> </span><span class="nf">sub</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7"></a><a href="#__codelineno-4-7"><span class="linenos" data-linenos=" 7 "></span></a>    <span class="k">return</span> <span class="n">a</span> <span class="o">-</span> <span class="n">b</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8"></a><a href="#__codelineno-4-8"><span class="linenos" data-linenos=" 8 "></span></a>
+<a id="__codelineno-4-9" name="__codelineno-4-9"></a><a href="#__codelineno-4-9"><span class="linenos" data-linenos=" 9 "></span></a><span class="k">def</span><span class="w"> </span><span class="nf">mul</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+<a id="__codelineno-4-10" name="__codelineno-4-10"></a><a href="#__codelineno-4-10"><span class="linenos" data-linenos="10 "></span></a>    <span class="k">return</span> <span class="n">a</span> <span class="o">*</span> <span class="n">b</span>
+<a id="__codelineno-4-11" name="__codelineno-4-11"></a><a href="#__codelineno-4-11"><span class="linenos" data-linenos="11 "></span></a>
+<a id="__codelineno-4-12" name="__codelineno-4-12"></a><a href="#__codelineno-4-12"><span class="linenos" data-linenos="12 "></span></a><span class="k">def</span><span class="w"> </span><span class="nf">div</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+<a id="__codelineno-4-13" name="__codelineno-4-13"></a><a href="#__codelineno-4-13"><span class="linenos" data-linenos="13 "></span></a>    <span class="k">return</span> <span class="n">a</span> <span class="o">/</span> <span class="n">b</span>
+</code></pre></div>
+<h3 id="2-mainpy">2단계: <code>main.py</code>에서 사용하기<a class="headerlink" href="#2-mainpy" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1"></a><a href="#__codelineno-5-1"><span class="linenos" data-linenos="1 "></span></a><span class="c1"># main.py</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2"></a><a href="#__codelineno-5-2"><span class="linenos" data-linenos="2 "></span></a>
+<a id="__codelineno-5-3" name="__codelineno-5-3"></a><a href="#__codelineno-5-3"><span class="linenos" data-linenos="3 "></span></a><span class="kn">import</span><span class="w"> </span><span class="nn">calc</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4"></a><a href="#__codelineno-5-4"><span class="linenos" data-linenos="4 "></span></a>
+<a id="__codelineno-5-5" name="__codelineno-5-5"></a><a href="#__codelineno-5-5"><span class="linenos" data-linenos="5 "></span></a><span class="nb">print</span><span class="p">(</span><span class="n">calc</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>   <span class="c1"># 5</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6"></a><a href="#__codelineno-5-6"><span class="linenos" data-linenos="6 "></span></a><span class="nb">print</span><span class="p">(</span><span class="n">calc</span><span class="o">.</span><span class="n">mul</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>   <span class="c1"># 20</span>
+</code></pre></div>
+<h3 id="3-from">3단계: <code>from</code> 방식도 사용 가능<a class="headerlink" href="#3-from" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1"></a><a href="#__codelineno-6-1"><span class="linenos" data-linenos="1 "></span></a><span class="kn">from</span><span class="w"> </span><span class="nn">calc</span><span class="w"> </span><span class="kn">import</span> <span class="n">add</span><span class="p">,</span> <span class="n">div</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2"></a><a href="#__codelineno-6-2"><span class="linenos" data-linenos="2 "></span></a>
+<a id="__codelineno-6-3" name="__codelineno-6-3"></a><a href="#__codelineno-6-3"><span class="linenos" data-linenos="3 "></span></a><span class="nb">print</span><span class="p">(</span><span class="n">add</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>  <span class="c1"># 15</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4"></a><a href="#__codelineno-6-4"><span class="linenos" data-linenos="4 "></span></a><span class="nb">print</span><span class="p">(</span><span class="n">div</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>  <span class="c1"># 5.0</span>
+</code></pre></div>
+<h3 id="4">4단계: 별칭으로 간결하게<a class="headerlink" href="#4" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1"></a><a href="#__codelineno-7-1"><span class="linenos" data-linenos="1 "></span></a><span class="kn">import</span><span class="w"> </span><span class="nn">calc</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">c</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2"></a><a href="#__codelineno-7-2"><span class="linenos" data-linenos="2 "></span></a>
+<a id="__codelineno-7-3" name="__codelineno-7-3"></a><a href="#__codelineno-7-3"><span class="linenos" data-linenos="3 "></span></a><span class="nb">print</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>  <span class="c1"># 6</span>
+</code></pre></div>
+<h3 id="greetingpy">실습: <code>greeting.py</code> 만들기<a class="headerlink" href="#greetingpy" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1"></a><a href="#__codelineno-8-1"><span class="linenos" data-linenos="1 "></span></a><span class="c1"># greeting.py</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2"></a><a href="#__codelineno-8-2"><span class="linenos" data-linenos="2 "></span></a>
+<a id="__codelineno-8-3" name="__codelineno-8-3"></a><a href="#__codelineno-8-3"><span class="linenos" data-linenos="3 "></span></a><span class="k">def</span><span class="w"> </span><span class="nf">hello</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4"></a><a href="#__codelineno-8-4"><span class="linenos" data-linenos="4 "></span></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;안녕하세요, </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">님!&quot;</span><span class="p">)</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5"></a><a href="#__codelineno-8-5"><span class="linenos" data-linenos="5 "></span></a>
+<a id="__codelineno-8-6" name="__codelineno-8-6"></a><a href="#__codelineno-8-6"><span class="linenos" data-linenos="6 "></span></a><span class="k">def</span><span class="w"> </span><span class="nf">bye</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+<a id="__codelineno-8-7" name="__codelineno-8-7"></a><a href="#__codelineno-8-7"><span class="linenos" data-linenos="7 "></span></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">님, 안녕히 가세요.&quot;</span><span class="p">)</span>
+</code></pre></div>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1"></a><a href="#__codelineno-9-1"><span class="linenos" data-linenos="1 "></span></a><span class="c1"># main.py</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2"></a><a href="#__codelineno-9-2"><span class="linenos" data-linenos="2 "></span></a><span class="kn">import</span><span class="w"> </span><span class="nn">greeting</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3"></a><a href="#__codelineno-9-3"><span class="linenos" data-linenos="3 "></span></a>
+<a id="__codelineno-9-4" name="__codelineno-9-4"></a><a href="#__codelineno-9-4"><span class="linenos" data-linenos="4 "></span></a><span class="n">greeting</span><span class="o">.</span><span class="n">hello</span><span class="p">(</span><span class="s2">&quot;홍길동&quot;</span><span class="p">)</span>
+<a id="__codelineno-9-5" name="__codelineno-9-5"></a><a href="#__codelineno-9-5"><span class="linenos" data-linenos="5 "></span></a><span class="n">greeting</span><span class="o">.</span><span class="n">bye</span><span class="p">(</span><span class="s2">&quot;홍길동&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p>출력:
+<div class="language-text highlight"><span class="filename">Text Only</span><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1"></a><a href="#__codelineno-10-1"><span class="linenos" data-linenos="1 "></span></a>안녕하세요, 홍길동님!
+<a id="__codelineno-10-2" name="__codelineno-10-2"></a><a href="#__codelineno-10-2"><span class="linenos" data-linenos="2 "></span></a>홍길동님, 안녕히 가세요.
+</code></pre></div></p>
+<h3 id="chatgpt_1">💬 ChatGPT에게 물어볼 질문<a class="headerlink" href="#chatgpt_1" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p><strong>"모듈을 여러 개로 나누면 import 순서나 충돌 문제가 생기지 않나요?"</strong></p>
+</blockquote>
+<h2 id="9-4-__name__-__main__">9-4. 모듈의 실행 확인: <code>__name__ == "__main__"</code><a class="headerlink" href="#9-4-__name__-__main__" title="Permanent link">&para;</a></h2>
+<h3 id="_5">목적<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<p>어떤 <code>.py</code> 파일이 <strong>직접 실행되는 경우</strong>와 <strong>다른 파일에서 import된 경우</strong>를 <strong>구분</strong>하는 조건문입니다.</p>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1"></a><a href="#__codelineno-11-1"><span class="linenos" data-linenos="1 "></span></a><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2"></a><a href="#__codelineno-11-2"><span class="linenos" data-linenos="2 "></span></a>    <span class="c1"># 직접 실행될 때만 이 코드를 실행</span>
+</code></pre></div>
+<h3 id="mytoolpy">예제: <code>mytool.py</code><a class="headerlink" href="#mytoolpy" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1"></a><a href="#__codelineno-12-1"><span class="linenos" data-linenos="1 "></span></a><span class="c1"># mytool.py</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2"></a><a href="#__codelineno-12-2"><span class="linenos" data-linenos="2 "></span></a>
+<a id="__codelineno-12-3" name="__codelineno-12-3"></a><a href="#__codelineno-12-3"><span class="linenos" data-linenos="3 "></span></a><span class="k">def</span><span class="w"> </span><span class="nf">hello</span><span class="p">():</span>
+<a id="__codelineno-12-4" name="__codelineno-12-4"></a><a href="#__codelineno-12-4"><span class="linenos" data-linenos="4 "></span></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;안녕하세요!&quot;</span><span class="p">)</span>
+<a id="__codelineno-12-5" name="__codelineno-12-5"></a><a href="#__codelineno-12-5"><span class="linenos" data-linenos="5 "></span></a>
+<a id="__codelineno-12-6" name="__codelineno-12-6"></a><a href="#__codelineno-12-6"><span class="linenos" data-linenos="6 "></span></a><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+<a id="__codelineno-12-7" name="__codelineno-12-7"></a><a href="#__codelineno-12-7"><span class="linenos" data-linenos="7 "></span></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;✅ 직접 실행 중입니다.&quot;</span><span class="p">)</span>
+<a id="__codelineno-12-8" name="__codelineno-12-8"></a><a href="#__codelineno-12-8"><span class="linenos" data-linenos="8 "></span></a>    <span class="n">hello</span><span class="p">()</span>
+</code></pre></div>
+<h4 id="1">경우 ①: 직접 실행<a class="headerlink" href="#1" title="Permanent link">&para;</a></h4>
+<div class="language-bash highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1"></a><a href="#__codelineno-13-1"><span class="linenos" data-linenos="1 "></span></a>$<span class="w"> </span>python<span class="w"> </span>mytool.py
+<a id="__codelineno-13-2" name="__codelineno-13-2"></a><a href="#__codelineno-13-2"><span class="linenos" data-linenos="2 "></span></a>✅<span class="w"> </span>직접<span class="w"> </span>실행<span class="w"> </span>중입니다.
+<a id="__codelineno-13-3" name="__codelineno-13-3"></a><a href="#__codelineno-13-3"><span class="linenos" data-linenos="3 "></span></a>안녕하세요!
+</code></pre></div>
+<h4 id="2-import">경우 ②: 다른 파일에서 import<a class="headerlink" href="#2-import" title="Permanent link">&para;</a></h4>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1"></a><a href="#__codelineno-14-1"><span class="linenos" data-linenos="1 "></span></a><span class="c1"># main.py</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2"></a><a href="#__codelineno-14-2"><span class="linenos" data-linenos="2 "></span></a><span class="kn">import</span><span class="w"> </span><span class="nn">mytool</span>
+</code></pre></div>
+<p>출력 결과:
+<div class="language-text highlight"><span class="filename">Text Only</span><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1"></a><a href="#__codelineno-15-1"><span class="linenos" data-linenos="1 "></span></a>(아무것도 출력되지 않음)
+</code></pre></div></p>
+<h3 id="calculatorpy">응용 예: <code>calculator.py</code><a class="headerlink" href="#calculatorpy" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1"></a><a href="#__codelineno-16-1"><span class="linenos" data-linenos="1 "></span></a><span class="k">def</span><span class="w"> </span><span class="nf">add</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+<a id="__codelineno-16-2" name="__codelineno-16-2"></a><a href="#__codelineno-16-2"><span class="linenos" data-linenos="2 "></span></a>    <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
+<a id="__codelineno-16-3" name="__codelineno-16-3"></a><a href="#__codelineno-16-3"><span class="linenos" data-linenos="3 "></span></a>
+<a id="__codelineno-16-4" name="__codelineno-16-4"></a><a href="#__codelineno-16-4"><span class="linenos" data-linenos="4 "></span></a><span class="k">def</span><span class="w"> </span><span class="nf">sub</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+<a id="__codelineno-16-5" name="__codelineno-16-5"></a><a href="#__codelineno-16-5"><span class="linenos" data-linenos="5 "></span></a>    <span class="k">return</span> <span class="n">a</span> <span class="o">-</span> <span class="n">b</span>
+<a id="__codelineno-16-6" name="__codelineno-16-6"></a><a href="#__codelineno-16-6"><span class="linenos" data-linenos="6 "></span></a>
+<a id="__codelineno-16-7" name="__codelineno-16-7"></a><a href="#__codelineno-16-7"><span class="linenos" data-linenos="7 "></span></a><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+<a id="__codelineno-16-8" name="__codelineno-16-8"></a><a href="#__codelineno-16-8"><span class="linenos" data-linenos="8 "></span></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;테스트:&quot;</span><span class="p">,</span> <span class="n">add</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>  <span class="c1"># 5</span>
+</code></pre></div>
+<p>→ <code>import calculator</code> 하면 테스트 코드는 실행되지 않음</p>
+<h3 id="chatgpt_2">💬 ChatGPT에게 물어볼 질문<a class="headerlink" href="#chatgpt_2" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p><strong>"<code>__name__</code>이라는 건 누가 정해주는 건가요? 직접 바꿀 수 있나요?"</strong></p>
+</blockquote>
+<h2 id="9-5">9-5. 패키지란?<a class="headerlink" href="#9-5" title="Permanent link">&para;</a></h2>
+<h3 id="package">패키지(Package)란?<a class="headerlink" href="#package" title="Permanent link">&para;</a></h3>
+<p>관련 있는 모듈들을 <strong>폴더 단위로 묶은 것</strong>입니다.</p>
+<p>✅ 폴더 안에 <code>.py</code> 모듈 파일들이 들어 있고<br />
+✅ 반드시 <code>__init__.py</code> 파일이 존재해야 <strong>"이 폴더는 패키지입니다"</strong> 라고 인식됨</p>
+<h3 id="_6">패키지 기본 구조 예시<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<div class="language-text highlight"><span class="filename">Text Only</span><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1"></a><a href="#__codelineno-17-1"><span class="linenos" data-linenos="1 "></span></a>mypackage/               ← 패키지 (폴더)
+<a id="__codelineno-17-2" name="__codelineno-17-2"></a><a href="#__codelineno-17-2"><span class="linenos" data-linenos="2 "></span></a>├── __init__.py          ← 패키지 초기화용 파일 (비워도 됨)
+<a id="__codelineno-17-3" name="__codelineno-17-3"></a><a href="#__codelineno-17-3"><span class="linenos" data-linenos="3 "></span></a>├── calc.py              ← 덧셈, 뺄셈
+<a id="__codelineno-17-4" name="__codelineno-17-4"></a><a href="#__codelineno-17-4"><span class="linenos" data-linenos="4 "></span></a>├── greeting.py          ← 인사 기능
+</code></pre></div>
+<h3 id="_7">사용 예시<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<h4 id="1_1">1단계: 폴더 구성<a class="headerlink" href="#1_1" title="Permanent link">&para;</a></h4>
+<div class="language-text highlight"><span class="filename">Text Only</span><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1"></a><a href="#__codelineno-18-1"><span class="linenos" data-linenos="1 "></span></a>project/
+<a id="__codelineno-18-2" name="__codelineno-18-2"></a><a href="#__codelineno-18-2"><span class="linenos" data-linenos="2 "></span></a>├── main.py
+<a id="__codelineno-18-3" name="__codelineno-18-3"></a><a href="#__codelineno-18-3"><span class="linenos" data-linenos="3 "></span></a>└── mypackage/
+<a id="__codelineno-18-4" name="__codelineno-18-4"></a><a href="#__codelineno-18-4"><span class="linenos" data-linenos="4 "></span></a>    ├── __init__.py
+<a id="__codelineno-18-5" name="__codelineno-18-5"></a><a href="#__codelineno-18-5"><span class="linenos" data-linenos="5 "></span></a>    ├── calc.py
+<a id="__codelineno-18-6" name="__codelineno-18-6"></a><a href="#__codelineno-18-6"><span class="linenos" data-linenos="6 "></span></a>    └── greeting.py
+</code></pre></div>
+<h4 id="2">2단계: 모듈 작성<a class="headerlink" href="#2" title="Permanent link">&para;</a></h4>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1"></a><a href="#__codelineno-19-1"><span class="linenos" data-linenos="1 "></span></a><span class="c1"># mypackage/calc.py</span>
+<a id="__codelineno-19-2" name="__codelineno-19-2"></a><a href="#__codelineno-19-2"><span class="linenos" data-linenos="2 "></span></a><span class="k">def</span><span class="w"> </span><span class="nf">add</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+<a id="__codelineno-19-3" name="__codelineno-19-3"></a><a href="#__codelineno-19-3"><span class="linenos" data-linenos="3 "></span></a>    <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
+</code></pre></div>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1"></a><a href="#__codelineno-20-1"><span class="linenos" data-linenos="1 "></span></a><span class="c1"># mypackage/greeting.py</span>
+<a id="__codelineno-20-2" name="__codelineno-20-2"></a><a href="#__codelineno-20-2"><span class="linenos" data-linenos="2 "></span></a><span class="k">def</span><span class="w"> </span><span class="nf">hello</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+<a id="__codelineno-20-3" name="__codelineno-20-3"></a><a href="#__codelineno-20-3"><span class="linenos" data-linenos="3 "></span></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;안녕하세요, </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">님!&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h4 id="3-mainpy-import">3단계: <code>main.py</code>에서 import<a class="headerlink" href="#3-mainpy-import" title="Permanent link">&para;</a></h4>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1"></a><a href="#__codelineno-21-1"><span class="linenos" data-linenos="1 "></span></a><span class="c1"># main.py</span>
+<a id="__codelineno-21-2" name="__codelineno-21-2"></a><a href="#__codelineno-21-2"><span class="linenos" data-linenos="2 "></span></a>
+<a id="__codelineno-21-3" name="__codelineno-21-3"></a><a href="#__codelineno-21-3"><span class="linenos" data-linenos="3 "></span></a><span class="kn">from</span><span class="w"> </span><span class="nn">mypackage</span><span class="w"> </span><span class="kn">import</span> <span class="n">calc</span><span class="p">,</span> <span class="n">greeting</span>
+<a id="__codelineno-21-4" name="__codelineno-21-4"></a><a href="#__codelineno-21-4"><span class="linenos" data-linenos="4 "></span></a>
+<a id="__codelineno-21-5" name="__codelineno-21-5"></a><a href="#__codelineno-21-5"><span class="linenos" data-linenos="5 "></span></a><span class="nb">print</span><span class="p">(</span><span class="n">calc</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>        <span class="c1"># 5</span>
+<a id="__codelineno-21-6" name="__codelineno-21-6"></a><a href="#__codelineno-21-6"><span class="linenos" data-linenos="6 "></span></a><span class="n">greeting</span><span class="o">.</span><span class="n">hello</span><span class="p">(</span><span class="s2">&quot;홍길동&quot;</span><span class="p">)</span>      <span class="c1"># 안녕하세요, 홍길동님!</span>
+</code></pre></div>
+<p>또는 모듈별로 직접 불러올 수도 있습니다:</p>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1"></a><a href="#__codelineno-22-1"><span class="linenos" data-linenos="1 "></span></a><span class="kn">from</span><span class="w"> </span><span class="nn">mypackage.calc</span><span class="w"> </span><span class="kn">import</span> <span class="n">add</span>
+<a id="__codelineno-22-2" name="__codelineno-22-2"></a><a href="#__codelineno-22-2"><span class="linenos" data-linenos="2 "></span></a><span class="nb">print</span><span class="p">(</span><span class="n">add</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>  <span class="c1"># 15</span>
+</code></pre></div>
+<h3 id="__init__py"><code>__init__.py</code>는 뭐하는 파일인가요?<a class="headerlink" href="#__init__py" title="Permanent link">&para;</a></h3>
+<p>해당 폴더가 "파이썬 패키지입니다"라는 표시입니다. 파일 내부는 비워도 되고, 초기 설정을 할 수도 있습니다.</p>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1"></a><a href="#__codelineno-23-1"><span class="linenos" data-linenos="1 "></span></a><span class="c1"># mypackage/__init__.py</span>
+<a id="__codelineno-23-2" name="__codelineno-23-2"></a><a href="#__codelineno-23-2"><span class="linenos" data-linenos="2 "></span></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;mypackage가 불러와졌습니다.&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p>→ import 시 한 번 출력됨</p>
+<h3 id="chatgpt_3">💬 ChatGPT에게 물어볼 질문<a class="headerlink" href="#chatgpt_3" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p><strong>"패키지 안에 또 패키지를 넣을 수 있나요? (중첩 패키지)"</strong></p>
+</blockquote>
+<h2 id="9-6">9-6. 패키지 사용법<a class="headerlink" href="#9-6" title="Permanent link">&para;</a></h2>
+<h3 id="_8">예제 폴더 구조<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
+<div class="language-text highlight"><span class="filename">Text Only</span><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1"></a><a href="#__codelineno-24-1"><span class="linenos" data-linenos="1 "></span></a>project/
+<a id="__codelineno-24-2" name="__codelineno-24-2"></a><a href="#__codelineno-24-2"><span class="linenos" data-linenos="2 "></span></a>├── main.py
+<a id="__codelineno-24-3" name="__codelineno-24-3"></a><a href="#__codelineno-24-3"><span class="linenos" data-linenos="3 "></span></a>└── mypkg/
+<a id="__codelineno-24-4" name="__codelineno-24-4"></a><a href="#__codelineno-24-4"><span class="linenos" data-linenos="4 "></span></a>    ├── __init__.py
+<a id="__codelineno-24-5" name="__codelineno-24-5"></a><a href="#__codelineno-24-5"><span class="linenos" data-linenos="5 "></span></a>    ├── calc.py
+<a id="__codelineno-24-6" name="__codelineno-24-6"></a><a href="#__codelineno-24-6"><span class="linenos" data-linenos="6 "></span></a>    └── greeting.py
+</code></pre></div>
+<h3 id="import-1-import">import 방법 ①: 모듈 전체 import<a class="headerlink" href="#import-1-import" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1"></a><a href="#__codelineno-25-1"><span class="linenos" data-linenos="1 "></span></a><span class="kn">from</span><span class="w"> </span><span class="nn">mypkg</span><span class="w"> </span><span class="kn">import</span> <span class="n">calc</span><span class="p">,</span> <span class="n">greeting</span>
+<a id="__codelineno-25-2" name="__codelineno-25-2"></a><a href="#__codelineno-25-2"><span class="linenos" data-linenos="2 "></span></a>
+<a id="__codelineno-25-3" name="__codelineno-25-3"></a><a href="#__codelineno-25-3"><span class="linenos" data-linenos="3 "></span></a><span class="n">calc</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<a id="__codelineno-25-4" name="__codelineno-25-4"></a><a href="#__codelineno-25-4"><span class="linenos" data-linenos="4 "></span></a><span class="n">greeting</span><span class="o">.</span><span class="n">hello</span><span class="p">(</span><span class="s2">&quot;홍길동&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="import-2-import">import 방법 ②: 모듈 내 함수만 import<a class="headerlink" href="#import-2-import" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1"></a><a href="#__codelineno-26-1"><span class="linenos" data-linenos="1 "></span></a><span class="kn">from</span><span class="w"> </span><span class="nn">mypkg.calc</span><span class="w"> </span><span class="kn">import</span> <span class="n">add</span>
+<a id="__codelineno-26-2" name="__codelineno-26-2"></a><a href="#__codelineno-26-2"><span class="linenos" data-linenos="2 "></span></a><span class="kn">from</span><span class="w"> </span><span class="nn">mypkg.greeting</span><span class="w"> </span><span class="kn">import</span> <span class="n">hello</span>
+<a id="__codelineno-26-3" name="__codelineno-26-3"></a><a href="#__codelineno-26-3"><span class="linenos" data-linenos="3 "></span></a>
+<a id="__codelineno-26-4" name="__codelineno-26-4"></a><a href="#__codelineno-26-4"><span class="linenos" data-linenos="4 "></span></a><span class="nb">print</span><span class="p">(</span><span class="n">add</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>        <span class="c1"># 5</span>
+<a id="__codelineno-26-5" name="__codelineno-26-5"></a><a href="#__codelineno-26-5"><span class="linenos" data-linenos="5 "></span></a><span class="n">hello</span><span class="p">(</span><span class="s2">&quot;이몽룡&quot;</span><span class="p">)</span>          <span class="c1"># 안녕하세요, 이몽룡님!</span>
+</code></pre></div>
+<h3 id="import-3-as">import 방법 ③: as로 별명 붙이기<a class="headerlink" href="#import-3-as" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1"></a><a href="#__codelineno-27-1"><span class="linenos" data-linenos="1 "></span></a><span class="kn">import</span><span class="w"> </span><span class="nn">mypkg.calc</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">c</span>
+<a id="__codelineno-27-2" name="__codelineno-27-2"></a><a href="#__codelineno-27-2"><span class="linenos" data-linenos="2 "></span></a>
+<a id="__codelineno-27-3" name="__codelineno-27-3"></a><a href="#__codelineno-27-3"><span class="linenos" data-linenos="3 "></span></a><span class="nb">print</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">))</span>
+</code></pre></div>
+<p>또는 함수 단위 별명:</p>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1"></a><a href="#__codelineno-28-1"><span class="linenos" data-linenos="1 "></span></a><span class="kn">from</span><span class="w"> </span><span class="nn">mypkg.calc</span><span class="w"> </span><span class="kn">import</span> <span class="n">add</span> <span class="k">as</span> <span class="n">plus</span>
+<a id="__codelineno-28-2" name="__codelineno-28-2"></a><a href="#__codelineno-28-2"><span class="linenos" data-linenos="2 "></span></a>
+<a id="__codelineno-28-3" name="__codelineno-28-3"></a><a href="#__codelineno-28-3"><span class="linenos" data-linenos="3 "></span></a><span class="nb">print</span><span class="p">(</span><span class="n">plus</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+</code></pre></div>
+<h3 id="_9">패키지 내부에서 다른 모듈 사용하기<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1"></a><a href="#__codelineno-29-1"><span class="linenos" data-linenos="1 "></span></a><span class="c1"># mypkg/greeting.py</span>
+<a id="__codelineno-29-2" name="__codelineno-29-2"></a><a href="#__codelineno-29-2"><span class="linenos" data-linenos="2 "></span></a><span class="kn">from</span><span class="w"> </span><span class="nn">.</span><span class="w"> </span><span class="kn">import</span> <span class="n">calc</span>
+<a id="__codelineno-29-3" name="__codelineno-29-3"></a><a href="#__codelineno-29-3"><span class="linenos" data-linenos="3 "></span></a>
+<a id="__codelineno-29-4" name="__codelineno-29-4"></a><a href="#__codelineno-29-4"><span class="linenos" data-linenos="4 "></span></a><span class="k">def</span><span class="w"> </span><span class="nf">greet_with_sum</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+<a id="__codelineno-29-5" name="__codelineno-29-5"></a><a href="#__codelineno-29-5"><span class="linenos" data-linenos="5 "></span></a>    <span class="n">result</span> <span class="o">=</span> <span class="n">calc</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+<a id="__codelineno-29-6" name="__codelineno-29-6"></a><a href="#__codelineno-29-6"><span class="linenos" data-linenos="6 "></span></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">님, 계산 결과는 </span><span class="si">{</span><span class="n">result</span><span class="si">}</span><span class="s2">입니다.&quot;</span><span class="p">)</span>
+</code></pre></div>
+<ul>
+<li><code>from . import 모듈명</code> → 같은 패키지 안에서 import</li>
+<li><code>.</code>은 현재 패키지 위치를 의미 (상대 경로 import)</li>
+</ul>
+<h3 id="chatgpt_4">💬 ChatGPT에게 물어볼 질문<a class="headerlink" href="#chatgpt_4" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p><strong>"패키지 안에 있는 모듈끼리 서로 불러오려면 어떻게 해야 하나요?"</strong></p>
+</blockquote>
+<h2 id="9-7">9-7. 내장 모듈 소개<a class="headerlink" href="#9-7" title="Permanent link">&para;</a></h2>
+<h3 id="_10">내장 모듈이란?<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h3>
+<p>파이썬이 기본적으로 제공하는 모듈들입니다.</p>
+<ul>
+<li>설치 불필요</li>
+<li>import만 하면 바로 사용 가능</li>
+</ul>
+<h3 id="_11">주요 내장 모듈<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>모듈</th>
+<th>설명</th>
+<th>대표 기능</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>math</code></td>
+<td>수학 계산</td>
+<td><code>sqrt()</code>, <code>pi</code>, <code>sin()</code></td>
+</tr>
+<tr>
+<td><code>random</code></td>
+<td>난수 생성</td>
+<td><code>randint()</code>, <code>choice()</code></td>
+</tr>
+<tr>
+<td><code>datetime</code></td>
+<td>날짜/시간</td>
+<td><code>now()</code>, <code>strftime()</code></td>
+</tr>
+<tr>
+<td><code>os</code></td>
+<td>운영체제 접근</td>
+<td>파일 경로, 디렉터리</td>
+</tr>
+<tr>
+<td><code>sys</code></td>
+<td>시스템 정보</td>
+<td>경로, 종료, argv</td>
+</tr>
+<tr>
+<td><code>time</code></td>
+<td>시간 관련</td>
+<td><code>sleep()</code>, 시간 측정</td>
+</tr>
+</tbody>
+</table>
+<h3 id="1-datetime">예제 1: <code>datetime</code><a class="headerlink" href="#1-datetime" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1"></a><a href="#__codelineno-30-1"><span class="linenos" data-linenos="1 "></span></a><span class="kn">import</span><span class="w"> </span><span class="nn">datetime</span>
+<a id="__codelineno-30-2" name="__codelineno-30-2"></a><a href="#__codelineno-30-2"><span class="linenos" data-linenos="2 "></span></a>
+<a id="__codelineno-30-3" name="__codelineno-30-3"></a><a href="#__codelineno-30-3"><span class="linenos" data-linenos="3 "></span></a><span class="n">now</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
+<a id="__codelineno-30-4" name="__codelineno-30-4"></a><a href="#__codelineno-30-4"><span class="linenos" data-linenos="4 "></span></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;현재 시각:&quot;</span><span class="p">,</span> <span class="n">now</span><span class="p">)</span>
+<a id="__codelineno-30-5" name="__codelineno-30-5"></a><a href="#__codelineno-30-5"><span class="linenos" data-linenos="5 "></span></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;연도:&quot;</span><span class="p">,</span> <span class="n">now</span><span class="o">.</span><span class="n">year</span><span class="p">)</span>
+<a id="__codelineno-30-6" name="__codelineno-30-6"></a><a href="#__codelineno-30-6"><span class="linenos" data-linenos="6 "></span></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;포맷:&quot;</span><span class="p">,</span> <span class="n">now</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2"> %H:%M&quot;</span><span class="p">))</span>
+</code></pre></div>
+<h3 id="2-random">예제 2: <code>random</code><a class="headerlink" href="#2-random" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1"></a><a href="#__codelineno-31-1"><span class="linenos" data-linenos="1 "></span></a><span class="kn">import</span><span class="w"> </span><span class="nn">random</span>
+<a id="__codelineno-31-2" name="__codelineno-31-2"></a><a href="#__codelineno-31-2"><span class="linenos" data-linenos="2 "></span></a>
+<a id="__codelineno-31-3" name="__codelineno-31-3"></a><a href="#__codelineno-31-3"><span class="linenos" data-linenos="3 "></span></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;1~10 무작위 정수:&quot;</span><span class="p">,</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<a id="__codelineno-31-4" name="__codelineno-31-4"></a><a href="#__codelineno-31-4"><span class="linenos" data-linenos="4 "></span></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;랜덤 선택:&quot;</span><span class="p">,</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="s2">&quot;홍길동&quot;</span><span class="p">,</span> <span class="s2">&quot;이몽룡&quot;</span><span class="p">,</span> <span class="s2">&quot;성춘향&quot;</span><span class="p">]))</span>
+</code></pre></div>
+<h3 id="3-os">예제 3: <code>os</code> – 파일 시스템 다루기<a class="headerlink" href="#3-os" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1"></a><a href="#__codelineno-32-1"><span class="linenos" data-linenos="1 "></span></a><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<a id="__codelineno-32-2" name="__codelineno-32-2"></a><a href="#__codelineno-32-2"><span class="linenos" data-linenos="2 "></span></a>
+<a id="__codelineno-32-3" name="__codelineno-32-3"></a><a href="#__codelineno-32-3"><span class="linenos" data-linenos="3 "></span></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;현재 작업 폴더:&quot;</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">())</span>
+<a id="__codelineno-32-4" name="__codelineno-32-4"></a><a href="#__codelineno-32-4"><span class="linenos" data-linenos="4 "></span></a><span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="s2">&quot;연습폴더&quot;</span><span class="p">)</span>     <span class="c1"># 폴더 만들기</span>
+<a id="__codelineno-32-5" name="__codelineno-32-5"></a><a href="#__codelineno-32-5"><span class="linenos" data-linenos="5 "></span></a><span class="n">os</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="s2">&quot;연습폴더&quot;</span><span class="p">,</span> <span class="s2">&quot;테스트&quot;</span><span class="p">)</span>  <span class="c1"># 이름 바꾸기</span>
+<a id="__codelineno-32-6" name="__codelineno-32-6"></a><a href="#__codelineno-32-6"><span class="linenos" data-linenos="6 "></span></a><span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="s2">&quot;파일이름.txt&quot;</span><span class="p">)</span>       <span class="c1"># 파일 삭제</span>
+</code></pre></div>
+<h3 id="4-sys">예제 4: <code>sys</code> – 파이썬 실행 관련 정보<a class="headerlink" href="#4-sys" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1"></a><a href="#__codelineno-33-1"><span class="linenos" data-linenos="1 "></span></a><span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+<a id="__codelineno-33-2" name="__codelineno-33-2"></a><a href="#__codelineno-33-2"><span class="linenos" data-linenos="2 "></span></a>
+<a id="__codelineno-33-3" name="__codelineno-33-3"></a><a href="#__codelineno-33-3"><span class="linenos" data-linenos="3 "></span></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;실행 인자:&quot;</span><span class="p">,</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span>
+<a id="__codelineno-33-4" name="__codelineno-33-4"></a><a href="#__codelineno-33-4"><span class="linenos" data-linenos="4 "></span></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;파이썬 경로:&quot;</span><span class="p">,</span> <span class="n">sys</span><span class="o">.</span><span class="n">executable</span><span class="p">)</span>
+<a id="__codelineno-33-5" name="__codelineno-33-5"></a><a href="#__codelineno-33-5"><span class="linenos" data-linenos="5 "></span></a><span class="c1"># sys.exit()  # 강제 종료</span>
+</code></pre></div>
+<h3 id="5-time">예제 5: <code>time</code> – 시간 지연<a class="headerlink" href="#5-time" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1"></a><a href="#__codelineno-34-1"><span class="linenos" data-linenos="1 "></span></a><span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+<a id="__codelineno-34-2" name="__codelineno-34-2"></a><a href="#__codelineno-34-2"><span class="linenos" data-linenos="2 "></span></a>
+<a id="__codelineno-34-3" name="__codelineno-34-3"></a><a href="#__codelineno-34-3"><span class="linenos" data-linenos="3 "></span></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;3초 후 시작&quot;</span><span class="p">)</span>
+<a id="__codelineno-34-4" name="__codelineno-34-4"></a><a href="#__codelineno-34-4"><span class="linenos" data-linenos="4 "></span></a><span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<a id="__codelineno-34-5" name="__codelineno-34-5"></a><a href="#__codelineno-34-5"><span class="linenos" data-linenos="5 "></span></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;시작!&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="_12">활용 예제: 프로그램 실행 시간 측정<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-35-1" name="__codelineno-35-1"></a><a href="#__codelineno-35-1"><span class="linenos" data-linenos=" 1 "></span></a><span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+<a id="__codelineno-35-2" name="__codelineno-35-2"></a><a href="#__codelineno-35-2"><span class="linenos" data-linenos=" 2 "></span></a>
+<a id="__codelineno-35-3" name="__codelineno-35-3"></a><a href="#__codelineno-35-3"><span class="linenos" data-linenos=" 3 "></span></a><span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<a id="__codelineno-35-4" name="__codelineno-35-4"></a><a href="#__codelineno-35-4"><span class="linenos" data-linenos=" 4 "></span></a>
+<a id="__codelineno-35-5" name="__codelineno-35-5"></a><a href="#__codelineno-35-5"><span class="linenos" data-linenos=" 5 "></span></a><span class="c1"># 실행할 코드</span>
+<a id="__codelineno-35-6" name="__codelineno-35-6"></a><a href="#__codelineno-35-6"><span class="linenos" data-linenos=" 6 "></span></a><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1000000</span><span class="p">):</span>
+<a id="__codelineno-35-7" name="__codelineno-35-7"></a><a href="#__codelineno-35-7"><span class="linenos" data-linenos=" 7 "></span></a>    <span class="k">pass</span>
+<a id="__codelineno-35-8" name="__codelineno-35-8"></a><a href="#__codelineno-35-8"><span class="linenos" data-linenos=" 8 "></span></a>
+<a id="__codelineno-35-9" name="__codelineno-35-9"></a><a href="#__codelineno-35-9"><span class="linenos" data-linenos=" 9 "></span></a><span class="n">end</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<a id="__codelineno-35-10" name="__codelineno-35-10"></a><a href="#__codelineno-35-10"><span class="linenos" data-linenos="10 "></span></a>
+<a id="__codelineno-35-11" name="__codelineno-35-11"></a><a href="#__codelineno-35-11"><span class="linenos" data-linenos="11 "></span></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;실행 시간:&quot;</span><span class="p">,</span> <span class="n">end</span> <span class="o">-</span> <span class="n">start</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="chatgpt_5">💬 ChatGPT에게 물어볼 질문<a class="headerlink" href="#chatgpt_5" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p><strong>"내장 모듈 외에 외부 모듈은 어떻게 설치해서 쓰나요?"</strong></p>
+</blockquote>
+<h2 id="9-8">9-8. 외부 모듈 사용하기<a class="headerlink" href="#9-8" title="Permanent link">&para;</a></h2>
+<h3 id="_13">외부 모듈이란?<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h3>
+<p>파이썬 기본에 포함되어 있지 않지만, 다른 개발자들이 만들어서 <strong>공개한 라이브러리</strong>입니다.</p>
+<ul>
+<li>예: <code>requests</code>, <code>openpyxl</code>, <code>pandas</code>, <code>pyperclip</code>, <code>beautifulsoup4</code>, <code>flask</code> 등</li>
+<li>설치 도구: <strong><code>pip</code></strong> (Python Package Installer)</li>
+</ul>
+<h3 id="pip">pip 기본 명령어<a class="headerlink" href="#pip" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>명령어</th>
+<th>설명</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>pip install 모듈명</code></td>
+<td>모듈 설치</td>
+</tr>
+<tr>
+<td><code>pip uninstall 모듈명</code></td>
+<td>모듈 삭제</td>
+</tr>
+<tr>
+<td><code>pip list</code></td>
+<td>설치된 모듈 목록 확인</td>
+</tr>
+<tr>
+<td><code>pip show 모듈명</code></td>
+<td>설치된 모듈 정보 확인</td>
+</tr>
+<tr>
+<td><code>pip install 모듈==버전</code></td>
+<td>특정 버전 설치</td>
+</tr>
+</tbody>
+</table>
+<h3 id="1-pyperclip">예제 1: pyperclip (클립보드 복사/붙여넣기)<a class="headerlink" href="#1-pyperclip" title="Permanent link">&para;</a></h3>
+<h4 id="_14">설치<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h4>
+<div class="language-bash highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-36-1" name="__codelineno-36-1"></a><a href="#__codelineno-36-1"><span class="linenos" data-linenos="1 "></span></a>pip<span class="w"> </span>install<span class="w"> </span>pyperclip
+</code></pre></div>
+<h4 id="_15">사용 예<a class="headerlink" href="#_15" title="Permanent link">&para;</a></h4>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-37-1" name="__codelineno-37-1"></a><a href="#__codelineno-37-1"><span class="linenos" data-linenos="1 "></span></a><span class="kn">import</span><span class="w"> </span><span class="nn">pyperclip</span>
+<a id="__codelineno-37-2" name="__codelineno-37-2"></a><a href="#__codelineno-37-2"><span class="linenos" data-linenos="2 "></span></a>
+<a id="__codelineno-37-3" name="__codelineno-37-3"></a><a href="#__codelineno-37-3"><span class="linenos" data-linenos="3 "></span></a><span class="n">pyperclip</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="s2">&quot;안녕하세요!&quot;</span><span class="p">)</span>        <span class="c1"># 클립보드에 복사</span>
+<a id="__codelineno-37-4" name="__codelineno-37-4"></a><a href="#__codelineno-37-4"><span class="linenos" data-linenos="4 "></span></a><span class="n">text</span> <span class="o">=</span> <span class="n">pyperclip</span><span class="o">.</span><span class="n">paste</span><span class="p">()</span>            <span class="c1"># 클립보드에서 붙여넣기</span>
+<a id="__codelineno-37-5" name="__codelineno-37-5"></a><a href="#__codelineno-37-5"><span class="linenos" data-linenos="5 "></span></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;복사된 내용:&quot;</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="2-requests">예제 2: requests (웹 요청)<a class="headerlink" href="#2-requests" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-38-1" name="__codelineno-38-1"></a><a href="#__codelineno-38-1"><span class="linenos" data-linenos="1 "></span></a>pip<span class="w"> </span>install<span class="w"> </span>requests
+</code></pre></div>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-39-1" name="__codelineno-39-1"></a><a href="#__codelineno-39-1"><span class="linenos" data-linenos="1 "></span></a><span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
+<a id="__codelineno-39-2" name="__codelineno-39-2"></a><a href="#__codelineno-39-2"><span class="linenos" data-linenos="2 "></span></a>
+<a id="__codelineno-39-3" name="__codelineno-39-3"></a><a href="#__codelineno-39-3"><span class="linenos" data-linenos="3 "></span></a><span class="n">res</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;https://httpbin.org/get&quot;</span><span class="p">)</span>
+<a id="__codelineno-39-4" name="__codelineno-39-4"></a><a href="#__codelineno-39-4"><span class="linenos" data-linenos="4 "></span></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;응답 상태:&quot;</span><span class="p">,</span> <span class="n">res</span><span class="o">.</span><span class="n">status_code</span><span class="p">)</span>
+<a id="__codelineno-39-5" name="__codelineno-39-5"></a><a href="#__codelineno-39-5"><span class="linenos" data-linenos="5 "></span></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;본문:&quot;</span><span class="p">,</span> <span class="n">res</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="faker">외부 모듈 <code>Faker</code> 사용하기<a class="headerlink" href="#faker" title="Permanent link">&para;</a></h3>
+<h4 id="faker_1">Faker란?<a class="headerlink" href="#faker_1" title="Permanent link">&para;</a></h4>
+<p>다양한 국가의 <strong>가짜 이름, 주소, 이메일, 회사명, 전화번호 등</strong>을 생성해주는 외부 라이브러리입니다.</p>
+<h4 id="_16">설치 방법<a class="headerlink" href="#_16" title="Permanent link">&para;</a></h4>
+<div class="language-bash highlight"><span class="filename">Bash</span><pre><span></span><code><a id="__codelineno-40-1" name="__codelineno-40-1"></a><a href="#__codelineno-40-1"><span class="linenos" data-linenos="1 "></span></a>pip<span class="w"> </span>install<span class="w"> </span>Faker
+</code></pre></div>
+<h4 id="_17">기본 사용 예시<a class="headerlink" href="#_17" title="Permanent link">&para;</a></h4>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-41-1" name="__codelineno-41-1"></a><a href="#__codelineno-41-1"><span class="linenos" data-linenos="1 "></span></a><span class="kn">from</span><span class="w"> </span><span class="nn">faker</span><span class="w"> </span><span class="kn">import</span> <span class="n">Faker</span>
+<a id="__codelineno-41-2" name="__codelineno-41-2"></a><a href="#__codelineno-41-2"><span class="linenos" data-linenos="2 "></span></a>
+<a id="__codelineno-41-3" name="__codelineno-41-3"></a><a href="#__codelineno-41-3"><span class="linenos" data-linenos="3 "></span></a><span class="n">fake</span> <span class="o">=</span> <span class="n">Faker</span><span class="p">(</span><span class="n">locale</span><span class="o">=</span><span class="s2">&quot;ko_KR&quot;</span><span class="p">)</span>  <span class="c1"># 한국어 설정</span>
+<a id="__codelineno-41-4" name="__codelineno-41-4"></a><a href="#__codelineno-41-4"><span class="linenos" data-linenos="4 "></span></a>
+<a id="__codelineno-41-5" name="__codelineno-41-5"></a><a href="#__codelineno-41-5"><span class="linenos" data-linenos="5 "></span></a><span class="nb">print</span><span class="p">(</span><span class="n">fake</span><span class="o">.</span><span class="n">name</span><span class="p">())</span>         <span class="c1"># 예: 이민준</span>
+<a id="__codelineno-41-6" name="__codelineno-41-6"></a><a href="#__codelineno-41-6"><span class="linenos" data-linenos="6 "></span></a><span class="nb">print</span><span class="p">(</span><span class="n">fake</span><span class="o">.</span><span class="n">address</span><span class="p">())</span>      <span class="c1"># 예: 서울특별시 강남구 ...</span>
+<a id="__codelineno-41-7" name="__codelineno-41-7"></a><a href="#__codelineno-41-7"><span class="linenos" data-linenos="7 "></span></a><span class="nb">print</span><span class="p">(</span><span class="n">fake</span><span class="o">.</span><span class="n">email</span><span class="p">())</span>        <span class="c1"># 예: soyoung22@example.net</span>
+<a id="__codelineno-41-8" name="__codelineno-41-8"></a><a href="#__codelineno-41-8"><span class="linenos" data-linenos="8 "></span></a><span class="nb">print</span><span class="p">(</span><span class="n">fake</span><span class="o">.</span><span class="n">phone_number</span><span class="p">())</span> <span class="c1"># 예: 010-1234-5678</span>
+</code></pre></div>
+<h4 id="_18">다양한 더미 데이터 생성<a class="headerlink" href="#_18" title="Permanent link">&para;</a></h4>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-42-1" name="__codelineno-42-1"></a><a href="#__codelineno-42-1"><span class="linenos" data-linenos="1 "></span></a><span class="nb">print</span><span class="p">(</span><span class="n">fake</span><span class="o">.</span><span class="n">company</span><span class="p">())</span>       <span class="c1"># 회사명</span>
+<a id="__codelineno-42-2" name="__codelineno-42-2"></a><a href="#__codelineno-42-2"><span class="linenos" data-linenos="2 "></span></a><span class="nb">print</span><span class="p">(</span><span class="n">fake</span><span class="o">.</span><span class="n">job</span><span class="p">())</span>           <span class="c1"># 직업</span>
+<a id="__codelineno-42-3" name="__codelineno-42-3"></a><a href="#__codelineno-42-3"><span class="linenos" data-linenos="3 "></span></a><span class="nb">print</span><span class="p">(</span><span class="n">fake</span><span class="o">.</span><span class="n">date_of_birth</span><span class="p">())</span> <span class="c1"># 생년월일</span>
+<a id="__codelineno-42-4" name="__codelineno-42-4"></a><a href="#__codelineno-42-4"><span class="linenos" data-linenos="4 "></span></a><span class="nb">print</span><span class="p">(</span><span class="n">fake</span><span class="o">.</span><span class="n">text</span><span class="p">())</span>          <span class="c1"># 임의의 문장</span>
+<a id="__codelineno-42-5" name="__codelineno-42-5"></a><a href="#__codelineno-42-5"><span class="linenos" data-linenos="5 "></span></a><span class="nb">print</span><span class="p">(</span><span class="n">fake</span><span class="o">.</span><span class="n">ssn</span><span class="p">())</span>           <span class="c1"># 주민등록번호 형식</span>
+</code></pre></div>
+<h4 id="_19">여러 개 생성하기<a class="headerlink" href="#_19" title="Permanent link">&para;</a></h4>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-43-1" name="__codelineno-43-1"></a><a href="#__codelineno-43-1"><span class="linenos" data-linenos="1 "></span></a><span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+<a id="__codelineno-43-2" name="__codelineno-43-2"></a><a href="#__codelineno-43-2"><span class="linenos" data-linenos="2 "></span></a>    <span class="nb">print</span><span class="p">(</span><span class="n">fake</span><span class="o">.</span><span class="n">name</span><span class="p">(),</span> <span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="n">fake</span><span class="o">.</span><span class="n">phone_number</span><span class="p">())</span>
+</code></pre></div>
+<h4 id="_20">구조화된 테스트 데이터 만들기<a class="headerlink" href="#_20" title="Permanent link">&para;</a></h4>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-44-1" name="__codelineno-44-1"></a><a href="#__codelineno-44-1"><span class="linenos" data-linenos=" 1 "></span></a><span class="k">def</span><span class="w"> </span><span class="nf">create_user</span><span class="p">():</span>
+<a id="__codelineno-44-2" name="__codelineno-44-2"></a><a href="#__codelineno-44-2"><span class="linenos" data-linenos=" 2 "></span></a>    <span class="k">return</span> <span class="p">{</span>
+<a id="__codelineno-44-3" name="__codelineno-44-3"></a><a href="#__codelineno-44-3"><span class="linenos" data-linenos=" 3 "></span></a>        <span class="s2">&quot;이름&quot;</span><span class="p">:</span> <span class="n">fake</span><span class="o">.</span><span class="n">name</span><span class="p">(),</span>
+<a id="__codelineno-44-4" name="__codelineno-44-4"></a><a href="#__codelineno-44-4"><span class="linenos" data-linenos=" 4 "></span></a>        <span class="s2">&quot;이메일&quot;</span><span class="p">:</span> <span class="n">fake</span><span class="o">.</span><span class="n">email</span><span class="p">(),</span>
+<a id="__codelineno-44-5" name="__codelineno-44-5"></a><a href="#__codelineno-44-5"><span class="linenos" data-linenos=" 5 "></span></a>        <span class="s2">&quot;주소&quot;</span><span class="p">:</span> <span class="n">fake</span><span class="o">.</span><span class="n">address</span><span class="p">(),</span>
+<a id="__codelineno-44-6" name="__codelineno-44-6"></a><a href="#__codelineno-44-6"><span class="linenos" data-linenos=" 6 "></span></a>        <span class="s2">&quot;전화번호&quot;</span><span class="p">:</span> <span class="n">fake</span><span class="o">.</span><span class="n">phone_number</span><span class="p">()</span>
+<a id="__codelineno-44-7" name="__codelineno-44-7"></a><a href="#__codelineno-44-7"><span class="linenos" data-linenos=" 7 "></span></a>    <span class="p">}</span>
+<a id="__codelineno-44-8" name="__codelineno-44-8"></a><a href="#__codelineno-44-8"><span class="linenos" data-linenos=" 8 "></span></a>
+<a id="__codelineno-44-9" name="__codelineno-44-9"></a><a href="#__codelineno-44-9"><span class="linenos" data-linenos=" 9 "></span></a><span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+<a id="__codelineno-44-10" name="__codelineno-44-10"></a><a href="#__codelineno-44-10"><span class="linenos" data-linenos="10 "></span></a>    <span class="nb">print</span><span class="p">(</span><span class="n">create_user</span><span class="p">())</span>
+</code></pre></div>
+<h3 id="chatgpt_6">💬 ChatGPT에게 물어볼 질문<a class="headerlink" href="#chatgpt_6" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p><strong>"외부 모듈이 충돌날 수 있다던데, 그건 어떻게 관리하나요?"</strong></p>
+<p><strong>"Faker에서 사용자 지정 패턴으로 전화번호나 ID를 만들 수 있나요?"</strong></p>
+</blockquote>
+<h2 id="9-9">9-9. 실습: 나만의 유틸리티 모듈 만들기<a class="headerlink" href="#9-9" title="Permanent link">&para;</a></h2>
+<h3 id="_21">목표<a class="headerlink" href="#_21" title="Permanent link">&para;</a></h3>
+<ul>
+<li>자주 사용하는 기능을 <strong>모듈로 분리</strong></li>
+<li>다른 파일에서 <strong>재사용 가능</strong>하도록 구성</li>
+<li>함수, 상수, 메시지 등을 하나로 묶음</li>
+</ul>
+<h3 id="step-1-utilpy">Step 1. <code>util.py</code> 만들기<a class="headerlink" href="#step-1-utilpy" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-45-1" name="__codelineno-45-1"></a><a href="#__codelineno-45-1"><span class="linenos" data-linenos=" 1 "></span></a><span class="c1"># util.py</span>
+<a id="__codelineno-45-2" name="__codelineno-45-2"></a><a href="#__codelineno-45-2"><span class="linenos" data-linenos=" 2 "></span></a>
+<a id="__codelineno-45-3" name="__codelineno-45-3"></a><a href="#__codelineno-45-3"><span class="linenos" data-linenos=" 3 "></span></a><span class="k">def</span><span class="w"> </span><span class="nf">print_header</span><span class="p">(</span><span class="n">title</span><span class="p">):</span>
+<a id="__codelineno-45-4" name="__codelineno-45-4"></a><a href="#__codelineno-45-4"><span class="linenos" data-linenos=" 4 "></span></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&quot;</span> <span class="o">*</span> <span class="mi">40</span><span class="p">)</span>
+<a id="__codelineno-45-5" name="__codelineno-45-5"></a><a href="#__codelineno-45-5"><span class="linenos" data-linenos=" 5 "></span></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;📌 </span><span class="si">{</span><span class="n">title</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-45-6" name="__codelineno-45-6"></a><a href="#__codelineno-45-6"><span class="linenos" data-linenos=" 6 "></span></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&quot;</span> <span class="o">*</span> <span class="mi">40</span><span class="p">)</span>
+<a id="__codelineno-45-7" name="__codelineno-45-7"></a><a href="#__codelineno-45-7"><span class="linenos" data-linenos=" 7 "></span></a>
+<a id="__codelineno-45-8" name="__codelineno-45-8"></a><a href="#__codelineno-45-8"><span class="linenos" data-linenos=" 8 "></span></a><span class="k">def</span><span class="w"> </span><span class="nf">calc_area</span><span class="p">(</span><span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">):</span>
+<a id="__codelineno-45-9" name="__codelineno-45-9"></a><a href="#__codelineno-45-9"><span class="linenos" data-linenos=" 9 "></span></a>    <span class="k">return</span> <span class="n">width</span> <span class="o">*</span> <span class="n">height</span>
+<a id="__codelineno-45-10" name="__codelineno-45-10"></a><a href="#__codelineno-45-10"><span class="linenos" data-linenos="10 "></span></a>
+<a id="__codelineno-45-11" name="__codelineno-45-11"></a><a href="#__codelineno-45-11"><span class="linenos" data-linenos="11 "></span></a><span class="k">def</span><span class="w"> </span><span class="nf">format_price</span><span class="p">(</span><span class="n">price</span><span class="p">):</span>
+<a id="__codelineno-45-12" name="__codelineno-45-12"></a><a href="#__codelineno-45-12"><span class="linenos" data-linenos="12 "></span></a>    <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">price</span><span class="si">:</span><span class="s2">,</span><span class="si">}</span><span class="s2">원&quot;</span>  <span class="c1"># 10000 → &quot;10,000원&quot;</span>
+</code></pre></div>
+<h3 id="step-2-mainpy">Step 2. <code>main.py</code>에서 사용<a class="headerlink" href="#step-2-mainpy" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-46-1" name="__codelineno-46-1"></a><a href="#__codelineno-46-1"><span class="linenos" data-linenos="1 "></span></a><span class="kn">import</span><span class="w"> </span><span class="nn">util</span>
+<a id="__codelineno-46-2" name="__codelineno-46-2"></a><a href="#__codelineno-46-2"><span class="linenos" data-linenos="2 "></span></a>
+<a id="__codelineno-46-3" name="__codelineno-46-3"></a><a href="#__codelineno-46-3"><span class="linenos" data-linenos="3 "></span></a><span class="n">util</span><span class="o">.</span><span class="n">print_header</span><span class="p">(</span><span class="s2">&quot;면적 계산기&quot;</span><span class="p">)</span>
+<a id="__codelineno-46-4" name="__codelineno-46-4"></a><a href="#__codelineno-46-4"><span class="linenos" data-linenos="4 "></span></a>
+<a id="__codelineno-46-5" name="__codelineno-46-5"></a><a href="#__codelineno-46-5"><span class="linenos" data-linenos="5 "></span></a><span class="n">w</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;가로 길이: &quot;</span><span class="p">))</span>
+<a id="__codelineno-46-6" name="__codelineno-46-6"></a><a href="#__codelineno-46-6"><span class="linenos" data-linenos="6 "></span></a><span class="n">h</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;세로 길이: &quot;</span><span class="p">))</span>
+<a id="__codelineno-46-7" name="__codelineno-46-7"></a><a href="#__codelineno-46-7"><span class="linenos" data-linenos="7 "></span></a>
+<a id="__codelineno-46-8" name="__codelineno-46-8"></a><a href="#__codelineno-46-8"><span class="linenos" data-linenos="8 "></span></a><span class="n">area</span> <span class="o">=</span> <span class="n">util</span><span class="o">.</span><span class="n">calc_area</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">h</span><span class="p">)</span>
+<a id="__codelineno-46-9" name="__codelineno-46-9"></a><a href="#__codelineno-46-9"><span class="linenos" data-linenos="9 "></span></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;넓이: </span><span class="si">{</span><span class="n">area</span><span class="si">}</span><span class="s2">㎡&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p>출력 예시:
+<div class="language-text highlight"><span class="filename">Text Only</span><pre><span></span><code><a id="__codelineno-47-1" name="__codelineno-47-1"></a><a href="#__codelineno-47-1"><span class="linenos" data-linenos="1 "></span></a>========================================
+<a id="__codelineno-47-2" name="__codelineno-47-2"></a><a href="#__codelineno-47-2"><span class="linenos" data-linenos="2 "></span></a>📌 면적 계산기
+<a id="__codelineno-47-3" name="__codelineno-47-3"></a><a href="#__codelineno-47-3"><span class="linenos" data-linenos="3 "></span></a>========================================
+<a id="__codelineno-47-4" name="__codelineno-47-4"></a><a href="#__codelineno-47-4"><span class="linenos" data-linenos="4 "></span></a>가로 길이: 5
+<a id="__codelineno-47-5" name="__codelineno-47-5"></a><a href="#__codelineno-47-5"><span class="linenos" data-linenos="5 "></span></a>세로 길이: 3
+<a id="__codelineno-47-6" name="__codelineno-47-6"></a><a href="#__codelineno-47-6"><span class="linenos" data-linenos="6 "></span></a>넓이: 15㎡
+</code></pre></div></p>
+<h3 id="step-3">Step 3. 패키지로 구성해 보기<a class="headerlink" href="#step-3" title="Permanent link">&para;</a></h3>
+<div class="language-text highlight"><span class="filename">Text Only</span><pre><span></span><code><a id="__codelineno-48-1" name="__codelineno-48-1"></a><a href="#__codelineno-48-1"><span class="linenos" data-linenos="1 "></span></a>project/
+<a id="__codelineno-48-2" name="__codelineno-48-2"></a><a href="#__codelineno-48-2"><span class="linenos" data-linenos="2 "></span></a>├── main.py
+<a id="__codelineno-48-3" name="__codelineno-48-3"></a><a href="#__codelineno-48-3"><span class="linenos" data-linenos="3 "></span></a>└── myutil/
+<a id="__codelineno-48-4" name="__codelineno-48-4"></a><a href="#__codelineno-48-4"><span class="linenos" data-linenos="4 "></span></a>    ├── __init__.py
+<a id="__codelineno-48-5" name="__codelineno-48-5"></a><a href="#__codelineno-48-5"><span class="linenos" data-linenos="5 "></span></a>    ├── printutil.py
+<a id="__codelineno-48-6" name="__codelineno-48-6"></a><a href="#__codelineno-48-6"><span class="linenos" data-linenos="6 "></span></a>    ├── calcutil.py
+</code></pre></div>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-49-1" name="__codelineno-49-1"></a><a href="#__codelineno-49-1"><span class="linenos" data-linenos="1 "></span></a><span class="c1"># printutil.py</span>
+<a id="__codelineno-49-2" name="__codelineno-49-2"></a><a href="#__codelineno-49-2"><span class="linenos" data-linenos="2 "></span></a><span class="k">def</span><span class="w"> </span><span class="nf">print_title</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+<a id="__codelineno-49-3" name="__codelineno-49-3"></a><a href="#__codelineno-49-3"><span class="linenos" data-linenos="3 "></span></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;===== </span><span class="si">{</span><span class="n">text</span><span class="si">}</span><span class="s2"> =====&quot;</span><span class="p">)</span>
+</code></pre></div>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-50-1" name="__codelineno-50-1"></a><a href="#__codelineno-50-1"><span class="linenos" data-linenos="1 "></span></a><span class="c1"># calcutil.py</span>
+<a id="__codelineno-50-2" name="__codelineno-50-2"></a><a href="#__codelineno-50-2"><span class="linenos" data-linenos="2 "></span></a><span class="k">def</span><span class="w"> </span><span class="nf">add</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+<a id="__codelineno-50-3" name="__codelineno-50-3"></a><a href="#__codelineno-50-3"><span class="linenos" data-linenos="3 "></span></a>    <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
+</code></pre></div>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-51-1" name="__codelineno-51-1"></a><a href="#__codelineno-51-1"><span class="linenos" data-linenos="1 "></span></a><span class="c1"># main.py</span>
+<a id="__codelineno-51-2" name="__codelineno-51-2"></a><a href="#__codelineno-51-2"><span class="linenos" data-linenos="2 "></span></a><span class="kn">from</span><span class="w"> </span><span class="nn">myutil</span><span class="w"> </span><span class="kn">import</span> <span class="n">printutil</span><span class="p">,</span> <span class="n">calcutil</span>
+<a id="__codelineno-51-3" name="__codelineno-51-3"></a><a href="#__codelineno-51-3"><span class="linenos" data-linenos="3 "></span></a>
+<a id="__codelineno-51-4" name="__codelineno-51-4"></a><a href="#__codelineno-51-4"><span class="linenos" data-linenos="4 "></span></a><span class="n">printutil</span><span class="o">.</span><span class="n">print_title</span><span class="p">(</span><span class="s2">&quot;유틸 테스트&quot;</span><span class="p">)</span>
+<a id="__codelineno-51-5" name="__codelineno-51-5"></a><a href="#__codelineno-51-5"><span class="linenos" data-linenos="5 "></span></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;덧셈:&quot;</span><span class="p">,</span> <span class="n">calcutil</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+</code></pre></div>
+<h3 id="chatgpt_7">💬 ChatGPT에게 물어볼 질문<a class="headerlink" href="#chatgpt_7" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p><strong>"모듈을 만들어두면 나중에 어떤 프로젝트에서도 쉽게 쓸 수 있나요?"</strong></p>
+</blockquote>
+<h2 id="9_1">9장 마무리 요약<a class="headerlink" href="#9_1" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>구분</th>
+<th>키워드</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>모듈</td>
+<td><code>.py</code> 파일 (import해서 사용)</td>
+</tr>
+<tr>
+<td>패키지</td>
+<td>모듈을 묶은 폴더 (<code>__init__.py</code>)</td>
+</tr>
+<tr>
+<td>import</td>
+<td><code>import</code>, <code>from</code>, <code>as</code>, <code>*</code></td>
+</tr>
+<tr>
+<td>사용자 정의 모듈</td>
+<td>직접 만든 함수 모음 파일</td>
+</tr>
+<tr>
+<td>내장 모듈</td>
+<td>math, random, os, sys, datetime 등</td>
+</tr>
+<tr>
+<td>외부 모듈</td>
+<td>pip로 설치 (<code>requests</code>, <code>pyperclip</code> 등)</td>
+</tr>
+<tr>
+<td>실습</td>
+<td>나만의 util 모듈/패키지 구성 및 활용</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_22">핵심 개념 키워드<a class="headerlink" href="#_22" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>import</code>, <code>from ... import</code>, <code>as</code>, <code>__name__</code></li>
+<li>모듈(module), 패키지(package), 내장 모듈, 외부 모듈</li>
+<li>사용자 정의 모듈, <code>pip install</code>, <code>__init__.py</code></li>
+</ul>
+<h3 id="_23">예제 중심 주제 흐름<a class="headerlink" href="#_23" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>math</code> 모듈 → 제곱근, 삼각함수</li>
+<li><code>random</code> 모듈 → 당첨자 뽑기</li>
+<li>사용자 정의 모듈 → 계산기 유틸, 메시지 유틸</li>
+<li>패키지 구조로 나누기</li>
+<li><code>pip</code>로 설치한 <code>pyperclip</code> 사용 → 클립보드 복사</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  맨위로
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="하단/푸터" >
+        
+          
+          <a href="../08_python_exception_handling/" class="md-footer__link md-footer__link--prev" aria-label="이전: 8장. 예외 처리 (Exception Handling)">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                이전
+              </span>
+              <div class="md-ellipsis">
+                8장. 예외 처리 (Exception Handling)
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../10_python_database_guide/" class="md-footer__link md-footer__link--next" aria-label="다음: 🧭 10장. 파이썬과 MySQL 연동">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                다음
+              </span>
+              <div class="md-ellipsis">
+                🧭 10장. 파이썬과 MySQL 연동
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant", "navigation.tabs", "navigation.footer", "navigation.top", "content.code.copy", "content.code.annotate", "content.tooltips", "content.footnote.tooltips"], "search": "../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "\ud074\ub9bd\ubcf4\ub4dc\uc5d0 \ubcf5\uc0ac\ub428", "clipboard.copy": "\ud074\ub9bd\ubcf4\ub4dc\ub85c \ubcf5\uc0ac", "search.result.more.one": "\uc774 \ubb38\uc11c\uc5d0\uc11c 1\uac1c\uc758 \uac80\uc0c9 \uacb0\uacfc \ub354 \ubcf4\uae30", "search.result.more.other": "\uc774 \ubb38\uc11c\uc5d0\uc11c #\uac1c\uc758 \uac80\uc0c9 \uacb0\uacfc \ub354 \ubcf4\uae30", "search.result.none": "\uac80\uc0c9\uc5b4\uc640 \uc77c\uce58\ud558\ub294 \ubb38\uc11c\uac00 \uc5c6\uc2b5\ub2c8\ub2e4", "search.result.one": "1\uac1c\uc758 \uc77c\uce58\ud558\ub294 \ubb38\uc11c", "search.result.other": "#\uac1c\uc758 \uc77c\uce58\ud558\ub294 \ubb38\uc11c", "search.result.placeholder": "\uac80\uc0c9\uc5b4\ub97c \uc785\ub825\ud558\uc138\uc694", "search.result.term.missing": "\ud3ec\ud568\ub418\uc9c0 \uc54a\uc740 \uac80\uc0c9\uc5b4", "select.version": "\ubc84\uc804 \uc120\ud0dd"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.56ea9cef.min.js"></script>
+      
+        <script src="../javascripts/extra.js"></script>
+      
+    
+  </body>
+</html>

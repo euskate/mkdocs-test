@@ -1,0 +1,2878 @@
+
+<!doctype html>
+<html lang="ko" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="MKDocs로 작성한 테스트 문서입니다.">
+      
+      
+        <meta name="author" content="ExpandSource">
+      
+      
+        <link rel="canonical" href="https://euskate.github.io/mkdocs-test/02_cleaned_python_tutorial/">
+      
+      
+        <link rel="prev" href="..">
+      
+      
+        <link rel="next" href="../03_python_list_tutorial/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.15">
+    
+    
+      
+        <title>Python 기초 - 2장 정리 - MKDocs 테스트</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.342714a4.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Gowun+Dodum:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Gowun Dodum";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="light-blue" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#python-2" class="md-skip">
+          콘텐츠로 이동
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="상단/헤더">
+    <a href=".." title="MKDocs 테스트" class="md-header__button md-logo" aria-label="MKDocs 테스트" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            MKDocs 테스트
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Python 기초 - 2장 정리
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="light-blue" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="light-blue" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="검색" placeholder="검색" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="검색">
+        
+        <button type="reset" class="md-search__icon md-icon" title="지우기" aria-label="지우기" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            검색 초기화
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="탭" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Welcome to MkDocs
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Python 기초 - 2장 정리
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../03_python_list_tutorial/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  3장 자료구조 - 리스트(List)
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../04_python_flow_control/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  4장. 흐름 제어(Control Flow)
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../05_python_function_chapter/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  5장. 함수(Function)
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../06_python_file_io/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  06 python file io
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../07_python_class_guide_unit/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  파이썬 클래스와 객체지향 프로그래밍 🎮
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../07_python_class_oop/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  객체지향 프로그래밍 가이드
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../08_python_exception_handling/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  8장. 예외 처리 (Exception Handling)
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../09_python_module_package/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  9장. 모듈과 패키지
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../10_python_database_guide/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  🧭 10장. 파이썬과 MySQL 연동
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../11_gui-tkinter/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Chapter 11: GUI 프로그래밍 (Tkinter)
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../test/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  테스트
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="네비게이션" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="MKDocs 테스트" class="md-nav__button md-logo" aria-label="MKDocs 테스트" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    MKDocs 테스트
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Welcome to MkDocs
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Python 기초 - 2장 정리
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Python 기초 - 2장 정리
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="목차">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      목차
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#2-1-comment" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧾 2-1. 주석(Comment)과 코드 흐름
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🧾 2-1. 주석(Comment)과 코드 흐름">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      📌 주석이란?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ 한 줄 주석: # 사용
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ 여러 줄 주석: ''' ''' 또는 """ """
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ 주석 사용 시점 예시
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧪 실습 1: 자기소개 주석 작성
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧾 2-2. 변수란 무엇인가?
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🧾 2-2. 변수란 무엇인가?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#variable" class="md-nav__link">
+    <span class="md-ellipsis">
+      📌 변수(Variable)란?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ 변수 사용의 장점
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      📌 변수 이름 규칙
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ 관례: 변수 이름 스타일
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧪 실습 2: 변수 선언과 출력
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧪 실습 3: 잘못된 변수명 고쳐보기
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧾 2-3. 파이썬의 기본 자료형 소개
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🧾 2-3. 파이썬의 기본 자료형 소개">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#data-type" class="md-nav__link">
+    <span class="md-ellipsis">
+      📌 자료형(Data Type)이란?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ 숫자형 (정수, 실수)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#str" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ 문자열 (str)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bool" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ 불형 (bool)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#none" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ None
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧪 실습 4: 자료형 확인하기
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧾 2-4. 자료형 확인 및 형 변환
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🧾 2-4. 자료형 확인 및 형 변환">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#type" class="md-nav__link">
+    <span class="md-ellipsis">
+      📌 type() 함수
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#type-casting" class="md-nav__link">
+    <span class="md-ellipsis">
+      📌 형 변환 (Type Casting)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ 숫자형 변환
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ 문자열 ↔ 숫자 변환
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ 불형 변환
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧪 실습 5: 사용자의 나이 입력받고 계산
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧪 실습 6: 형 변환 오류 잡기
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-5" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧾 2-5. 문자열 인덱싱과 슬라이싱
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🧾 2-5. 문자열 인덱싱과 슬라이싱">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#indexing" class="md-nav__link">
+    <span class="md-ellipsis">
+      📌 인덱싱(Indexing)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#slicing" class="md-nav__link">
+    <span class="md-ellipsis">
+      📌 슬라이싱(Slicing)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#startstopstep" class="md-nav__link">
+    <span class="md-ellipsis">
+      📌 [start:stop:step] 구조
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧪 실습 7: 문자열에서 원하는 글자 추출하기
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧪 실습 8: 문자열 거꾸로 출력하기
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ 주의: 인덱스 범위 벗어나면 오류!
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-6" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧾 2-6. 문자열 연산과 포매팅
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🧾 2-6. 문자열 연산과 포매팅">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      📌 문자열 연산
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📌 문자열 연산">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔹 덧셈 +
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔹 곱셈 *
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      📌 문자열 포매팅이란?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-c" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ ① % 방식 (C 스타일)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="✅ ① % 방식 (C 스타일)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔸 소수점 자리수 지정
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-format" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ ② format() 함수
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-f-string-36" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ ③ f-string (파이썬 3.6+)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#9" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧪 실습 9: 자기소개 문자열 만들기
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#10" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧪 실습 10: 가격 정보 출력 포맷
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-7" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧾 2-7. 문자열 관련 함수들
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🧾 2-7. 문자열 관련 함수들">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      📌 문자열 함수란?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_19" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ 대소문자 관련
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_20" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ 공백 및 문자 제거
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_21" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ 찾기, 포함 여부
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_22" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ 변경/분리/결합
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_23" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ 검사 함수
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#11" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧪 실습 11: 사용자 이름 처리
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧪 실습 12: 문자열 분석 도구 만들기
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-8" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧾 2-8. 실습 예제: 자기소개 만들기
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🧾 2-8. 실습 예제: 자기소개 만들기">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_24" class="md-nav__link">
+    <span class="md-ellipsis">
+      🎯 목표
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_25" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ 예시 코드
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_26" class="md-nav__link">
+    <span class="md-ellipsis">
+      📌 응용 포인트
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-9" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧾 2-9. 실습 예제: 비밀번호 생성기
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🧾 2-9. 실습 예제: 비밀번호 생성기">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_27" class="md-nav__link">
+    <span class="md-ellipsis">
+      🎯 목표
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_28" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ 문제 설명
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_29" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ 코드 예시
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_30" class="md-nav__link">
+    <span class="md-ellipsis">
+      📌 예시 입력/출력
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ 2장 마무리 요약
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03_python_list_tutorial/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    3장 자료구조 - 리스트(List)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04_python_flow_control/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    4장. 흐름 제어(Control Flow)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05_python_function_chapter/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    5장. 함수(Function)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06_python_file_io/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    06 python file io
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07_python_class_guide_unit/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    파이썬 클래스와 객체지향 프로그래밍 🎮
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07_python_class_oop/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    객체지향 프로그래밍 가이드
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08_python_exception_handling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    8장. 예외 처리 (Exception Handling)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09_python_module_package/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    9장. 모듈과 패키지
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10_python_database_guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🧭 10장. 파이썬과 MySQL 연동
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../11_gui-tkinter/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 11: GUI 프로그래밍 (Tkinter)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../test/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    테스트
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="목차">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      목차
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#2-1-comment" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧾 2-1. 주석(Comment)과 코드 흐름
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🧾 2-1. 주석(Comment)과 코드 흐름">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      📌 주석이란?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ 한 줄 주석: # 사용
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ 여러 줄 주석: ''' ''' 또는 """ """
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ 주석 사용 시점 예시
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧪 실습 1: 자기소개 주석 작성
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧾 2-2. 변수란 무엇인가?
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🧾 2-2. 변수란 무엇인가?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#variable" class="md-nav__link">
+    <span class="md-ellipsis">
+      📌 변수(Variable)란?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ 변수 사용의 장점
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      📌 변수 이름 규칙
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ 관례: 변수 이름 스타일
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧪 실습 2: 변수 선언과 출력
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧪 실습 3: 잘못된 변수명 고쳐보기
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧾 2-3. 파이썬의 기본 자료형 소개
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🧾 2-3. 파이썬의 기본 자료형 소개">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#data-type" class="md-nav__link">
+    <span class="md-ellipsis">
+      📌 자료형(Data Type)이란?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ 숫자형 (정수, 실수)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#str" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ 문자열 (str)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bool" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ 불형 (bool)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#none" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ None
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧪 실습 4: 자료형 확인하기
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧾 2-4. 자료형 확인 및 형 변환
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🧾 2-4. 자료형 확인 및 형 변환">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#type" class="md-nav__link">
+    <span class="md-ellipsis">
+      📌 type() 함수
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#type-casting" class="md-nav__link">
+    <span class="md-ellipsis">
+      📌 형 변환 (Type Casting)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ 숫자형 변환
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ 문자열 ↔ 숫자 변환
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ 불형 변환
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧪 실습 5: 사용자의 나이 입력받고 계산
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧪 실습 6: 형 변환 오류 잡기
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-5" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧾 2-5. 문자열 인덱싱과 슬라이싱
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🧾 2-5. 문자열 인덱싱과 슬라이싱">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#indexing" class="md-nav__link">
+    <span class="md-ellipsis">
+      📌 인덱싱(Indexing)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#slicing" class="md-nav__link">
+    <span class="md-ellipsis">
+      📌 슬라이싱(Slicing)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#startstopstep" class="md-nav__link">
+    <span class="md-ellipsis">
+      📌 [start:stop:step] 구조
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧪 실습 7: 문자열에서 원하는 글자 추출하기
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧪 실습 8: 문자열 거꾸로 출력하기
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ 주의: 인덱스 범위 벗어나면 오류!
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-6" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧾 2-6. 문자열 연산과 포매팅
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🧾 2-6. 문자열 연산과 포매팅">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      📌 문자열 연산
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📌 문자열 연산">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔹 덧셈 +
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔹 곱셈 *
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      📌 문자열 포매팅이란?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-c" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ ① % 방식 (C 스타일)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="✅ ① % 방식 (C 스타일)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔸 소수점 자리수 지정
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-format" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ ② format() 함수
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-f-string-36" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ ③ f-string (파이썬 3.6+)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#9" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧪 실습 9: 자기소개 문자열 만들기
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#10" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧪 실습 10: 가격 정보 출력 포맷
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-7" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧾 2-7. 문자열 관련 함수들
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🧾 2-7. 문자열 관련 함수들">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      📌 문자열 함수란?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_19" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ 대소문자 관련
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_20" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ 공백 및 문자 제거
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_21" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ 찾기, 포함 여부
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_22" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ 변경/분리/결합
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_23" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ 검사 함수
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#11" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧪 실습 11: 사용자 이름 처리
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧪 실습 12: 문자열 분석 도구 만들기
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-8" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧾 2-8. 실습 예제: 자기소개 만들기
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🧾 2-8. 실습 예제: 자기소개 만들기">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_24" class="md-nav__link">
+    <span class="md-ellipsis">
+      🎯 목표
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_25" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ 예시 코드
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_26" class="md-nav__link">
+    <span class="md-ellipsis">
+      📌 응용 포인트
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-9" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧾 2-9. 실습 예제: 비밀번호 생성기
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🧾 2-9. 실습 예제: 비밀번호 생성기">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_27" class="md-nav__link">
+    <span class="md-ellipsis">
+      🎯 목표
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_28" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ 문제 설명
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_29" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ 코드 예시
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_30" class="md-nav__link">
+    <span class="md-ellipsis">
+      📌 예시 입력/출력
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ 2장 마무리 요약
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="python-2">Python 기초 - 2장 정리<a class="headerlink" href="#python-2" title="Permanent link">&para;</a></h1>
+<div class="toc">
+<ul>
+<li><a href="#python-2">Python 기초 - 2장 정리</a><ul>
+<li><a href="#2-1-comment">🧾 2-1. 주석(Comment)과 코드 흐름</a><ul>
+<li><a href="#_1">📌 주석이란?</a></li>
+<li><a href="#_2">✅ 한 줄 주석: # 사용</a></li>
+<li><a href="#_3">✅ 여러 줄 주석: ''' ''' 또는 """ """</a></li>
+<li><a href="#_4">✅ 주석 사용 시점 예시</a></li>
+<li><a href="#1">🧪 실습 1: 자기소개 주석 작성</a></li>
+</ul>
+</li>
+<li><a href="#2-2">🧾 2-2. 변수란 무엇인가?</a><ul>
+<li><a href="#variable">📌 변수(Variable)란?</a></li>
+<li><a href="#_5">✅ 변수 사용의 장점</a></li>
+<li><a href="#_6">📌 변수 이름 규칙</a></li>
+<li><a href="#_7">✅ 관례: 변수 이름 스타일</a></li>
+<li><a href="#2">🧪 실습 2: 변수 선언과 출력</a></li>
+<li><a href="#3">🧪 실습 3: 잘못된 변수명 고쳐보기</a></li>
+</ul>
+</li>
+<li><a href="#2-3">🧾 2-3. 파이썬의 기본 자료형 소개</a><ul>
+<li><a href="#data-type">📌 자료형(Data Type)이란?</a></li>
+<li><a href="#_8">✅ 숫자형 (정수, 실수)</a></li>
+<li><a href="#str">✅ 문자열 (str)</a></li>
+<li><a href="#bool">✅ 불형 (bool)</a></li>
+<li><a href="#none">✅ None</a></li>
+<li><a href="#4">🧪 실습 4: 자료형 확인하기</a></li>
+</ul>
+</li>
+<li><a href="#2-4">🧾 2-4. 자료형 확인 및 형 변환</a><ul>
+<li><a href="#type">📌 type() 함수</a></li>
+<li><a href="#type-casting">📌 형 변환 (Type Casting)</a></li>
+<li><a href="#_9">✅ 숫자형 변환</a></li>
+<li><a href="#_10">✅ 문자열 ↔ 숫자 변환</a></li>
+<li><a href="#_11">✅ 불형 변환</a></li>
+<li><a href="#5">🧪 실습 5: 사용자의 나이 입력받고 계산</a></li>
+<li><a href="#6">🧪 실습 6: 형 변환 오류 잡기</a></li>
+</ul>
+</li>
+<li><a href="#2-5">🧾 2-5. 문자열 인덱싱과 슬라이싱</a><ul>
+<li><a href="#indexing">📌 인덱싱(Indexing)</a></li>
+<li><a href="#slicing">📌 슬라이싱(Slicing)</a></li>
+<li><a href="#startstopstep">📌 [start:stop:step] 구조</a></li>
+<li><a href="#7">🧪 실습 7: 문자열에서 원하는 글자 추출하기</a></li>
+<li><a href="#8">🧪 실습 8: 문자열 거꾸로 출력하기</a></li>
+<li><a href="#_12">✅ 주의: 인덱스 범위 벗어나면 오류!</a></li>
+</ul>
+</li>
+<li><a href="#2-6">🧾 2-6. 문자열 연산과 포매팅</a><ul>
+<li><a href="#_13">📌 문자열 연산</a><ul>
+<li><a href="#_14">🔹 덧셈 +</a></li>
+<li><a href="#_15">🔹 곱셈 *</a></li>
+</ul>
+</li>
+<li><a href="#_16">📌 문자열 포매팅이란?</a></li>
+<li><a href="#1-c">✅ ① % 방식 (C 스타일)</a><ul>
+<li><a href="#_17">🔸 소수점 자리수 지정</a></li>
+</ul>
+</li>
+<li><a href="#2-format">✅ ② format() 함수</a></li>
+<li><a href="#3-f-string-36">✅ ③ f-string (파이썬 3.6+)</a></li>
+<li><a href="#9">🧪 실습 9: 자기소개 문자열 만들기</a></li>
+<li><a href="#10">🧪 실습 10: 가격 정보 출력 포맷</a></li>
+</ul>
+</li>
+<li><a href="#2-7">🧾 2-7. 문자열 관련 함수들</a><ul>
+<li><a href="#_18">📌 문자열 함수란?</a></li>
+<li><a href="#_19">✅ 대소문자 관련</a></li>
+<li><a href="#_20">✅ 공백 및 문자 제거</a></li>
+<li><a href="#_21">✅ 찾기, 포함 여부</a></li>
+<li><a href="#_22">✅ 변경/분리/결합</a></li>
+<li><a href="#_23">✅ 검사 함수</a></li>
+<li><a href="#11">🧪 실습 11: 사용자 이름 처리</a></li>
+<li><a href="#12">🧪 실습 12: 문자열 분석 도구 만들기</a></li>
+</ul>
+</li>
+<li><a href="#2-8">🧾 2-8. 실습 예제: 자기소개 만들기</a><ul>
+<li><a href="#_24">🎯 목표</a></li>
+<li><a href="#_25">✅ 예시 코드</a></li>
+<li><a href="#_26">📌 응용 포인트</a></li>
+</ul>
+</li>
+<li><a href="#2-9">🧾 2-9. 실습 예제: 비밀번호 생성기</a><ul>
+<li><a href="#_27">🎯 목표</a></li>
+<li><a href="#_28">✅ 문제 설명</a></li>
+<li><a href="#_29">✅ 코드 예시</a></li>
+<li><a href="#_30">📌 예시 입력/출력</a></li>
+</ul>
+</li>
+<li><a href="#2_1">✅ 2장 마무리 요약</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h2 id="2-1-comment">🧾 2-1. 주석(Comment)과 코드 흐름<a class="headerlink" href="#2-1-comment" title="Permanent link">&para;</a></h2>
+<h3 id="_1">📌 주석이란?<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p>주석은 <strong>프로그램에 대한 설명을 적는 문장</strong>으로,
+<strong>실행되지 않는 코드</strong>입니다.</p>
+</blockquote>
+<ul>
+<li><strong>사람은 읽지만, 컴퓨터는 무시</strong>합니다.</li>
+<li><strong>abc</strong>def</li>
+<li>협업, 복습, 유지보수에 필수적인 요소입니다.</li>
+</ul>
+<h3 id="_2">✅ 한 줄 주석: <code>#</code> 사용<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a><a href="#__codelineno-0-1"><span class="linenos" data-linenos="1 "></span></a><span class="c1"># 이것은 한 줄 주석입니다</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2"></a><a href="#__codelineno-0-2"><span class="linenos" data-linenos="2 "></span></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hello!&quot;</span><span class="p">)</span>  <span class="c1"># 출력 문장</span>
+</code></pre></div>
+<h3 id="_3">✅ 여러 줄 주석: <code>''' '''</code> 또는 <code>""" """</code><a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><span class="filename">test1.py</span><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1"></a><a href="#__codelineno-1-1"><span class="linenos" data-linenos="1 "></span></a><span class="sd">&#39;&#39;&#39;</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2"></a><a href="#__codelineno-1-2"><span class="linenos" data-linenos="2 "></span></a><span class="sd">이 부분은 여러 줄 주석입니다.</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3"></a><a href="#__codelineno-1-3"><span class="linenos" data-linenos="3 "></span></a><span class="sd">프로그램 설명이나 예시 등에 사용합니다.</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4"></a><a href="#__codelineno-1-4"><span class="linenos" data-linenos="4 "></span></a><span class="sd">&#39;&#39;&#39;</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5"></a><a href="#__codelineno-1-5"><span class="linenos" data-linenos="5 "></span></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hello, Python!&quot;</span><span class="p">)</span> <span class="c1"># (1)!</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6"></a><a href="#__codelineno-1-6"><span class="linenos" data-linenos="6 "></span></a><span class="nb">print</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># (2)!</span>
+</code></pre></div>
+<ol>
+<li>테스트테스트</li>
+<li>테테</li>
+</ol>
+<blockquote>
+<p>여러 줄 주석은 사실은 <strong>문자열 리터럴</strong>이지만,
+변수에 저장되지 않으면 주석처럼 동작합니다.</p>
+</blockquote>
+<h3 id="_4">✅ 주석 사용 시점 예시<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<ol>
+<li>함수/코드 블록 설명</li>
+<li>디버깅 시 코드 잠깐 꺼두기</li>
+<li>TODO, 수정할 부분 표시</li>
+</ol>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a><a href="#__codelineno-2-1"><span class="linenos" data-linenos="1 "></span></a><span class="c1"># TODO: 에러 처리 로직 추가 예정</span>
+</code></pre></div>
+<h3 id="1">🧪 실습 1: 자기소개 주석 작성<a class="headerlink" href="#1" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1"></a><a href="#__codelineno-3-1"><span class="linenos" data-linenos="1 "></span></a><span class="c1"># 이름, 나이, 관심사 출력 프로그램</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2"></a><a href="#__codelineno-3-2"><span class="linenos" data-linenos="2 "></span></a>
+<a id="__codelineno-3-3" name="__codelineno-3-3"></a><a href="#__codelineno-3-3"><span class="linenos" data-linenos="3 "></span></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;이름: 홍길동&quot;</span><span class="p">)</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4"></a><a href="#__codelineno-3-4"><span class="linenos" data-linenos="4 "></span></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;나이: 25&quot;</span><span class="p">)</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5"></a><a href="#__codelineno-3-5"><span class="linenos" data-linenos="5 "></span></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;관심사: 인공지능&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p>✅ <strong>목표:</strong> 주석 작성과 코드 설명 구분하기</p>
+<hr />
+<h2 id="2-2">🧾 2-2. 변수란 무엇인가?<a class="headerlink" href="#2-2" title="Permanent link">&para;</a></h2>
+<h3 id="variable">📌 변수(Variable)란?<a class="headerlink" href="#variable" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p>데이터를 저장할 수 있는 <strong>이름이 붙은 상자</strong></p>
+</blockquote>
+<ul>
+<li>메모리 공간에 값을 저장하고,
+  그 공간에 이름을 붙여 <strong>나중에 재사용</strong>할 수 있도록 하는 것</li>
+</ul>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1"></a><a href="#__codelineno-4-1"><span class="linenos" data-linenos="1 "></span></a><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;홍길동&quot;</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2"></a><a href="#__codelineno-4-2"><span class="linenos" data-linenos="2 "></span></a><span class="n">age</span> <span class="o">=</span> <span class="mi">25</span>
+</code></pre></div>
+<ul>
+<li><code>"홍길동"</code>이라는 값을 <code>name</code>이라는 <strong>이름에 담는다</strong></li>
+<li><code>25</code>라는 값을 <code>age</code>라는 변수에 저장</li>
+</ul>
+<h3 id="_5">✅ 변수 사용의 장점<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<ul>
+<li>값을 <strong>한 번 저장하고 여러 번 재사용</strong></li>
+<li><strong>코드 의미가 명확해짐</strong></li>
+<li>유지보수가 쉬움</li>
+</ul>
+<p>예:</p>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1"></a><a href="#__codelineno-5-1"><span class="linenos" data-linenos="1 "></span></a><span class="n">width</span> <span class="o">=</span> <span class="mi">10</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2"></a><a href="#__codelineno-5-2"><span class="linenos" data-linenos="2 "></span></a><span class="n">height</span> <span class="o">=</span> <span class="mi">5</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3"></a><a href="#__codelineno-5-3"><span class="linenos" data-linenos="3 "></span></a><span class="n">area</span> <span class="o">=</span> <span class="n">width</span> <span class="o">*</span> <span class="n">height</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4"></a><a href="#__codelineno-5-4"><span class="linenos" data-linenos="4 "></span></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;넓이:&quot;</span><span class="p">,</span> <span class="n">area</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="_6">📌 변수 이름 규칙<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>허용</th>
+<th>예시</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>영문자, 숫자, 밑줄(_) 사용 가능</td>
+<td><code>score</code>, <code>user_name</code>, <code>value1</code></td>
+</tr>
+<tr>
+<td>숫자로 시작 ❌</td>
+<td><code>1st_user</code> → ❌</td>
+</tr>
+<tr>
+<td>공백 ❌</td>
+<td><code>user name</code> → ❌</td>
+</tr>
+<tr>
+<td>대소문자 구분</td>
+<td><code>name</code> ≠ <code>Name</code></td>
+</tr>
+<tr>
+<td>예약어 사용 금지</td>
+<td><code>if</code>, <code>class</code>, <code>def</code> 등은 ❌</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_7">✅ 관례: 변수 이름 스타일<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>snake_case</strong> 사용 권장 (소문자 + 밑줄)</li>
+<li>예: <code>user_name</code>, <code>max_score</code></li>
+<li><strong>한글 변수</strong>도 가능하지만, 교육 목적 외에는 권장하지 않음</li>
+</ul>
+<h3 id="2">🧪 실습 2: 변수 선언과 출력<a class="headerlink" href="#2" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1"></a><a href="#__codelineno-6-1"><span class="linenos" data-linenos="1 "></span></a><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;이몽룡&quot;</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2"></a><a href="#__codelineno-6-2"><span class="linenos" data-linenos="2 "></span></a><span class="n">city</span> <span class="o">=</span> <span class="s2">&quot;남원&quot;</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3"></a><a href="#__codelineno-6-3"><span class="linenos" data-linenos="3 "></span></a><span class="n">year</span> <span class="o">=</span> <span class="mi">2025</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4"></a><a href="#__codelineno-6-4"><span class="linenos" data-linenos="4 "></span></a>
+<a id="__codelineno-6-5" name="__codelineno-6-5"></a><a href="#__codelineno-6-5"><span class="linenos" data-linenos="5 "></span></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;이름:&quot;</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6"></a><a href="#__codelineno-6-6"><span class="linenos" data-linenos="6 "></span></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;사는 곳:&quot;</span><span class="p">,</span> <span class="n">city</span><span class="p">)</span>
+<a id="__codelineno-6-7" name="__codelineno-6-7"></a><a href="#__codelineno-6-7"><span class="linenos" data-linenos="7 "></span></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;올해:&quot;</span><span class="p">,</span> <span class="n">year</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="3">🧪 실습 3: 잘못된 변수명 고쳐보기<a class="headerlink" href="#3" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1"></a><a href="#__codelineno-7-1"><span class="linenos" data-linenos=" 1 "></span></a><span class="c1"># 다음 변수명 중 잘못된 것은 무엇일까요?</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2"></a><a href="#__codelineno-7-2"><span class="linenos" data-linenos=" 2 "></span></a>
+<a id="__codelineno-7-3" name="__codelineno-7-3"></a><a href="#__codelineno-7-3"><span class="linenos" data-linenos=" 3 "></span></a><span class="mi">1</span><span class="n">st_player</span> <span class="o">=</span> <span class="s2">&quot;홍길동&quot;</span>   <span class="c1"># ❌ 숫자로 시작</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4"></a><a href="#__codelineno-7-4"><span class="linenos" data-linenos=" 4 "></span></a><span class="n">user</span><span class="o">-</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;이몽룡&quot;</span>    <span class="c1"># ❌ 하이픈 사용</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5"></a><a href="#__codelineno-7-5"><span class="linenos" data-linenos=" 5 "></span></a><span class="k">def</span><span class="w"> </span><span class="o">=</span> <span class="s2">&quot;함수&quot;</span>            <span class="c1"># ❌ 예약어 사용</span>
+<a id="__codelineno-7-6" name="__codelineno-7-6"></a><a href="#__codelineno-7-6"><span class="linenos" data-linenos=" 6 "></span></a>
+<a id="__codelineno-7-7" name="__codelineno-7-7"></a><a href="#__codelineno-7-7"><span class="linenos" data-linenos=" 7 "></span></a><span class="c1"># 올바르게 고쳐보세요:</span>
+<a id="__codelineno-7-8" name="__codelineno-7-8"></a><a href="#__codelineno-7-8"><span class="linenos" data-linenos=" 8 "></span></a><span class="n">first_player</span> <span class="o">=</span> <span class="s2">&quot;홍길동&quot;</span>
+<a id="__codelineno-7-9" name="__codelineno-7-9"></a><a href="#__codelineno-7-9"><span class="linenos" data-linenos=" 9 "></span></a><span class="n">user_name</span> <span class="o">=</span> <span class="s2">&quot;이몽룡&quot;</span>
+<a id="__codelineno-7-10" name="__codelineno-7-10"></a><a href="#__codelineno-7-10"><span class="linenos" data-linenos="10 "></span></a><span class="n">definition</span> <span class="o">=</span> <span class="s2">&quot;함수&quot;</span>
+</code></pre></div>
+<p>✅ <strong>목표:</strong> 변수명 규칙 숙지 + 실습</p>
+<hr />
+<h2 id="2-3">🧾 2-3. 파이썬의 기본 자료형 소개<a class="headerlink" href="#2-3" title="Permanent link">&para;</a></h2>
+<h3 id="data-type">📌 자료형(Data Type)이란?<a class="headerlink" href="#data-type" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p><strong>값이 어떤 종류인지 나타내는 정보</strong>
+예: 정수, 실수, 글자, 참/거짓 등</p>
+</blockquote>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1"></a><a href="#__codelineno-8-1"><span class="linenos" data-linenos="1 "></span></a><span class="nb">type</span><span class="p">(</span><span class="mi">123</span><span class="p">)</span>         <span class="c1"># &lt;class &#39;int&#39;&gt;</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2"></a><a href="#__codelineno-8-2"><span class="linenos" data-linenos="2 "></span></a><span class="nb">type</span><span class="p">(</span><span class="s2">&quot;hello&quot;</span><span class="p">)</span>     <span class="c1"># &lt;class &#39;str&#39;&gt;</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3"></a><a href="#__codelineno-8-3"><span class="linenos" data-linenos="3 "></span></a><span class="nb">type</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>        <span class="c1"># &lt;class &#39;bool&#39;&gt;</span>
+</code></pre></div>
+<h3 id="_8">✅ 숫자형 (정수, 실수)<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1"></a><a href="#__codelineno-9-1"><span class="linenos" data-linenos="1 "></span></a><span class="n">a</span> <span class="o">=</span> <span class="mi">10</span>          <span class="c1"># int (정수)</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2"></a><a href="#__codelineno-9-2"><span class="linenos" data-linenos="2 "></span></a><span class="n">b</span> <span class="o">=</span> <span class="mf">3.14</span>        <span class="c1"># float (실수)</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3"></a><a href="#__codelineno-9-3"><span class="linenos" data-linenos="3 "></span></a><span class="n">c</span> <span class="o">=</span> <span class="o">-</span><span class="mi">100</span>
+</code></pre></div>
+<p>연산 가능:</p>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1"></a><a href="#__codelineno-10-1"><span class="linenos" data-linenos="1 "></span></a><span class="nb">print</span><span class="p">(</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">)</span>    <span class="c1"># 13.14</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2"></a><a href="#__codelineno-10-2"><span class="linenos" data-linenos="2 "></span></a><span class="nb">print</span><span class="p">(</span><span class="n">a</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span>    <span class="c1"># 20</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3"></a><a href="#__codelineno-10-3"><span class="linenos" data-linenos="3 "></span></a><span class="nb">print</span><span class="p">(</span><span class="n">b</span> <span class="o">//</span> <span class="mi">1</span><span class="p">)</span>   <span class="c1"># 3.0 (정수 나눗셈)</span>
+</code></pre></div>
+<h3 id="str">✅ 문자열 (str)<a class="headerlink" href="#str" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1"></a><a href="#__codelineno-11-1"><span class="linenos" data-linenos="1 "></span></a><span class="n">text1</span> <span class="o">=</span> <span class="s2">&quot;Hello&quot;</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2"></a><a href="#__codelineno-11-2"><span class="linenos" data-linenos="2 "></span></a><span class="n">text2</span> <span class="o">=</span> <span class="s1">&#39;Python&#39;</span>
+</code></pre></div>
+<ul>
+<li>문자열은 <code>""</code> 또는 <code>''</code>로 묶음</li>
+<li>여러 줄 문자열: <code>""" """</code> 또는 <code>''' '''</code></li>
+</ul>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1"></a><a href="#__codelineno-12-1"><span class="linenos" data-linenos="1 "></span></a><span class="n">multiline</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;안녕하세요</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2"></a><a href="#__codelineno-12-2"><span class="linenos" data-linenos="2 "></span></a><span class="s2">여러 줄입니다&quot;&quot;&quot;</span>
+</code></pre></div>
+<h3 id="bool">✅ 불형 (bool)<a class="headerlink" href="#bool" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1"></a><a href="#__codelineno-13-1"><span class="linenos" data-linenos="1 "></span></a><span class="n">is_adult</span> <span class="o">=</span> <span class="kc">True</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2"></a><a href="#__codelineno-13-2"><span class="linenos" data-linenos="2 "></span></a><span class="n">is_student</span> <span class="o">=</span> <span class="kc">False</span>
+</code></pre></div>
+<ul>
+<li>대문자 <code>True</code>, <code>False</code></li>
+<li>조건 비교, 논리 연산 등에서 사용</li>
+</ul>
+<h3 id="none">✅ None<a class="headerlink" href="#none" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1"></a><a href="#__codelineno-14-1"><span class="linenos" data-linenos="1 "></span></a><span class="n">result</span> <span class="o">=</span> <span class="kc">None</span>
+</code></pre></div>
+<ul>
+<li><strong>"아직 값이 없음"</strong>, "비어 있음"의 의미</li>
+<li>변수 초기화 시 자주 사용됨</li>
+</ul>
+<h3 id="4">🧪 실습 4: 자료형 확인하기<a class="headerlink" href="#4" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1"></a><a href="#__codelineno-15-1"><span class="linenos" data-linenos=" 1 "></span></a><span class="n">a</span> <span class="o">=</span> <span class="mi">10</span>
+<a id="__codelineno-15-2" name="__codelineno-15-2"></a><a href="#__codelineno-15-2"><span class="linenos" data-linenos=" 2 "></span></a><span class="n">b</span> <span class="o">=</span> <span class="mf">3.14</span>
+<a id="__codelineno-15-3" name="__codelineno-15-3"></a><a href="#__codelineno-15-3"><span class="linenos" data-linenos=" 3 "></span></a><span class="n">c</span> <span class="o">=</span> <span class="s2">&quot;안녕&quot;</span>
+<a id="__codelineno-15-4" name="__codelineno-15-4"></a><a href="#__codelineno-15-4"><span class="linenos" data-linenos=" 4 "></span></a><span class="n">d</span> <span class="o">=</span> <span class="kc">True</span>
+<a id="__codelineno-15-5" name="__codelineno-15-5"></a><a href="#__codelineno-15-5"><span class="linenos" data-linenos=" 5 "></span></a><span class="n">e</span> <span class="o">=</span> <span class="kc">None</span>
+<a id="__codelineno-15-6" name="__codelineno-15-6"></a><a href="#__codelineno-15-6"><span class="linenos" data-linenos=" 6 "></span></a>
+<a id="__codelineno-15-7" name="__codelineno-15-7"></a><a href="#__codelineno-15-7"><span class="linenos" data-linenos=" 7 "></span></a><span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">a</span><span class="p">))</span>  <span class="c1"># &lt;class &#39;int&#39;&gt;</span>
+<a id="__codelineno-15-8" name="__codelineno-15-8"></a><a href="#__codelineno-15-8"><span class="linenos" data-linenos=" 8 "></span></a><span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">b</span><span class="p">))</span>  <span class="c1"># &lt;class &#39;float&#39;&gt;</span>
+<a id="__codelineno-15-9" name="__codelineno-15-9"></a><a href="#__codelineno-15-9"><span class="linenos" data-linenos=" 9 "></span></a><span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">c</span><span class="p">))</span>  <span class="c1"># &lt;class &#39;str&#39;&gt;</span>
+<a id="__codelineno-15-10" name="__codelineno-15-10"></a><a href="#__codelineno-15-10"><span class="linenos" data-linenos="10 "></span></a><span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">d</span><span class="p">))</span>  <span class="c1"># &lt;class &#39;bool&#39;&gt;</span>
+<a id="__codelineno-15-11" name="__codelineno-15-11"></a><a href="#__codelineno-15-11"><span class="linenos" data-linenos="11 "></span></a><span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>  <span class="c1"># &lt;class &#39;NoneType&#39;&gt;</span>
+</code></pre></div>
+<p>✅ <strong>목표:</strong> <code>type()</code>으로 자료형 확인하는 법 익히기</p>
+<hr />
+<h2 id="2-4">🧾 2-4. 자료형 확인 및 형 변환<a class="headerlink" href="#2-4" title="Permanent link">&para;</a></h2>
+<h3 id="type">📌 <code>type()</code> 함수<a class="headerlink" href="#type" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p>변수나 값의 <strong>자료형을 확인</strong>하는 함수</p>
+</blockquote>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1"></a><a href="#__codelineno-16-1"><span class="linenos" data-linenos="1 "></span></a><span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>          <span class="c1"># &lt;class &#39;int&#39;&gt;</span>
+<a id="__codelineno-16-2" name="__codelineno-16-2"></a><a href="#__codelineno-16-2"><span class="linenos" data-linenos="2 "></span></a><span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="s2">&quot;Hello&quot;</span><span class="p">))</span>     <span class="c1"># &lt;class &#39;str&#39;&gt;</span>
+<a id="__codelineno-16-3" name="__codelineno-16-3"></a><a href="#__codelineno-16-3"><span class="linenos" data-linenos="3 "></span></a><span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="mf">3.14</span><span class="p">))</span>        <span class="c1"># &lt;class &#39;float&#39;&gt;</span>
+</code></pre></div>
+<h3 id="type-casting">📌 형 변환 (Type Casting)<a class="headerlink" href="#type-casting" title="Permanent link">&para;</a></h3>
+<p>파이썬에서는 <code>int()</code>, <code>float()</code>, <code>str()</code>, <code>bool()</code> 등의 함수를 이용해 <strong>자료형을 변환</strong>할 수 있습니다.</p>
+<h3 id="_9">✅ 숫자형 변환<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1"></a><a href="#__codelineno-17-1"><span class="linenos" data-linenos="1 "></span></a><span class="nb">print</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="mf">3.9</span><span class="p">))</span>     <span class="c1"># 3</span>
+<a id="__codelineno-17-2" name="__codelineno-17-2"></a><a href="#__codelineno-17-2"><span class="linenos" data-linenos="2 "></span></a><span class="nb">print</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>    <span class="c1"># 10.0</span>
+</code></pre></div>
+<ul>
+<li>소수 → 정수: <strong>소수점 이하 버림</strong></li>
+<li>정수 → 소수: <code>.0</code> 붙여 실수로 변환</li>
+</ul>
+<h3 id="_10">✅ 문자열 ↔ 숫자 변환<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1"></a><a href="#__codelineno-18-1"><span class="linenos" data-linenos="1 "></span></a><span class="n">num</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="s2">&quot;100&quot;</span><span class="p">)</span>        <span class="c1"># 문자열 → 정수</span>
+<a id="__codelineno-18-2" name="__codelineno-18-2"></a><a href="#__codelineno-18-2"><span class="linenos" data-linenos="2 "></span></a><span class="n">text</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="mf">3.14</span><span class="p">)</span>        <span class="c1"># 숫자 → 문자열</span>
+<a id="__codelineno-18-3" name="__codelineno-18-3"></a><a href="#__codelineno-18-3"><span class="linenos" data-linenos="3 "></span></a>
+<a id="__codelineno-18-4" name="__codelineno-18-4"></a><a href="#__codelineno-18-4"><span class="linenos" data-linenos="4 "></span></a><span class="nb">print</span><span class="p">(</span><span class="n">num</span> <span class="o">+</span> <span class="mi">50</span><span class="p">)</span>         <span class="c1"># 150</span>
+<a id="__codelineno-18-5" name="__codelineno-18-5"></a><a href="#__codelineno-18-5"><span class="linenos" data-linenos="5 "></span></a><span class="nb">print</span><span class="p">(</span><span class="n">text</span> <span class="o">+</span> <span class="s2">&quot;원&quot;</span><span class="p">)</span>      <span class="c1"># &#39;3.14원&#39;</span>
+</code></pre></div>
+<blockquote>
+<p>문자열을 숫자로 바꿀 때는 반드시 <strong>숫자 형식의 문자열</strong>이어야 함</p>
+</blockquote>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1"></a><a href="#__codelineno-19-1"><span class="linenos" data-linenos="1 "></span></a><span class="nb">int</span><span class="p">(</span><span class="s2">&quot;hello&quot;</span><span class="p">)</span>  <span class="c1"># ❌ ValueError</span>
+</code></pre></div>
+<h3 id="_11">✅ 불형 변환<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1"></a><a href="#__codelineno-20-1"><span class="linenos" data-linenos="1 "></span></a><span class="nb">print</span><span class="p">(</span><span class="nb">bool</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>        <span class="c1"># True</span>
+<a id="__codelineno-20-2" name="__codelineno-20-2"></a><a href="#__codelineno-20-2"><span class="linenos" data-linenos="2 "></span></a><span class="nb">print</span><span class="p">(</span><span class="nb">bool</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>        <span class="c1"># False</span>
+<a id="__codelineno-20-3" name="__codelineno-20-3"></a><a href="#__codelineno-20-3"><span class="linenos" data-linenos="3 "></span></a><span class="nb">print</span><span class="p">(</span><span class="nb">bool</span><span class="p">(</span><span class="s2">&quot;안녕&quot;</span><span class="p">))</span>   <span class="c1"># True</span>
+<a id="__codelineno-20-4" name="__codelineno-20-4"></a><a href="#__codelineno-20-4"><span class="linenos" data-linenos="4 "></span></a><span class="nb">print</span><span class="p">(</span><span class="nb">bool</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">))</span>       <span class="c1"># False</span>
+</code></pre></div>
+<ul>
+<li>숫자 <code>0</code>, 빈 문자열 <code>""</code>, <code>None</code>, 빈 리스트 <code>[]</code> → <code>False</code></li>
+<li>나머지 값들은 <code>True</code></li>
+</ul>
+<h3 id="5">🧪 실습 5: 사용자의 나이 입력받고 계산<a class="headerlink" href="#5" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1"></a><a href="#__codelineno-21-1"><span class="linenos" data-linenos="1 "></span></a><span class="n">birth_year</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;태어난 연도는? &quot;</span><span class="p">)</span>    <span class="c1"># str</span>
+<a id="__codelineno-21-2" name="__codelineno-21-2"></a><a href="#__codelineno-21-2"><span class="linenos" data-linenos="2 "></span></a><span class="n">age</span> <span class="o">=</span> <span class="mi">2025</span> <span class="o">-</span> <span class="nb">int</span><span class="p">(</span><span class="n">birth_year</span><span class="p">)</span>
+<a id="__codelineno-21-3" name="__codelineno-21-3"></a><a href="#__codelineno-21-3"><span class="linenos" data-linenos="3 "></span></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;당신의 나이는 </span><span class="si">{</span><span class="n">age</span><span class="si">}</span><span class="s2">세입니다.&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p>✅ <strong>목표:</strong> <code>input()</code>으로 받은 문자열을 <code>int()</code>로 변환</p>
+<h3 id="6">🧪 실습 6: 형 변환 오류 잡기<a class="headerlink" href="#6" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1"></a><a href="#__codelineno-22-1"><span class="linenos" data-linenos="1 "></span></a><span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;10원&quot;</span>
+<a id="__codelineno-22-2" name="__codelineno-22-2"></a><a href="#__codelineno-22-2"><span class="linenos" data-linenos="2 "></span></a><span class="c1"># price = int(text)  # 오류 발생!</span>
+<a id="__codelineno-22-3" name="__codelineno-22-3"></a><a href="#__codelineno-22-3"><span class="linenos" data-linenos="3 "></span></a>
+<a id="__codelineno-22-4" name="__codelineno-22-4"></a><a href="#__codelineno-22-4"><span class="linenos" data-linenos="4 "></span></a><span class="c1"># 수정</span>
+<a id="__codelineno-22-5" name="__codelineno-22-5"></a><a href="#__codelineno-22-5"><span class="linenos" data-linenos="5 "></span></a><span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;10&quot;</span>
+<a id="__codelineno-22-6" name="__codelineno-22-6"></a><a href="#__codelineno-22-6"><span class="linenos" data-linenos="6 "></span></a><span class="n">price</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+<a id="__codelineno-22-7" name="__codelineno-22-7"></a><a href="#__codelineno-22-7"><span class="linenos" data-linenos="7 "></span></a><span class="nb">print</span><span class="p">(</span><span class="n">price</span> <span class="o">+</span> <span class="mi">5</span><span class="p">)</span>  <span class="c1"># 15</span>
+</code></pre></div>
+<p>✅ <strong>목표:</strong> 형식이 잘못된 문자열 변환 시 오류 잡기</p>
+<hr />
+<h2 id="2-5">🧾 2-5. 문자열 인덱싱과 슬라이싱<a class="headerlink" href="#2-5" title="Permanent link">&para;</a></h2>
+<h3 id="indexing">📌 인덱싱(Indexing)<a class="headerlink" href="#indexing" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p>문자열의 <strong>각 문자는 번호(인덱스)</strong>로 접근할 수 있습니다.</p>
+</blockquote>
+<ul>
+<li><strong>0부터 시작</strong></li>
+<li><strong>음수 인덱스</strong>로 뒤에서부터 접근 가능</li>
+</ul>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1"></a><a href="#__codelineno-23-1"><span class="linenos" data-linenos="1 "></span></a><span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;Python&quot;</span>
+<a id="__codelineno-23-2" name="__codelineno-23-2"></a><a href="#__codelineno-23-2"><span class="linenos" data-linenos="2 "></span></a>
+<a id="__codelineno-23-3" name="__codelineno-23-3"></a><a href="#__codelineno-23-3"><span class="linenos" data-linenos="3 "></span></a><span class="nb">print</span><span class="p">(</span><span class="n">text</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>    <span class="c1"># P</span>
+<a id="__codelineno-23-4" name="__codelineno-23-4"></a><a href="#__codelineno-23-4"><span class="linenos" data-linenos="4 "></span></a><span class="nb">print</span><span class="p">(</span><span class="n">text</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>    <span class="c1"># y</span>
+<a id="__codelineno-23-5" name="__codelineno-23-5"></a><a href="#__codelineno-23-5"><span class="linenos" data-linenos="5 "></span></a><span class="nb">print</span><span class="p">(</span><span class="n">text</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>   <span class="c1"># n (끝 문자)</span>
+<a id="__codelineno-23-6" name="__codelineno-23-6"></a><a href="#__codelineno-23-6"><span class="linenos" data-linenos="6 "></span></a><span class="nb">print</span><span class="p">(</span><span class="n">text</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">])</span>   <span class="c1"># o</span>
+</code></pre></div>
+<h3 id="slicing">📌 슬라이싱(Slicing)<a class="headerlink" href="#slicing" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p>문자열에서 <strong>일부만 잘라서 추출</strong></p>
+</blockquote>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1"></a><a href="#__codelineno-24-1"><span class="linenos" data-linenos="1 "></span></a><span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;Hello, Python!&quot;</span>
+<a id="__codelineno-24-2" name="__codelineno-24-2"></a><a href="#__codelineno-24-2"><span class="linenos" data-linenos="2 "></span></a>
+<a id="__codelineno-24-3" name="__codelineno-24-3"></a><a href="#__codelineno-24-3"><span class="linenos" data-linenos="3 "></span></a><span class="nb">print</span><span class="p">(</span><span class="n">text</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">5</span><span class="p">])</span>   <span class="c1"># &#39;Hello&#39; (0 이상, 5 미만)</span>
+<a id="__codelineno-24-4" name="__codelineno-24-4"></a><a href="#__codelineno-24-4"><span class="linenos" data-linenos="4 "></span></a><span class="nb">print</span><span class="p">(</span><span class="n">text</span><span class="p">[:</span><span class="mi">5</span><span class="p">])</span>    <span class="c1"># &#39;Hello&#39; (처음부터 5 이전까지)</span>
+<a id="__codelineno-24-5" name="__codelineno-24-5"></a><a href="#__codelineno-24-5"><span class="linenos" data-linenos="5 "></span></a><span class="nb">print</span><span class="p">(</span><span class="n">text</span><span class="p">[</span><span class="mi">7</span><span class="p">:])</span>    <span class="c1"># &#39;Python!&#39; (7부터 끝까지)</span>
+<a id="__codelineno-24-6" name="__codelineno-24-6"></a><a href="#__codelineno-24-6"><span class="linenos" data-linenos="6 "></span></a><span class="nb">print</span><span class="p">(</span><span class="n">text</span><span class="p">[</span><span class="o">-</span><span class="mi">7</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="c1"># &#39;Python&#39; (뒤에서부터 슬라이스)</span>
+</code></pre></div>
+<h3 id="startstopstep">📌 [start:stop:step] 구조<a class="headerlink" href="#startstopstep" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1"></a><a href="#__codelineno-25-1"><span class="linenos" data-linenos="1 "></span></a><span class="n">word</span> <span class="o">=</span> <span class="s2">&quot;abcdefg&quot;</span>
+<a id="__codelineno-25-2" name="__codelineno-25-2"></a><a href="#__codelineno-25-2"><span class="linenos" data-linenos="2 "></span></a><span class="nb">print</span><span class="p">(</span><span class="n">word</span><span class="p">[::</span><span class="mi">2</span><span class="p">])</span>     <span class="c1"># a c e g</span>
+<a id="__codelineno-25-3" name="__codelineno-25-3"></a><a href="#__codelineno-25-3"><span class="linenos" data-linenos="3 "></span></a><span class="nb">print</span><span class="p">(</span><span class="n">word</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>    <span class="c1"># 문자열 뒤집기</span>
+</code></pre></div>
+<h3 id="7">🧪 실습 7: 문자열에서 원하는 글자 추출하기<a class="headerlink" href="#7" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1"></a><a href="#__codelineno-26-1"><span class="linenos" data-linenos="1 "></span></a><span class="n">id_number</span> <span class="o">=</span> <span class="s2">&quot;990101-1234567&quot;</span>
+<a id="__codelineno-26-2" name="__codelineno-26-2"></a><a href="#__codelineno-26-2"><span class="linenos" data-linenos="2 "></span></a>
+<a id="__codelineno-26-3" name="__codelineno-26-3"></a><a href="#__codelineno-26-3"><span class="linenos" data-linenos="3 "></span></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;생년월일:&quot;</span><span class="p">,</span> <span class="n">id_number</span><span class="p">[:</span><span class="mi">6</span><span class="p">])</span>
+<a id="__codelineno-26-4" name="__codelineno-26-4"></a><a href="#__codelineno-26-4"><span class="linenos" data-linenos="4 "></span></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;성별 코드:&quot;</span><span class="p">,</span> <span class="n">id_number</span><span class="p">[</span><span class="mi">7</span><span class="p">])</span>
+</code></pre></div>
+<p>✅ <strong>목표:</strong> 문자열에서 슬라이싱으로 의미 있는 정보 추출</p>
+<h3 id="8">🧪 실습 8: 문자열 거꾸로 출력하기<a class="headerlink" href="#8" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1"></a><a href="#__codelineno-27-1"><span class="linenos" data-linenos="1 "></span></a><span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;Python&quot;</span>
+<a id="__codelineno-27-2" name="__codelineno-27-2"></a><a href="#__codelineno-27-2"><span class="linenos" data-linenos="2 "></span></a><span class="nb">print</span><span class="p">(</span><span class="n">text</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>  <span class="c1"># nohtyP</span>
+</code></pre></div>
+<h3 id="_12">✅ 주의: 인덱스 범위 벗어나면 오류!<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1"></a><a href="#__codelineno-28-1"><span class="linenos" data-linenos="1 "></span></a><span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;Hi&quot;</span>
+<a id="__codelineno-28-2" name="__codelineno-28-2"></a><a href="#__codelineno-28-2"><span class="linenos" data-linenos="2 "></span></a><span class="nb">print</span><span class="p">(</span><span class="n">text</span><span class="p">[</span><span class="mi">10</span><span class="p">])</span>  <span class="c1"># IndexError</span>
+</code></pre></div>
+<hr />
+<h2 id="2-6">🧾 2-6. 문자열 연산과 포매팅<a class="headerlink" href="#2-6" title="Permanent link">&para;</a></h2>
+<h3 id="_13">📌 문자열 연산<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h3>
+<h4 id="_14">🔹 덧셈 <code>+</code><a class="headerlink" href="#_14" title="Permanent link">&para;</a></h4>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1"></a><a href="#__codelineno-29-1"><span class="linenos" data-linenos="1 "></span></a><span class="n">greeting</span> <span class="o">=</span> <span class="s2">&quot;Hello, &quot;</span> <span class="o">+</span> <span class="s2">&quot;Python&quot;</span>
+<a id="__codelineno-29-2" name="__codelineno-29-2"></a><a href="#__codelineno-29-2"><span class="linenos" data-linenos="2 "></span></a><span class="nb">print</span><span class="p">(</span><span class="n">greeting</span><span class="p">)</span>  <span class="c1"># Hello, Python</span>
+</code></pre></div>
+<h4 id="_15">🔹 곱셈 <code>*</code><a class="headerlink" href="#_15" title="Permanent link">&para;</a></h4>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1"></a><a href="#__codelineno-30-1"><span class="linenos" data-linenos="1 "></span></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hi~ &quot;</span> <span class="o">*</span> <span class="mi">3</span><span class="p">)</span>  <span class="c1"># Hi~ Hi~ Hi~</span>
+</code></pre></div>
+<blockquote>
+<p>문자열을 반복하는 간단한 방법입니다.</p>
+</blockquote>
+<h3 id="_16">📌 문자열 포매팅이란?<a class="headerlink" href="#_16" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p><strong>값을 문자열에 삽입</strong>하는 방법입니다.</p>
+</blockquote>
+<h3 id="1-c">✅ ① <code>%</code> 방식 (C 스타일)<a class="headerlink" href="#1-c" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1"></a><a href="#__codelineno-31-1"><span class="linenos" data-linenos="1 "></span></a><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;홍길동&quot;</span>
+<a id="__codelineno-31-2" name="__codelineno-31-2"></a><a href="#__codelineno-31-2"><span class="linenos" data-linenos="2 "></span></a><span class="n">age</span> <span class="o">=</span> <span class="mi">25</span>
+<a id="__codelineno-31-3" name="__codelineno-31-3"></a><a href="#__codelineno-31-3"><span class="linenos" data-linenos="3 "></span></a>
+<a id="__codelineno-31-4" name="__codelineno-31-4"></a><a href="#__codelineno-31-4"><span class="linenos" data-linenos="4 "></span></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;이름: </span><span class="si">%s</span><span class="s2">, 나이: </span><span class="si">%d</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">age</span><span class="p">))</span>
+</code></pre></div>
+<ul>
+<li><code>%s</code>: 문자열</li>
+<li><code>%d</code>: 정수</li>
+<li><code>%f</code>: 실수</li>
+</ul>
+<h4 id="_17">🔸 소수점 자리수 지정<a class="headerlink" href="#_17" title="Permanent link">&para;</a></h4>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1"></a><a href="#__codelineno-32-1"><span class="linenos" data-linenos="1 "></span></a><span class="n">pi</span> <span class="o">=</span> <span class="mf">3.141592</span>
+<a id="__codelineno-32-2" name="__codelineno-32-2"></a><a href="#__codelineno-32-2"><span class="linenos" data-linenos="2 "></span></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;원주율은 </span><span class="si">%.2f</span><span class="s2">입니다.&quot;</span> <span class="o">%</span> <span class="n">pi</span><span class="p">)</span>  <span class="c1"># 3.14</span>
+</code></pre></div>
+<h3 id="2-format">✅ ② <code>format()</code> 함수<a class="headerlink" href="#2-format" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1"></a><a href="#__codelineno-33-1"><span class="linenos" data-linenos="1 "></span></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;이름: </span><span class="si">{}</span><span class="s2">, 나이: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&quot;이몽룡&quot;</span><span class="p">,</span> <span class="mi">20</span><span class="p">))</span>
+<a id="__codelineno-33-2" name="__codelineno-33-2"></a><a href="#__codelineno-33-2"><span class="linenos" data-linenos="2 "></span></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;이름: </span><span class="si">{0}</span><span class="s2">, 나이: </span><span class="si">{1}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&quot;성춘향&quot;</span><span class="p">,</span> <span class="mi">18</span><span class="p">))</span>
+</code></pre></div>
+<ul>
+<li><code>{}</code> 안에 위치 인덱스도 지정 가능</li>
+</ul>
+<h3 id="3-f-string-36">✅ ③ f-string (파이썬 3.6+)<a class="headerlink" href="#3-f-string-36" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p>가장 현대적인 방식. <strong>추천!</strong></p>
+</blockquote>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1"></a><a href="#__codelineno-34-1"><span class="linenos" data-linenos="1 "></span></a><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;임꺽정&quot;</span>
+<a id="__codelineno-34-2" name="__codelineno-34-2"></a><a href="#__codelineno-34-2"><span class="linenos" data-linenos="2 "></span></a><span class="n">age</span> <span class="o">=</span> <span class="mi">30</span>
+<a id="__codelineno-34-3" name="__codelineno-34-3"></a><a href="#__codelineno-34-3"><span class="linenos" data-linenos="3 "></span></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;이름: </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">, 나이: </span><span class="si">{</span><span class="n">age</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="9">🧪 실습 9: 자기소개 문자열 만들기<a class="headerlink" href="#9" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-35-1" name="__codelineno-35-1"></a><a href="#__codelineno-35-1"><span class="linenos" data-linenos="1 "></span></a><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;홍길동&quot;</span>
+<a id="__codelineno-35-2" name="__codelineno-35-2"></a><a href="#__codelineno-35-2"><span class="linenos" data-linenos="2 "></span></a><span class="n">age</span> <span class="o">=</span> <span class="mi">25</span>
+<a id="__codelineno-35-3" name="__codelineno-35-3"></a><a href="#__codelineno-35-3"><span class="linenos" data-linenos="3 "></span></a><span class="n">job</span> <span class="o">=</span> <span class="s2">&quot;백엔드 개발자&quot;</span>
+<a id="__codelineno-35-4" name="__codelineno-35-4"></a><a href="#__codelineno-35-4"><span class="linenos" data-linenos="4 "></span></a>
+<a id="__codelineno-35-5" name="__codelineno-35-5"></a><a href="#__codelineno-35-5"><span class="linenos" data-linenos="5 "></span></a><span class="n">intro</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;안녕하세요. 저는 </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">이고, </span><span class="si">{</span><span class="n">age</span><span class="si">}</span><span class="s2">살 </span><span class="si">{</span><span class="n">job</span><span class="si">}</span><span class="s2">입니다.&quot;</span>
+<a id="__codelineno-35-6" name="__codelineno-35-6"></a><a href="#__codelineno-35-6"><span class="linenos" data-linenos="6 "></span></a><span class="nb">print</span><span class="p">(</span><span class="n">intro</span><span class="p">)</span>
+</code></pre></div>
+<p>✅ <strong>목표:</strong> 변수와 문자열 포매팅을 함께 사용하기</p>
+<h3 id="10">🧪 실습 10: 가격 정보 출력 포맷<a class="headerlink" href="#10" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-36-1" name="__codelineno-36-1"></a><a href="#__codelineno-36-1"><span class="linenos" data-linenos="1 "></span></a><span class="n">product</span> <span class="o">=</span> <span class="s2">&quot;노트북&quot;</span>
+<a id="__codelineno-36-2" name="__codelineno-36-2"></a><a href="#__codelineno-36-2"><span class="linenos" data-linenos="2 "></span></a><span class="n">price</span> <span class="o">=</span> <span class="mi">1290000</span>
+<a id="__codelineno-36-3" name="__codelineno-36-3"></a><a href="#__codelineno-36-3"><span class="linenos" data-linenos="3 "></span></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">product</span><span class="si">}</span><span class="s2">의 가격은 </span><span class="si">{</span><span class="n">price</span><span class="si">:</span><span class="s2">,</span><span class="si">}</span><span class="s2">원입니다.&quot;</span><span class="p">)</span>  <span class="c1"># 천 단위 콤마</span>
+</code></pre></div>
+<hr />
+<h2 id="2-7">🧾 2-7. 문자열 관련 함수들<a class="headerlink" href="#2-7" title="Permanent link">&para;</a></h2>
+<h3 id="_18">📌 문자열 함수란?<a class="headerlink" href="#_18" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p>문자열에서 사용할 수 있는 <strong>내장 함수(메서드)</strong> &gt; <code>"문자열".함수명()</code> 형식으로 사용합니다.</p>
+</blockquote>
+<h3 id="_19">✅ 대소문자 관련<a class="headerlink" href="#_19" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-37-1" name="__codelineno-37-1"></a><a href="#__codelineno-37-1"><span class="linenos" data-linenos="1 "></span></a><span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;Python Programming&quot;</span>
+<a id="__codelineno-37-2" name="__codelineno-37-2"></a><a href="#__codelineno-37-2"><span class="linenos" data-linenos="2 "></span></a>
+<a id="__codelineno-37-3" name="__codelineno-37-3"></a><a href="#__codelineno-37-3"><span class="linenos" data-linenos="3 "></span></a><span class="nb">print</span><span class="p">(</span><span class="n">text</span><span class="o">.</span><span class="n">upper</span><span class="p">())</span>   <span class="c1"># 대문자 전체</span>
+<a id="__codelineno-37-4" name="__codelineno-37-4"></a><a href="#__codelineno-37-4"><span class="linenos" data-linenos="4 "></span></a><span class="nb">print</span><span class="p">(</span><span class="n">text</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span>   <span class="c1"># 소문자 전체</span>
+<a id="__codelineno-37-5" name="__codelineno-37-5"></a><a href="#__codelineno-37-5"><span class="linenos" data-linenos="5 "></span></a><span class="nb">print</span><span class="p">(</span><span class="n">text</span><span class="o">.</span><span class="n">capitalize</span><span class="p">())</span>  <span class="c1"># 첫 글자만 대문자</span>
+</code></pre></div>
+<h3 id="_20">✅ 공백 및 문자 제거<a class="headerlink" href="#_20" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-38-1" name="__codelineno-38-1"></a><a href="#__codelineno-38-1"><span class="linenos" data-linenos="1 "></span></a><span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;  hello python  &quot;</span>
+<a id="__codelineno-38-2" name="__codelineno-38-2"></a><a href="#__codelineno-38-2"><span class="linenos" data-linenos="2 "></span></a>
+<a id="__codelineno-38-3" name="__codelineno-38-3"></a><a href="#__codelineno-38-3"><span class="linenos" data-linenos="3 "></span></a><span class="nb">print</span><span class="p">(</span><span class="n">text</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>     <span class="c1"># 양쪽 공백 제거</span>
+<a id="__codelineno-38-4" name="__codelineno-38-4"></a><a href="#__codelineno-38-4"><span class="linenos" data-linenos="4 "></span></a><span class="nb">print</span><span class="p">(</span><span class="n">text</span><span class="o">.</span><span class="n">lstrip</span><span class="p">())</span>    <span class="c1"># 왼쪽 공백 제거</span>
+<a id="__codelineno-38-5" name="__codelineno-38-5"></a><a href="#__codelineno-38-5"><span class="linenos" data-linenos="5 "></span></a><span class="nb">print</span><span class="p">(</span><span class="n">text</span><span class="o">.</span><span class="n">rstrip</span><span class="p">())</span>    <span class="c1"># 오른쪽 공백 제거</span>
+</code></pre></div>
+<h3 id="_21">✅ 찾기, 포함 여부<a class="headerlink" href="#_21" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-39-1" name="__codelineno-39-1"></a><a href="#__codelineno-39-1"><span class="linenos" data-linenos="1 "></span></a><span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;banana&quot;</span>
+<a id="__codelineno-39-2" name="__codelineno-39-2"></a><a href="#__codelineno-39-2"><span class="linenos" data-linenos="2 "></span></a>
+<a id="__codelineno-39-3" name="__codelineno-39-3"></a><a href="#__codelineno-39-3"><span class="linenos" data-linenos="3 "></span></a><span class="nb">print</span><span class="p">(</span><span class="n">text</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">))</span>     <span class="c1"># 1 (첫 번째 &#39;a&#39;)</span>
+<a id="__codelineno-39-4" name="__codelineno-39-4"></a><a href="#__codelineno-39-4"><span class="linenos" data-linenos="4 "></span></a><span class="nb">print</span><span class="p">(</span><span class="n">text</span><span class="o">.</span><span class="n">rfind</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">))</span>    <span class="c1"># 5 (마지막 &#39;a&#39;)</span>
+<a id="__codelineno-39-5" name="__codelineno-39-5"></a><a href="#__codelineno-39-5"><span class="linenos" data-linenos="5 "></span></a><span class="nb">print</span><span class="p">(</span><span class="n">text</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">))</span>    <span class="c1"># 3</span>
+<a id="__codelineno-39-6" name="__codelineno-39-6"></a><a href="#__codelineno-39-6"><span class="linenos" data-linenos="6 "></span></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;na&quot;</span> <span class="ow">in</span> <span class="n">text</span><span class="p">)</span>       <span class="c1"># True</span>
+</code></pre></div>
+<h3 id="_22">✅ 변경/분리/결합<a class="headerlink" href="#_22" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-40-1" name="__codelineno-40-1"></a><a href="#__codelineno-40-1"><span class="linenos" data-linenos="1 "></span></a><span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;one,two,three&quot;</span>
+<a id="__codelineno-40-2" name="__codelineno-40-2"></a><a href="#__codelineno-40-2"><span class="linenos" data-linenos="2 "></span></a>
+<a id="__codelineno-40-3" name="__codelineno-40-3"></a><a href="#__codelineno-40-3"><span class="linenos" data-linenos="3 "></span></a><span class="n">words</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">)</span>       <span class="c1"># [&#39;one&#39;, &#39;two&#39;, &#39;three&#39;]</span>
+<a id="__codelineno-40-4" name="__codelineno-40-4"></a><a href="#__codelineno-40-4"><span class="linenos" data-linenos="4 "></span></a><span class="n">joined</span> <span class="o">=</span> <span class="s2">&quot;-&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">words</span><span class="p">)</span>      <span class="c1"># &#39;one-two-three&#39;</span>
+<a id="__codelineno-40-5" name="__codelineno-40-5"></a><a href="#__codelineno-40-5"><span class="linenos" data-linenos="5 "></span></a>
+<a id="__codelineno-40-6" name="__codelineno-40-6"></a><a href="#__codelineno-40-6"><span class="linenos" data-linenos="6 "></span></a><span class="nb">print</span><span class="p">(</span><span class="n">joined</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="_23">✅ 검사 함수<a class="headerlink" href="#_23" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-41-1" name="__codelineno-41-1"></a><a href="#__codelineno-41-1"><span class="linenos" data-linenos="1 "></span></a><span class="s2">&quot;123&quot;</span><span class="o">.</span><span class="n">isdigit</span><span class="p">()</span>     <span class="c1"># True</span>
+<a id="__codelineno-41-2" name="__codelineno-41-2"></a><a href="#__codelineno-41-2"><span class="linenos" data-linenos="2 "></span></a><span class="s2">&quot;abc&quot;</span><span class="o">.</span><span class="n">isalpha</span><span class="p">()</span>     <span class="c1"># True</span>
+<a id="__codelineno-41-3" name="__codelineno-41-3"></a><a href="#__codelineno-41-3"><span class="linenos" data-linenos="3 "></span></a><span class="s2">&quot;   &quot;</span><span class="o">.</span><span class="n">isspace</span><span class="p">()</span>     <span class="c1"># True</span>
+</code></pre></div>
+<h3 id="11">🧪 실습 11: 사용자 이름 처리<a class="headerlink" href="#11" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-42-1" name="__codelineno-42-1"></a><a href="#__codelineno-42-1"><span class="linenos" data-linenos="1 "></span></a><span class="n">name</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;이름을 입력하세요: &quot;</span><span class="p">)</span>  <span class="c1"># 공백 포함 가능</span>
+<a id="__codelineno-42-2" name="__codelineno-42-2"></a><a href="#__codelineno-42-2"><span class="linenos" data-linenos="2 "></span></a>
+<a id="__codelineno-42-3" name="__codelineno-42-3"></a><a href="#__codelineno-42-3"><span class="linenos" data-linenos="3 "></span></a><span class="c1"># 공백 제거, 대문자 출력</span>
+<a id="__codelineno-42-4" name="__codelineno-42-4"></a><a href="#__codelineno-42-4"><span class="linenos" data-linenos="4 "></span></a><span class="n">cleaned</span> <span class="o">=</span> <span class="n">name</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
+<a id="__codelineno-42-5" name="__codelineno-42-5"></a><a href="#__codelineno-42-5"><span class="linenos" data-linenos="5 "></span></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;이름 (정리됨): </span><span class="si">{</span><span class="n">cleaned</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="12">🧪 실습 12: 문자열 분석 도구 만들기<a class="headerlink" href="#12" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-43-1" name="__codelineno-43-1"></a><a href="#__codelineno-43-1"><span class="linenos" data-linenos="1 "></span></a><span class="n">sentence</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;문장을 입력하세요: &quot;</span><span class="p">)</span>
+<a id="__codelineno-43-2" name="__codelineno-43-2"></a><a href="#__codelineno-43-2"><span class="linenos" data-linenos="2 "></span></a>
+<a id="__codelineno-43-3" name="__codelineno-43-3"></a><a href="#__codelineno-43-3"><span class="linenos" data-linenos="3 "></span></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;문장 길이:&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">sentence</span><span class="p">))</span>
+<a id="__codelineno-43-4" name="__codelineno-43-4"></a><a href="#__codelineno-43-4"><span class="linenos" data-linenos="4 "></span></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&#39;a&#39; 개수:&quot;</span><span class="p">,</span> <span class="n">sentence</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">))</span>
+<a id="__codelineno-43-5" name="__codelineno-43-5"></a><a href="#__codelineno-43-5"><span class="linenos" data-linenos="5 "></span></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;앞에서부터 &#39;a&#39; 위치:&quot;</span><span class="p">,</span> <span class="n">sentence</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">))</span>
+<a id="__codelineno-43-6" name="__codelineno-43-6"></a><a href="#__codelineno-43-6"><span class="linenos" data-linenos="6 "></span></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;문장 전체 대문자:&quot;</span><span class="p">,</span> <span class="n">sentence</span><span class="o">.</span><span class="n">upper</span><span class="p">())</span>
+</code></pre></div>
+<p>✅ <strong>목표:</strong> 여러 문자열 함수 조합 연습</p>
+<hr />
+<h2 id="2-8">🧾 2-8. 실습 예제: 자기소개 만들기<a class="headerlink" href="#2-8" title="Permanent link">&para;</a></h2>
+<h3 id="_24">🎯 목표<a class="headerlink" href="#_24" title="Permanent link">&para;</a></h3>
+<ul>
+<li>변수 선언</li>
+<li>문자열 포매팅(f-string)</li>
+<li>문자열 함수(<code>upper</code>, <code>strip</code>, <code>len</code>) 활용</li>
+</ul>
+<h3 id="_25">✅ 예시 코드<a class="headerlink" href="#_25" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-44-1" name="__codelineno-44-1"></a><a href="#__codelineno-44-1"><span class="linenos" data-linenos=" 1 "></span></a><span class="n">name</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;이름을 입력하세요: &quot;</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+<a id="__codelineno-44-2" name="__codelineno-44-2"></a><a href="#__codelineno-44-2"><span class="linenos" data-linenos=" 2 "></span></a><span class="n">age</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;나이를 입력하세요: &quot;</span><span class="p">))</span>
+<a id="__codelineno-44-3" name="__codelineno-44-3"></a><a href="#__codelineno-44-3"><span class="linenos" data-linenos=" 3 "></span></a><span class="n">city</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;사는 도시를 입력하세요: &quot;</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+<a id="__codelineno-44-4" name="__codelineno-44-4"></a><a href="#__codelineno-44-4"><span class="linenos" data-linenos=" 4 "></span></a><span class="n">job</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;직업을 입력하세요: &quot;</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+<a id="__codelineno-44-5" name="__codelineno-44-5"></a><a href="#__codelineno-44-5"><span class="linenos" data-linenos=" 5 "></span></a>
+<a id="__codelineno-44-6" name="__codelineno-44-6"></a><a href="#__codelineno-44-6"><span class="linenos" data-linenos=" 6 "></span></a><span class="n">intro</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-44-7" name="__codelineno-44-7"></a><a href="#__codelineno-44-7"><span class="linenos" data-linenos=" 7 "></span></a><span class="s2">안녕하세요! 저는 </span><span class="si">{</span><span class="n">name</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span><span class="si">}</span><span class="s2">입니다.</span>
+<a id="__codelineno-44-8" name="__codelineno-44-8"></a><a href="#__codelineno-44-8"><span class="linenos" data-linenos=" 8 "></span></a><span class="s2">나이는 </span><span class="si">{</span><span class="n">age</span><span class="si">}</span><span class="s2">살이고, </span><span class="si">{</span><span class="n">city</span><span class="si">}</span><span class="s2">에 살고 있습니다.</span>
+<a id="__codelineno-44-9" name="__codelineno-44-9"></a><a href="#__codelineno-44-9"><span class="linenos" data-linenos=" 9 "></span></a><span class="s2">현재 직업은 </span><span class="si">{</span><span class="n">job</span><span class="si">}</span><span class="s2">입니다. 반갑습니다!</span>
+<a id="__codelineno-44-10" name="__codelineno-44-10"></a><a href="#__codelineno-44-10"><span class="linenos" data-linenos="10 "></span></a><span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-44-11" name="__codelineno-44-11"></a><a href="#__codelineno-44-11"><span class="linenos" data-linenos="11 "></span></a>
+<a id="__codelineno-44-12" name="__codelineno-44-12"></a><a href="#__codelineno-44-12"><span class="linenos" data-linenos="12 "></span></a><span class="nb">print</span><span class="p">(</span><span class="n">intro</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="_26">📌 응용 포인트<a class="headerlink" href="#_26" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>strip()</code>으로 입력 오류 방지</li>
+<li><code>upper()</code>로 이름 강조</li>
+<li><code>f-string</code>으로 가독성 좋은 출력</li>
+</ul>
+<hr />
+<h2 id="2-9">🧾 2-9. 실습 예제: 비밀번호 생성기<a class="headerlink" href="#2-9" title="Permanent link">&para;</a></h2>
+<h3 id="_27">🎯 목표<a class="headerlink" href="#_27" title="Permanent link">&para;</a></h3>
+<ul>
+<li>문자열 처리(슬라이싱, 길이)</li>
+<li>논리 연산(<code>in</code>)</li>
+<li>문자열 + 숫자 조합 생성</li>
+</ul>
+<h3 id="_28">✅ 문제 설명<a class="headerlink" href="#_28" title="Permanent link">&para;</a></h3>
+<p><code>http://naver.com</code> 같은 웹사이트 주소가 주어졌을 때 다음 규칙으로 비밀번호를 만듭니다:</p>
+<ol>
+<li><code>http://</code> 제외 → <code>naver.com</code></li>
+<li><code>.</code> 앞까지만 → <code>naver</code></li>
+<li>비밀번호 = (앞 3글자) + (길이) + ('e' 포함 여부) + (길이 % 3)</li>
+</ol>
+<h3 id="_29">✅ 코드 예시<a class="headerlink" href="#_29" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-45-1" name="__codelineno-45-1"></a><a href="#__codelineno-45-1"><span class="linenos" data-linenos="1 "></span></a><span class="n">url</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;사이트 주소 입력 (예: http://naver.com): &quot;</span><span class="p">)</span>
+<a id="__codelineno-45-2" name="__codelineno-45-2"></a><a href="#__codelineno-45-2"><span class="linenos" data-linenos="2 "></span></a><span class="n">url</span> <span class="o">=</span> <span class="n">url</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;http://&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;https://&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+<a id="__codelineno-45-3" name="__codelineno-45-3"></a><a href="#__codelineno-45-3"><span class="linenos" data-linenos="3 "></span></a>
+<a id="__codelineno-45-4" name="__codelineno-45-4"></a><a href="#__codelineno-45-4"><span class="linenos" data-linenos="4 "></span></a><span class="n">site_name</span> <span class="o">=</span> <span class="n">url</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<a id="__codelineno-45-5" name="__codelineno-45-5"></a><a href="#__codelineno-45-5"><span class="linenos" data-linenos="5 "></span></a><span class="n">length</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">site_name</span><span class="p">)</span>
+<a id="__codelineno-45-6" name="__codelineno-45-6"></a><a href="#__codelineno-45-6"><span class="linenos" data-linenos="6 "></span></a><span class="n">has_e</span> <span class="o">=</span> <span class="s1">&#39;e&#39;</span> <span class="ow">in</span> <span class="n">site_name</span>
+<a id="__codelineno-45-7" name="__codelineno-45-7"></a><a href="#__codelineno-45-7"><span class="linenos" data-linenos="7 "></span></a><span class="n">password</span> <span class="o">=</span> <span class="n">site_name</span><span class="p">[:</span><span class="mi">3</span><span class="p">]</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">length</span><span class="p">)</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">has_e</span><span class="p">)</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">length</span> <span class="o">%</span> <span class="mi">3</span><span class="p">)</span>
+<a id="__codelineno-45-8" name="__codelineno-45-8"></a><a href="#__codelineno-45-8"><span class="linenos" data-linenos="8 "></span></a>
+<a id="__codelineno-45-9" name="__codelineno-45-9"></a><a href="#__codelineno-45-9"><span class="linenos" data-linenos="9 "></span></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s2">의 비밀번호는 → </span><span class="si">{</span><span class="n">password</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="_30">📌 예시 입력/출력<a class="headerlink" href="#_30" title="Permanent link">&para;</a></h3>
+<div class="language-text highlight"><span class="filename">Text Only</span><pre><span></span><code><a id="__codelineno-46-1" name="__codelineno-46-1"></a><a href="#__codelineno-46-1"><span class="linenos" data-linenos="1 "></span></a>입력: http://google.com
+<a id="__codelineno-46-2" name="__codelineno-46-2"></a><a href="#__codelineno-46-2"><span class="linenos" data-linenos="2 "></span></a>출력: google.com의 비밀번호는 → goo6True0
+</code></pre></div>
+<hr />
+<h2 id="2_1">✅ 2장 마무리 요약<a class="headerlink" href="#2_1" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>개념</th>
+<th>키워드</th>
+<th>예시</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>변수</td>
+<td><code>=</code>, 이름 규칙</td>
+<td><code>name = "홍길동"</code></td>
+</tr>
+<tr>
+<td>자료형</td>
+<td><code>int</code>, <code>str</code>, <code>bool</code>, <code>None</code></td>
+<td><code>type(x)</code></td>
+</tr>
+<tr>
+<td>형 변환</td>
+<td><code>int()</code>, <code>str()</code>, <code>bool()</code></td>
+<td><code>int("10")</code></td>
+</tr>
+<tr>
+<td>문자열 처리</td>
+<td>인덱싱, 슬라이싱, 포매팅</td>
+<td><code>s[1:4]</code>, <code>f"{x}"</code></td>
+</tr>
+<tr>
+<td>문자열 함수</td>
+<td><code>strip()</code>, <code>upper()</code>, <code>count()</code> 등</td>
+<td><code>s.find("a")</code></td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  맨위로
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="하단/푸터" >
+        
+          
+          <a href=".." class="md-footer__link md-footer__link--prev" aria-label="이전: Welcome to MkDocs">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                이전
+              </span>
+              <div class="md-ellipsis">
+                Welcome to MkDocs
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../03_python_list_tutorial/" class="md-footer__link md-footer__link--next" aria-label="다음: 3장 자료구조 - 리스트(List)">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                다음
+              </span>
+              <div class="md-ellipsis">
+                3장 자료구조 - 리스트(List)
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant", "navigation.tabs", "navigation.footer", "navigation.top", "content.code.copy", "content.code.annotate", "content.tooltips", "content.footnote.tooltips"], "search": "../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "\ud074\ub9bd\ubcf4\ub4dc\uc5d0 \ubcf5\uc0ac\ub428", "clipboard.copy": "\ud074\ub9bd\ubcf4\ub4dc\ub85c \ubcf5\uc0ac", "search.result.more.one": "\uc774 \ubb38\uc11c\uc5d0\uc11c 1\uac1c\uc758 \uac80\uc0c9 \uacb0\uacfc \ub354 \ubcf4\uae30", "search.result.more.other": "\uc774 \ubb38\uc11c\uc5d0\uc11c #\uac1c\uc758 \uac80\uc0c9 \uacb0\uacfc \ub354 \ubcf4\uae30", "search.result.none": "\uac80\uc0c9\uc5b4\uc640 \uc77c\uce58\ud558\ub294 \ubb38\uc11c\uac00 \uc5c6\uc2b5\ub2c8\ub2e4", "search.result.one": "1\uac1c\uc758 \uc77c\uce58\ud558\ub294 \ubb38\uc11c", "search.result.other": "#\uac1c\uc758 \uc77c\uce58\ud558\ub294 \ubb38\uc11c", "search.result.placeholder": "\uac80\uc0c9\uc5b4\ub97c \uc785\ub825\ud558\uc138\uc694", "search.result.term.missing": "\ud3ec\ud568\ub418\uc9c0 \uc54a\uc740 \uac80\uc0c9\uc5b4", "select.version": "\ubc84\uc804 \uc120\ud0dd"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.56ea9cef.min.js"></script>
+      
+        <script src="../javascripts/extra.js"></script>
+      
+    
+  </body>
+</html>

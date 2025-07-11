@@ -1,0 +1,35 @@
+/* 헤딩 */
+.md-typeset {
+  hr {
+    border: 0px solid;
+    height: 1px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(199, 166, 129, 0.75), rgba(0, 0, 0, 0));
+    margin: 32px 0px;
+    display: block;
+  }
+}
+
+.md-typeset {
+  font-size: 0.95rem
+}
+
+.md-typeset h2 {
+  font-weight: 600;
+}
+
+.md-typeset h3 {
+  font-weight: 500;
+}
+
+/* 테이블 */
+.md-typeset table {
+  font-size: 16px;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.md-typeset table:not([class]) th,
+.md-typeset table:not([class]) td {
+  padding: .6em 1em;
+  font-size: 0.72rem;
+}
