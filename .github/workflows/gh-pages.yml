@@ -1,0 +1,23 @@
+name: Build and Deploy
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Install and Build 🔧
+        run: |
+          pip install mkdocs-material
+          mkdocs build
+
+      - name: Deploy to GitHub Pages
+        run: mkdocs gh-deploy --force

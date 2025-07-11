@@ -1,0 +1,84 @@
+site_name: MKDocs 테스트
+site_author: ExpandSource
+site_description: MKDocs로 작성한 테스트 문서입니다.
+site_url: https://euskate.github.io/mkdocs-test
+
+theme:
+  name: material
+  palette:
+    - scheme: default
+      primary: light blue
+      accent: indigo
+      media: "(prefers-color-scheme: light)"
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to dark mode
+
+    - scheme: slate
+      primary: light blue
+      accent: indigo
+      media: "(prefers-color-scheme: dark)"
+      toggle:
+        icon: material/weather-night
+        name: Switch to light mode
+  font:
+    text: Gowun Dodum
+    # text: Hahmlet # 후보 3
+    # text: Gowun Dodum # 후보 2
+    code: JetBrains Mono #Source Code Pro
+  language: ko
+  features:
+    - navigation.instant
+    - navigation.tabs
+    - navigation.footer
+    - navigation.top
+    - content.code.copy
+    - content.code.annotate
+    - content.tooltips
+    - content.footnote.tooltips
+  #   - navigation.top
+  #   - navigation.sections
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - toc:
+      permalink: true
+  - pymdownx.arithmatex
+  - pymdownx.highlight:
+      use_pygments: true
+      pygments_lang_class: true
+      auto_title: true
+      linenums: true
+      linenums_style: pymdownx-inline
+      anchor_linenums: true
+
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.inlinehilite
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+
+  # - pymdownx.betterem:
+  #     smart_enable: all
+  - md_in_html
+  - tables
+  - footnotes
+
+extra:
+  generator: true
+
+extra_css:
+  - stylesheets/extra.css
+
+extra_javascript:
+  - javascripts/extra.js
+
+plugins:
+  - search
+#  - pdf-export

@@ -1,0 +1,2597 @@
+
+<!doctype html>
+<html lang="ko" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="MKDocs로 작성한 테스트 문서입니다.">
+      
+      
+        <meta name="author" content="ExpandSource">
+      
+      
+        <link rel="canonical" href="https://expandsource.github.io/mkdocs-test/04_python_flow_control/">
+      
+      
+        <link rel="prev" href="../03_python_list_tutorial/">
+      
+      
+        <link rel="next" href="../05_python_function_chapter/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.15">
+    
+    
+      
+        <title>4장. 흐름 제어(Control Flow) - MKDocs 테스트</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.342714a4.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Gowun+Dodum:300,300i,400,400i,700,700i%7CSource+Code+Pro:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Gowun Dodum";--md-code-font:"Source Code Pro"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#4-control-flow" class="md-skip">
+          콘텐츠로 이동
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="상단/헤더">
+    <a href=".." title="MKDocs 테스트" class="md-header__button md-logo" aria-label="MKDocs 테스트" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            MKDocs 테스트
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              4장. 흐름 제어(Control Flow)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="검색" placeholder="검색" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="검색">
+        
+        <button type="reset" class="md-search__icon md-icon" title="지우기" aria-label="지우기" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            검색 초기화
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="탭" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Welcome to MkDocs
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../02_cleaned_python_tutorial/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Python 기초 - 2장 정리
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../03_python_list_tutorial/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  3장 자료구조 - 리스트(List)
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+  
+    
+  
+  4장. 흐름 제어(Control Flow)
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../05_python_function_chapter/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  5장. 함수(Function)
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../06_python_file_io/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  06 python file io
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../07_python_class_guide_unit/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  파이썬 클래스와 객체지향 프로그래밍 🎮
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../07_python_class_oop/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  객체지향 프로그래밍 가이드
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../08_python_exception_handling/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  8장. 예외 처리 (Exception Handling)
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../09_python_module_package/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  9장. 모듈과 패키지
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../10_python_database_guide/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  🧭 10장. 파이썬과 MySQL 연동
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../11_gui-tkinter/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Chapter 11: GUI 프로그래밍 (Tkinter)
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../test/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  테스트
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="네비게이션" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="MKDocs 테스트" class="md-nav__button md-logo" aria-label="MKDocs 테스트" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    MKDocs 테스트
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Welcome to MkDocs
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02_cleaned_python_tutorial/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Python 기초 - 2장 정리
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03_python_list_tutorial/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    3장 자료구조 - 리스트(List)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    4장. 흐름 제어(Control Flow)
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    4장. 흐름 제어(Control Flow)
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="목차">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      목차
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      학습 목표
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      세부 목차
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      4-1. 흐름 제어란?
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4-1. 흐름 제어란?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      프로그램의 흐름이란?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      흐름 제어의 2가지 축
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      예시
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      실습 1: 흐름 제어 맛보기
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-2-if-elif-else" class="md-nav__link">
+    <span class="md-ellipsis">
+      4-2. 조건문: if, elif, else
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4-2. 조건문: if, elif, else">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      조건문이란?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      기본 구조
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      들여쓰기 주의
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      비교 연산자
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      논리 연산자
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      실습 2: 나이 판별기
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      실습 3: 로그인 판별기
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      4-3. 중첩 조건문과 들여쓰기
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4-3. 중첩 조건문과 들여쓰기">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      중첩 조건문이란?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      기본 구조
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      예제 1: 영화 관람 가능 여부
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      실습 4: 회원 등급 확인기
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-4-input" class="md-nav__link">
+    <span class="md-ellipsis">
+      4-4. input()과 조건문 실습
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4-4. input()과 조건문 실습">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#input" class="md-nav__link">
+    <span class="md-ellipsis">
+      input() 함수 복습
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      실습 5: 숫자 맞히기 게임
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-bmi" class="md-nav__link">
+    <span class="md-ellipsis">
+      실습 6: BMI 판별기
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-5-for" class="md-nav__link">
+    <span class="md-ellipsis">
+      4-5. for 반복문
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4-5. for 반복문">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#for" class="md-nav__link">
+    <span class="md-ellipsis">
+      for 반복문이란?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      기본 구조
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      예시
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      문자열도 반복 가능
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#range" class="md-nav__link">
+    <span class="md-ellipsis">
+      range() 함수
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7" class="md-nav__link">
+    <span class="md-ellipsis">
+      실습 7: 구구단 출력기
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8" class="md-nav__link">
+    <span class="md-ellipsis">
+      실습 8: 리스트 요소와 인덱스 함께 출력
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-6-while" class="md-nav__link">
+    <span class="md-ellipsis">
+      4-6. while 반복문
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4-6. while 반복문">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#while" class="md-nav__link">
+    <span class="md-ellipsis">
+      while문이란?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      기본 구조
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      예시
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#while-vs-for" class="md-nav__link">
+    <span class="md-ellipsis">
+      while vs for
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#9" class="md-nav__link">
+    <span class="md-ellipsis">
+      실습 9: 비밀번호 입력 반복
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#10-1-n" class="md-nav__link">
+    <span class="md-ellipsis">
+      실습 10: 1부터 n까지의 합 구하기
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-7" class="md-nav__link">
+    <span class="md-ellipsis">
+      4-7. 흐름 제어 키워드
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4-7. 흐름 제어 키워드">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-break" class="md-nav__link">
+    <span class="md-ellipsis">
+      ① break
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-continue" class="md-nav__link">
+    <span class="md-ellipsis">
+      ② continue
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-pass" class="md-nav__link">
+    <span class="md-ellipsis">
+      ③ pass
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#11" class="md-nav__link">
+    <span class="md-ellipsis">
+      실습 11: 짝수만 출력하기
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-30" class="md-nav__link">
+    <span class="md-ellipsis">
+      실습 12: 첫 번째로 30 이상인 숫자 찾기
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-8" class="md-nav__link">
+    <span class="md-ellipsis">
+      4-8. 리스트 컴프리헨션 심화
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4-8. 리스트 컴프리헨션 심화">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      복습: 기본 형태
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      조건부 리스트 컴프리헨션
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_19" class="md-nav__link">
+    <span class="md-ellipsis">
+      삼항 연산자 활용
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-for" class="md-nav__link">
+    <span class="md-ellipsis">
+      중첩 반복 (2중 for문)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      실습 13: 문자열 길이 3 이상만 필터링
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-24" class="md-nav__link">
+    <span class="md-ellipsis">
+      실습 14: 구구단 (2~4단) 곱셈 쌍 만들기
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-9" class="md-nav__link">
+    <span class="md-ellipsis">
+      4-9. 종합 실습: 메뉴 기반 프로그램
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4-9. 종합 실습: 메뉴 기반 프로그램">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#15" class="md-nav__link">
+    <span class="md-ellipsis">
+      실습 15: 명언 저장소 만들기
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      4장 마무리 요약
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05_python_function_chapter/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    5장. 함수(Function)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06_python_file_io/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    06 python file io
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07_python_class_guide_unit/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    파이썬 클래스와 객체지향 프로그래밍 🎮
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07_python_class_oop/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    객체지향 프로그래밍 가이드
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08_python_exception_handling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    8장. 예외 처리 (Exception Handling)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09_python_module_package/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    9장. 모듈과 패키지
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10_python_database_guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🧭 10장. 파이썬과 MySQL 연동
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../11_gui-tkinter/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 11: GUI 프로그래밍 (Tkinter)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../test/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    테스트
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="목차">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      목차
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      학습 목표
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      세부 목차
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      4-1. 흐름 제어란?
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4-1. 흐름 제어란?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      프로그램의 흐름이란?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      흐름 제어의 2가지 축
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      예시
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      실습 1: 흐름 제어 맛보기
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-2-if-elif-else" class="md-nav__link">
+    <span class="md-ellipsis">
+      4-2. 조건문: if, elif, else
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4-2. 조건문: if, elif, else">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      조건문이란?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      기본 구조
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      들여쓰기 주의
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      비교 연산자
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      논리 연산자
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      실습 2: 나이 판별기
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      실습 3: 로그인 판별기
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      4-3. 중첩 조건문과 들여쓰기
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4-3. 중첩 조건문과 들여쓰기">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      중첩 조건문이란?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      기본 구조
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      예제 1: 영화 관람 가능 여부
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      실습 4: 회원 등급 확인기
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-4-input" class="md-nav__link">
+    <span class="md-ellipsis">
+      4-4. input()과 조건문 실습
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4-4. input()과 조건문 실습">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#input" class="md-nav__link">
+    <span class="md-ellipsis">
+      input() 함수 복습
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      실습 5: 숫자 맞히기 게임
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-bmi" class="md-nav__link">
+    <span class="md-ellipsis">
+      실습 6: BMI 판별기
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-5-for" class="md-nav__link">
+    <span class="md-ellipsis">
+      4-5. for 반복문
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4-5. for 반복문">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#for" class="md-nav__link">
+    <span class="md-ellipsis">
+      for 반복문이란?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      기본 구조
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      예시
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      문자열도 반복 가능
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#range" class="md-nav__link">
+    <span class="md-ellipsis">
+      range() 함수
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7" class="md-nav__link">
+    <span class="md-ellipsis">
+      실습 7: 구구단 출력기
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8" class="md-nav__link">
+    <span class="md-ellipsis">
+      실습 8: 리스트 요소와 인덱스 함께 출력
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-6-while" class="md-nav__link">
+    <span class="md-ellipsis">
+      4-6. while 반복문
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4-6. while 반복문">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#while" class="md-nav__link">
+    <span class="md-ellipsis">
+      while문이란?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      기본 구조
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      예시
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#while-vs-for" class="md-nav__link">
+    <span class="md-ellipsis">
+      while vs for
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#9" class="md-nav__link">
+    <span class="md-ellipsis">
+      실습 9: 비밀번호 입력 반복
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#10-1-n" class="md-nav__link">
+    <span class="md-ellipsis">
+      실습 10: 1부터 n까지의 합 구하기
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-7" class="md-nav__link">
+    <span class="md-ellipsis">
+      4-7. 흐름 제어 키워드
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4-7. 흐름 제어 키워드">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-break" class="md-nav__link">
+    <span class="md-ellipsis">
+      ① break
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-continue" class="md-nav__link">
+    <span class="md-ellipsis">
+      ② continue
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-pass" class="md-nav__link">
+    <span class="md-ellipsis">
+      ③ pass
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#11" class="md-nav__link">
+    <span class="md-ellipsis">
+      실습 11: 짝수만 출력하기
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-30" class="md-nav__link">
+    <span class="md-ellipsis">
+      실습 12: 첫 번째로 30 이상인 숫자 찾기
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-8" class="md-nav__link">
+    <span class="md-ellipsis">
+      4-8. 리스트 컴프리헨션 심화
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4-8. 리스트 컴프리헨션 심화">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      복습: 기본 형태
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      조건부 리스트 컴프리헨션
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_19" class="md-nav__link">
+    <span class="md-ellipsis">
+      삼항 연산자 활용
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-for" class="md-nav__link">
+    <span class="md-ellipsis">
+      중첩 반복 (2중 for문)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      실습 13: 문자열 길이 3 이상만 필터링
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-24" class="md-nav__link">
+    <span class="md-ellipsis">
+      실습 14: 구구단 (2~4단) 곱셈 쌍 만들기
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-9" class="md-nav__link">
+    <span class="md-ellipsis">
+      4-9. 종합 실습: 메뉴 기반 프로그램
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4-9. 종합 실습: 메뉴 기반 프로그램">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#15" class="md-nav__link">
+    <span class="md-ellipsis">
+      실습 15: 명언 저장소 만들기
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      4장 마무리 요약
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="4-control-flow">4장. 흐름 제어(Control Flow)<a class="headerlink" href="#4-control-flow" title="Permanent link">&para;</a></h1>
+<h2 id="_1">학습 목표<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<ul>
+<li>프로그램의 <strong>흐름을 분기하거나 반복</strong>할 수 있는 조건문/반복문 사용법을 익힌다.</li>
+<li>실생활의 조건과 반복을 코드로 구현하는 법을 이해한다.</li>
+<li>리스트 컴프리헨션 등 고급 흐름 제어 표현도 도입한다.</li>
+</ul>
+<h2 id="_2">세부 목차<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>단원</th>
+<th>제목</th>
+<th>주요 내용</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>4-1</td>
+<td>흐름 제어란?</td>
+<td>흐름 제어의 개념, 조건문과 반복문의 차이</td>
+</tr>
+<tr>
+<td>4-2</td>
+<td><code>if</code> 조건문</td>
+<td>if, elif, else / 비교 연산자 / 논리 연산자</td>
+</tr>
+<tr>
+<td>4-3</td>
+<td>중첩 조건문과 들여쓰기</td>
+<td>중첩된 조건문 / 파이썬 들여쓰기 문법 강조</td>
+</tr>
+<tr>
+<td>4-4</td>
+<td><code>input()</code>과 조건문 실습</td>
+<td>사용자 입력 기반 조건 처리 실습</td>
+</tr>
+<tr>
+<td>4-5</td>
+<td><code>for</code> 반복문</td>
+<td>기본 구조, 리스트/문자열 순회, <code>range()</code></td>
+</tr>
+<tr>
+<td>4-6</td>
+<td><code>while</code> 반복문</td>
+<td>조건 기반 반복 / 무한 루프 등</td>
+</tr>
+<tr>
+<td>4-7</td>
+<td>흐름 제어 키워드</td>
+<td><code>break</code>, <code>continue</code>, <code>pass</code></td>
+</tr>
+<tr>
+<td>4-8</td>
+<td>리스트 컴프리헨션 심화</td>
+<td>조건부 표현, 중첩 컴프리헨션</td>
+</tr>
+<tr>
+<td>4-9</td>
+<td>종합 실습: 메뉴형 프로그램 만들기</td>
+<td>조건 + 반복 통합 실습 프로젝트</td>
+</tr>
+</tbody>
+</table>
+<h2 id="4-1">4-1. 흐름 제어란?<a class="headerlink" href="#4-1" title="Permanent link">&para;</a></h2>
+<h3 id="_3">프로그램의 흐름이란?<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p>코드가 <strong>위에서 아래로 차례대로 실행되는 기본 흐름</strong>을 <strong>조건이나 반복에 따라 제어</strong>하는 것</p>
+</blockquote>
+<h3 id="2">흐름 제어의 2가지 축<a class="headerlink" href="#2" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>조건문 (if)</strong>: 조건에 따라 다른 코드를 실행</li>
+<li><strong>반복문 (for, while)</strong>: 같은 작업을 여러 번 반복</li>
+</ul>
+<h3 id="_4">예시<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<p><strong>흐름이 제어되지 않은 프로그램</strong>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a><a href="#__codelineno-0-1"><span class="linenos" data-linenos="1 "></span></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;1단계 완료&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2"></a><a href="#__codelineno-0-2"><span class="linenos" data-linenos="2 "></span></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;2단계 완료&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3"></a><a href="#__codelineno-0-3"><span class="linenos" data-linenos="3 "></span></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;3단계 완료&quot;</span><span class="p">)</span>
+</code></pre></div></p>
+<p><strong>흐름이 제어되는 프로그램 (조건)</strong>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1"></a><a href="#__codelineno-1-1"><span class="linenos" data-linenos="1 "></span></a><span class="n">temperature</span> <span class="o">=</span> <span class="mi">30</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2"></a><a href="#__codelineno-1-2"><span class="linenos" data-linenos="2 "></span></a><span class="k">if</span> <span class="n">temperature</span> <span class="o">&gt;=</span> <span class="mi">30</span><span class="p">:</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3"></a><a href="#__codelineno-1-3"><span class="linenos" data-linenos="3 "></span></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;에어컨을 켭니다.&quot;</span><span class="p">)</span>
+</code></pre></div></p>
+<p><strong>흐름이 제어되는 프로그램 (반복)</strong>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a><a href="#__codelineno-2-1"><span class="linenos" data-linenos="1 "></span></a><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2"></a><a href="#__codelineno-2-2"><span class="linenos" data-linenos="2 "></span></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">단계 완료&quot;</span><span class="p">)</span>
+</code></pre></div></p>
+<h3 id="1">실습 1: 흐름 제어 맛보기<a class="headerlink" href="#1" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1"></a><a href="#__codelineno-3-1"><span class="linenos" data-linenos="1 "></span></a><span class="n">name</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;당신의 이름은? &quot;</span><span class="p">)</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2"></a><a href="#__codelineno-3-2"><span class="linenos" data-linenos="2 "></span></a>
+<a id="__codelineno-3-3" name="__codelineno-3-3"></a><a href="#__codelineno-3-3"><span class="linenos" data-linenos="3 "></span></a><span class="k">if</span> <span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;홍길동&quot;</span><span class="p">:</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4"></a><a href="#__codelineno-3-4"><span class="linenos" data-linenos="4 "></span></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;반가워요, 의적 홍길동!&quot;</span><span class="p">)</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5"></a><a href="#__codelineno-3-5"><span class="linenos" data-linenos="5 "></span></a><span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6"></a><a href="#__codelineno-3-6"><span class="linenos" data-linenos="6 "></span></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">님, 안녕하세요!&quot;</span><span class="p">)</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7"></a><a href="#__codelineno-3-7"><span class="linenos" data-linenos="7 "></span></a>
+<a id="__codelineno-3-8" name="__codelineno-3-8"></a><a href="#__codelineno-3-8"><span class="linenos" data-linenos="8 "></span></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;프로그램 종료&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="4-2-if-elif-else">4-2. 조건문: <code>if</code>, <code>elif</code>, <code>else</code><a class="headerlink" href="#4-2-if-elif-else" title="Permanent link">&para;</a></h2>
+<h3 id="_5">조건문이란?<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p>조건에 따라 <strong>코드 실행 흐름을 분기</strong>시키는 문법입니다.</p>
+</blockquote>
+<h3 id="_6">기본 구조<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1"></a><a href="#__codelineno-4-1"><span class="linenos" data-linenos="1 "></span></a><span class="k">if</span> <span class="n">조건</span><span class="p">:</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2"></a><a href="#__codelineno-4-2"><span class="linenos" data-linenos="2 "></span></a>    <span class="n">실행문1</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3"></a><a href="#__codelineno-4-3"><span class="linenos" data-linenos="3 "></span></a><span class="k">elif</span> <span class="n">다른조건</span><span class="p">:</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4"></a><a href="#__codelineno-4-4"><span class="linenos" data-linenos="4 "></span></a>    <span class="n">실행문2</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5"></a><a href="#__codelineno-4-5"><span class="linenos" data-linenos="5 "></span></a><span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6"></a><a href="#__codelineno-4-6"><span class="linenos" data-linenos="6 "></span></a>    <span class="n">실행문3</span>
+</code></pre></div>
+<h3 id="_7">들여쓰기 주의<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<ul>
+<li>파이썬은 <code>{}</code> 대신 <strong>들여쓰기</strong>로 코드 블록을 구분합니다.</li>
+<li>일반적으로 <strong>스페이스 4칸</strong>이 권장됩니다.</li>
+</ul>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1"></a><a href="#__codelineno-5-1"><span class="linenos" data-linenos="1 "></span></a><span class="n">score</span> <span class="o">=</span> <span class="mi">85</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2"></a><a href="#__codelineno-5-2"><span class="linenos" data-linenos="2 "></span></a>
+<a id="__codelineno-5-3" name="__codelineno-5-3"></a><a href="#__codelineno-5-3"><span class="linenos" data-linenos="3 "></span></a><span class="k">if</span> <span class="n">score</span> <span class="o">&gt;=</span> <span class="mi">90</span><span class="p">:</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4"></a><a href="#__codelineno-5-4"><span class="linenos" data-linenos="4 "></span></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;A학점&quot;</span><span class="p">)</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5"></a><a href="#__codelineno-5-5"><span class="linenos" data-linenos="5 "></span></a><span class="k">elif</span> <span class="n">score</span> <span class="o">&gt;=</span> <span class="mi">80</span><span class="p">:</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6"></a><a href="#__codelineno-5-6"><span class="linenos" data-linenos="6 "></span></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;B학점&quot;</span><span class="p">)</span>  <span class="c1"># ← 여기까지만 실행</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7"></a><a href="#__codelineno-5-7"><span class="linenos" data-linenos="7 "></span></a><span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-5-8" name="__codelineno-5-8"></a><a href="#__codelineno-5-8"><span class="linenos" data-linenos="8 "></span></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;C학점&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="_8">비교 연산자<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>연산자</th>
+<th>의미</th>
+<th>예시</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>==</code></td>
+<td>같다</td>
+<td><code>a == b</code></td>
+</tr>
+<tr>
+<td><code>!=</code></td>
+<td>같지 않다</td>
+<td><code>a != b</code></td>
+</tr>
+<tr>
+<td><code>&gt;</code></td>
+<td>크다</td>
+<td><code>a &gt; b</code></td>
+</tr>
+<tr>
+<td><code>&lt;</code></td>
+<td>작다</td>
+<td><code>a &lt; b</code></td>
+</tr>
+<tr>
+<td><code>&gt;=</code></td>
+<td>크거나 같다</td>
+<td><code>a &gt;= b</code></td>
+</tr>
+<tr>
+<td><code>&lt;=</code></td>
+<td>작거나 같다</td>
+<td><code>a &lt;= b</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="_9">논리 연산자<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>연산자</th>
+<th>의미</th>
+<th>예시</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>and</code></td>
+<td>둘 다 참이면 참</td>
+<td><code>a &gt; 0 and a &lt; 10</code></td>
+</tr>
+<tr>
+<td><code>or</code></td>
+<td>하나라도 참이면 참</td>
+<td><code>a == 0 or a == 1</code></td>
+</tr>
+<tr>
+<td><code>not</code></td>
+<td>참/거짓 반전</td>
+<td><code>not True</code> → <code>False</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="2_1">실습 2: 나이 판별기<a class="headerlink" href="#2_1" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1"></a><a href="#__codelineno-6-1"><span class="linenos" data-linenos=" 1 "></span></a><span class="n">age</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;나이를 입력하세요: &quot;</span><span class="p">))</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2"></a><a href="#__codelineno-6-2"><span class="linenos" data-linenos=" 2 "></span></a>
+<a id="__codelineno-6-3" name="__codelineno-6-3"></a><a href="#__codelineno-6-3"><span class="linenos" data-linenos=" 3 "></span></a><span class="k">if</span> <span class="n">age</span> <span class="o">&gt;=</span> <span class="mi">65</span><span class="p">:</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4"></a><a href="#__codelineno-6-4"><span class="linenos" data-linenos=" 4 "></span></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;노년층입니다.&quot;</span><span class="p">)</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5"></a><a href="#__codelineno-6-5"><span class="linenos" data-linenos=" 5 "></span></a><span class="k">elif</span> <span class="n">age</span> <span class="o">&gt;=</span> <span class="mi">20</span><span class="p">:</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6"></a><a href="#__codelineno-6-6"><span class="linenos" data-linenos=" 6 "></span></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;성인입니다.&quot;</span><span class="p">)</span>
+<a id="__codelineno-6-7" name="__codelineno-6-7"></a><a href="#__codelineno-6-7"><span class="linenos" data-linenos=" 7 "></span></a><span class="k">elif</span> <span class="n">age</span> <span class="o">&gt;=</span> <span class="mi">14</span><span class="p">:</span>
+<a id="__codelineno-6-8" name="__codelineno-6-8"></a><a href="#__codelineno-6-8"><span class="linenos" data-linenos=" 8 "></span></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;청소년입니다.&quot;</span><span class="p">)</span>
+<a id="__codelineno-6-9" name="__codelineno-6-9"></a><a href="#__codelineno-6-9"><span class="linenos" data-linenos=" 9 "></span></a><span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-6-10" name="__codelineno-6-10"></a><a href="#__codelineno-6-10"><span class="linenos" data-linenos="10 "></span></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;어린이입니다.&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="3">실습 3: 로그인 판별기<a class="headerlink" href="#3" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1"></a><a href="#__codelineno-7-1"><span class="linenos" data-linenos="1 "></span></a><span class="n">user_id</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;아이디를 입력하세요: &quot;</span><span class="p">)</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2"></a><a href="#__codelineno-7-2"><span class="linenos" data-linenos="2 "></span></a><span class="n">user_pw</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;비밀번호를 입력하세요: &quot;</span><span class="p">)</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3"></a><a href="#__codelineno-7-3"><span class="linenos" data-linenos="3 "></span></a>
+<a id="__codelineno-7-4" name="__codelineno-7-4"></a><a href="#__codelineno-7-4"><span class="linenos" data-linenos="4 "></span></a><span class="k">if</span> <span class="n">user_id</span> <span class="o">==</span> <span class="s2">&quot;admin&quot;</span> <span class="ow">and</span> <span class="n">user_pw</span> <span class="o">==</span> <span class="s2">&quot;1234&quot;</span><span class="p">:</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5"></a><a href="#__codelineno-7-5"><span class="linenos" data-linenos="5 "></span></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;로그인 성공!&quot;</span><span class="p">)</span>
+<a id="__codelineno-7-6" name="__codelineno-7-6"></a><a href="#__codelineno-7-6"><span class="linenos" data-linenos="6 "></span></a><span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-7-7" name="__codelineno-7-7"></a><a href="#__codelineno-7-7"><span class="linenos" data-linenos="7 "></span></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;로그인 실패!&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="4-3">4-3. 중첩 조건문과 들여쓰기<a class="headerlink" href="#4-3" title="Permanent link">&para;</a></h2>
+<h3 id="_10">중첩 조건문이란?<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p><code>if</code>문 안에 또 다른 <code>if</code>문이 들어 있는 형태로, 조건이 <strong>여러 단계로 분기</strong>되는 상황에 사용합니다.</p>
+</blockquote>
+<h3 id="_11">기본 구조<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1"></a><a href="#__codelineno-8-1"><span class="linenos" data-linenos="1 "></span></a><span class="k">if</span> <span class="n">조건1</span><span class="p">:</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2"></a><a href="#__codelineno-8-2"><span class="linenos" data-linenos="2 "></span></a>    <span class="k">if</span> <span class="n">조건2</span><span class="p">:</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3"></a><a href="#__codelineno-8-3"><span class="linenos" data-linenos="3 "></span></a>        <span class="n">실행문1</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4"></a><a href="#__codelineno-8-4"><span class="linenos" data-linenos="4 "></span></a>    <span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5"></a><a href="#__codelineno-8-5"><span class="linenos" data-linenos="5 "></span></a>        <span class="n">실행문2</span>
+<a id="__codelineno-8-6" name="__codelineno-8-6"></a><a href="#__codelineno-8-6"><span class="linenos" data-linenos="6 "></span></a><span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-8-7" name="__codelineno-8-7"></a><a href="#__codelineno-8-7"><span class="linenos" data-linenos="7 "></span></a>    <span class="n">실행문3</span>
+</code></pre></div>
+<h3 id="1_1">예제 1: 영화 관람 가능 여부<a class="headerlink" href="#1_1" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1"></a><a href="#__codelineno-9-1"><span class="linenos" data-linenos=" 1 "></span></a><span class="n">age</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;나이를 입력하세요: &quot;</span><span class="p">))</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2"></a><a href="#__codelineno-9-2"><span class="linenos" data-linenos=" 2 "></span></a><span class="n">has_ticket</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;티켓이 있나요? (yes/no): &quot;</span><span class="p">)</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3"></a><a href="#__codelineno-9-3"><span class="linenos" data-linenos=" 3 "></span></a>
+<a id="__codelineno-9-4" name="__codelineno-9-4"></a><a href="#__codelineno-9-4"><span class="linenos" data-linenos=" 4 "></span></a><span class="k">if</span> <span class="n">age</span> <span class="o">&gt;=</span> <span class="mi">18</span><span class="p">:</span>
+<a id="__codelineno-9-5" name="__codelineno-9-5"></a><a href="#__codelineno-9-5"><span class="linenos" data-linenos=" 5 "></span></a>    <span class="k">if</span> <span class="n">has_ticket</span> <span class="o">==</span> <span class="s2">&quot;yes&quot;</span><span class="p">:</span>
+<a id="__codelineno-9-6" name="__codelineno-9-6"></a><a href="#__codelineno-9-6"><span class="linenos" data-linenos=" 6 "></span></a>        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;입장 가능합니다.&quot;</span><span class="p">)</span>
+<a id="__codelineno-9-7" name="__codelineno-9-7"></a><a href="#__codelineno-9-7"><span class="linenos" data-linenos=" 7 "></span></a>    <span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-9-8" name="__codelineno-9-8"></a><a href="#__codelineno-9-8"><span class="linenos" data-linenos=" 8 "></span></a>        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;티켓이 필요합니다.&quot;</span><span class="p">)</span>
+<a id="__codelineno-9-9" name="__codelineno-9-9"></a><a href="#__codelineno-9-9"><span class="linenos" data-linenos=" 9 "></span></a><span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-9-10" name="__codelineno-9-10"></a><a href="#__codelineno-9-10"><span class="linenos" data-linenos="10 "></span></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;나이가 부족합니다.&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="4">실습 4: 회원 등급 확인기<a class="headerlink" href="#4" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1"></a><a href="#__codelineno-10-1"><span class="linenos" data-linenos=" 1 "></span></a><span class="n">grade</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;회원 등급을 입력하세요 (gold/silver): &quot;</span><span class="p">)</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2"></a><a href="#__codelineno-10-2"><span class="linenos" data-linenos=" 2 "></span></a><span class="n">purchase</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;이번 달 구매 금액을 입력하세요: &quot;</span><span class="p">))</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3"></a><a href="#__codelineno-10-3"><span class="linenos" data-linenos=" 3 "></span></a>
+<a id="__codelineno-10-4" name="__codelineno-10-4"></a><a href="#__codelineno-10-4"><span class="linenos" data-linenos=" 4 "></span></a><span class="k">if</span> <span class="n">grade</span> <span class="o">==</span> <span class="s2">&quot;gold&quot;</span><span class="p">:</span>
+<a id="__codelineno-10-5" name="__codelineno-10-5"></a><a href="#__codelineno-10-5"><span class="linenos" data-linenos=" 5 "></span></a>    <span class="k">if</span> <span class="n">purchase</span> <span class="o">&gt;=</span> <span class="mi">100000</span><span class="p">:</span>
+<a id="__codelineno-10-6" name="__codelineno-10-6"></a><a href="#__codelineno-10-6"><span class="linenos" data-linenos=" 6 "></span></a>        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;VIP 혜택 제공&quot;</span><span class="p">)</span>
+<a id="__codelineno-10-7" name="__codelineno-10-7"></a><a href="#__codelineno-10-7"><span class="linenos" data-linenos=" 7 "></span></a>    <span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-10-8" name="__codelineno-10-8"></a><a href="#__codelineno-10-8"><span class="linenos" data-linenos=" 8 "></span></a>        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;기본 골드 혜택 제공&quot;</span><span class="p">)</span>
+<a id="__codelineno-10-9" name="__codelineno-10-9"></a><a href="#__codelineno-10-9"><span class="linenos" data-linenos=" 9 "></span></a><span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-10-10" name="__codelineno-10-10"></a><a href="#__codelineno-10-10"><span class="linenos" data-linenos="10 "></span></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;실버 또는 일반 회원입니다.&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="4-4-input">4-4. <code>input()</code>과 조건문 실습<a class="headerlink" href="#4-4-input" title="Permanent link">&para;</a></h2>
+<h3 id="input"><code>input()</code> 함수 복습<a class="headerlink" href="#input" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1"></a><a href="#__codelineno-11-1"><span class="linenos" data-linenos="1 "></span></a><span class="n">name</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;당신의 이름은? &quot;</span><span class="p">)</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2"></a><a href="#__codelineno-11-2"><span class="linenos" data-linenos="2 "></span></a><span class="n">age</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;나이를 입력하세요: &quot;</span><span class="p">))</span>  <span class="c1"># 숫자 변환</span>
+</code></pre></div>
+<h3 id="5">실습 5: 숫자 맞히기 게임<a class="headerlink" href="#5" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1"></a><a href="#__codelineno-12-1"><span class="linenos" data-linenos="1 "></span></a><span class="n">secret</span> <span class="o">=</span> <span class="mi">7</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2"></a><a href="#__codelineno-12-2"><span class="linenos" data-linenos="2 "></span></a><span class="n">guess</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;1~10 사이의 숫자를 맞혀보세요: &quot;</span><span class="p">))</span>
+<a id="__codelineno-12-3" name="__codelineno-12-3"></a><a href="#__codelineno-12-3"><span class="linenos" data-linenos="3 "></span></a>
+<a id="__codelineno-12-4" name="__codelineno-12-4"></a><a href="#__codelineno-12-4"><span class="linenos" data-linenos="4 "></span></a><span class="k">if</span> <span class="n">guess</span> <span class="o">==</span> <span class="n">secret</span><span class="p">:</span>
+<a id="__codelineno-12-5" name="__codelineno-12-5"></a><a href="#__codelineno-12-5"><span class="linenos" data-linenos="5 "></span></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;정답입니다!&quot;</span><span class="p">)</span>
+<a id="__codelineno-12-6" name="__codelineno-12-6"></a><a href="#__codelineno-12-6"><span class="linenos" data-linenos="6 "></span></a><span class="k">elif</span> <span class="n">guess</span> <span class="o">&lt;</span> <span class="n">secret</span><span class="p">:</span>
+<a id="__codelineno-12-7" name="__codelineno-12-7"></a><a href="#__codelineno-12-7"><span class="linenos" data-linenos="7 "></span></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;너무 작아요!&quot;</span><span class="p">)</span>
+<a id="__codelineno-12-8" name="__codelineno-12-8"></a><a href="#__codelineno-12-8"><span class="linenos" data-linenos="8 "></span></a><span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-12-9" name="__codelineno-12-9"></a><a href="#__codelineno-12-9"><span class="linenos" data-linenos="9 "></span></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;너무 커요!&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="6-bmi">실습 6: BMI 판별기<a class="headerlink" href="#6-bmi" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1"></a><a href="#__codelineno-13-1"><span class="linenos" data-linenos=" 1 "></span></a><span class="n">height</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;키(cm): &quot;</span><span class="p">))</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2"></a><a href="#__codelineno-13-2"><span class="linenos" data-linenos=" 2 "></span></a><span class="n">weight</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;몸무게(kg): &quot;</span><span class="p">))</span>
+<a id="__codelineno-13-3" name="__codelineno-13-3"></a><a href="#__codelineno-13-3"><span class="linenos" data-linenos=" 3 "></span></a>
+<a id="__codelineno-13-4" name="__codelineno-13-4"></a><a href="#__codelineno-13-4"><span class="linenos" data-linenos=" 4 "></span></a><span class="n">bmi</span> <span class="o">=</span> <span class="n">weight</span> <span class="o">/</span> <span class="p">((</span><span class="n">height</span> <span class="o">/</span> <span class="mi">100</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+<a id="__codelineno-13-5" name="__codelineno-13-5"></a><a href="#__codelineno-13-5"><span class="linenos" data-linenos=" 5 "></span></a>
+<a id="__codelineno-13-6" name="__codelineno-13-6"></a><a href="#__codelineno-13-6"><span class="linenos" data-linenos=" 6 "></span></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;BMI: </span><span class="si">{</span><span class="n">bmi</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-13-7" name="__codelineno-13-7"></a><a href="#__codelineno-13-7"><span class="linenos" data-linenos=" 7 "></span></a>
+<a id="__codelineno-13-8" name="__codelineno-13-8"></a><a href="#__codelineno-13-8"><span class="linenos" data-linenos=" 8 "></span></a><span class="k">if</span> <span class="n">bmi</span> <span class="o">&gt;=</span> <span class="mi">25</span><span class="p">:</span>
+<a id="__codelineno-13-9" name="__codelineno-13-9"></a><a href="#__codelineno-13-9"><span class="linenos" data-linenos=" 9 "></span></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;과체중입니다.&quot;</span><span class="p">)</span>
+<a id="__codelineno-13-10" name="__codelineno-13-10"></a><a href="#__codelineno-13-10"><span class="linenos" data-linenos="10 "></span></a><span class="k">elif</span> <span class="n">bmi</span> <span class="o">&gt;=</span> <span class="mf">18.5</span><span class="p">:</span>
+<a id="__codelineno-13-11" name="__codelineno-13-11"></a><a href="#__codelineno-13-11"><span class="linenos" data-linenos="11 "></span></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;정상 체중입니다.&quot;</span><span class="p">)</span>
+<a id="__codelineno-13-12" name="__codelineno-13-12"></a><a href="#__codelineno-13-12"><span class="linenos" data-linenos="12 "></span></a><span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-13-13" name="__codelineno-13-13"></a><a href="#__codelineno-13-13"><span class="linenos" data-linenos="13 "></span></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;저체중입니다.&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="4-5-for">4-5. <code>for</code> 반복문<a class="headerlink" href="#4-5-for" title="Permanent link">&para;</a></h2>
+<h3 id="for"><code>for</code> 반복문이란?<a class="headerlink" href="#for" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p>시퀀스(리스트, 문자열 등)의 <strong>요소를 하나씩 꺼내며 반복</strong>하는 문법입니다.</p>
+</blockquote>
+<h3 id="_12">기본 구조<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1"></a><a href="#__codelineno-14-1"><span class="linenos" data-linenos="1 "></span></a><span class="k">for</span> <span class="n">변수</span> <span class="ow">in</span> <span class="n">반복가능한객체</span><span class="p">:</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2"></a><a href="#__codelineno-14-2"><span class="linenos" data-linenos="2 "></span></a>    <span class="n">실행문</span>
+</code></pre></div>
+<h3 id="_13">예시<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1"></a><a href="#__codelineno-15-1"><span class="linenos" data-linenos="1 "></span></a><span class="n">fruits</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;apple&quot;</span><span class="p">,</span> <span class="s2">&quot;banana&quot;</span><span class="p">,</span> <span class="s2">&quot;cherry&quot;</span><span class="p">]</span>
+<a id="__codelineno-15-2" name="__codelineno-15-2"></a><a href="#__codelineno-15-2"><span class="linenos" data-linenos="2 "></span></a>
+<a id="__codelineno-15-3" name="__codelineno-15-3"></a><a href="#__codelineno-15-3"><span class="linenos" data-linenos="3 "></span></a><span class="k">for</span> <span class="n">fruit</span> <span class="ow">in</span> <span class="n">fruits</span><span class="p">:</span>
+<a id="__codelineno-15-4" name="__codelineno-15-4"></a><a href="#__codelineno-15-4"><span class="linenos" data-linenos="4 "></span></a>    <span class="nb">print</span><span class="p">(</span><span class="n">fruit</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="_14">문자열도 반복 가능<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1"></a><a href="#__codelineno-16-1"><span class="linenos" data-linenos="1 "></span></a><span class="k">for</span> <span class="n">ch</span> <span class="ow">in</span> <span class="s2">&quot;Hello&quot;</span><span class="p">:</span>
+<a id="__codelineno-16-2" name="__codelineno-16-2"></a><a href="#__codelineno-16-2"><span class="linenos" data-linenos="2 "></span></a>    <span class="nb">print</span><span class="p">(</span><span class="n">ch</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="range"><code>range()</code> 함수<a class="headerlink" href="#range" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1"></a><a href="#__codelineno-17-1"><span class="linenos" data-linenos="1 "></span></a><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+<a id="__codelineno-17-2" name="__codelineno-17-2"></a><a href="#__codelineno-17-2"><span class="linenos" data-linenos="2 "></span></a>    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>  <span class="c1"># 0, 1, 2, 3, 4</span>
+</code></pre></div>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1"></a><a href="#__codelineno-18-1"><span class="linenos" data-linenos="1 "></span></a><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">2</span><span class="p">):</span>
+<a id="__codelineno-18-2" name="__codelineno-18-2"></a><a href="#__codelineno-18-2"><span class="linenos" data-linenos="2 "></span></a>    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>  <span class="c1"># 1, 3, 5, 7, 9</span>
+</code></pre></div>
+<h3 id="7">실습 7: 구구단 출력기<a class="headerlink" href="#7" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1"></a><a href="#__codelineno-19-1"><span class="linenos" data-linenos="1 "></span></a><span class="n">dan</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;출력할 단 입력 (2~9): &quot;</span><span class="p">))</span>
+<a id="__codelineno-19-2" name="__codelineno-19-2"></a><a href="#__codelineno-19-2"><span class="linenos" data-linenos="2 "></span></a>
+<a id="__codelineno-19-3" name="__codelineno-19-3"></a><a href="#__codelineno-19-3"><span class="linenos" data-linenos="3 "></span></a><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">):</span>
+<a id="__codelineno-19-4" name="__codelineno-19-4"></a><a href="#__codelineno-19-4"><span class="linenos" data-linenos="4 "></span></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">dan</span><span class="si">}</span><span class="s2"> x </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2"> = </span><span class="si">{</span><span class="n">dan</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">i</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="8">실습 8: 리스트 요소와 인덱스 함께 출력<a class="headerlink" href="#8" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1"></a><a href="#__codelineno-20-1"><span class="linenos" data-linenos="1 "></span></a><span class="n">menu</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;떡볶이&quot;</span><span class="p">,</span> <span class="s2">&quot;김밥&quot;</span><span class="p">,</span> <span class="s2">&quot;순대&quot;</span><span class="p">]</span>
+<a id="__codelineno-20-2" name="__codelineno-20-2"></a><a href="#__codelineno-20-2"><span class="linenos" data-linenos="2 "></span></a>
+<a id="__codelineno-20-3" name="__codelineno-20-3"></a><a href="#__codelineno-20-3"><span class="linenos" data-linenos="3 "></span></a><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">menu</span><span class="p">)):</span>
+<a id="__codelineno-20-4" name="__codelineno-20-4"></a><a href="#__codelineno-20-4"><span class="linenos" data-linenos="4 "></span></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">. </span><span class="si">{</span><span class="n">menu</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p>또는:
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1"></a><a href="#__codelineno-21-1"><span class="linenos" data-linenos="1 "></span></a><span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">item</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">menu</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span>
+<a id="__codelineno-21-2" name="__codelineno-21-2"></a><a href="#__codelineno-21-2"><span class="linenos" data-linenos="2 "></span></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">idx</span><span class="si">}</span><span class="s2">. </span><span class="si">{</span><span class="n">item</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div></p>
+<h2 id="4-6-while">4-6. <code>while</code> 반복문<a class="headerlink" href="#4-6-while" title="Permanent link">&para;</a></h2>
+<h3 id="while"><code>while</code>문이란?<a class="headerlink" href="#while" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p>주어진 <strong>조건이 참(<code>True</code>)인 동안 계속해서 반복</strong> 실행하는 문법입니다.</p>
+</blockquote>
+<h3 id="_15">기본 구조<a class="headerlink" href="#_15" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1"></a><a href="#__codelineno-22-1"><span class="linenos" data-linenos="1 "></span></a><span class="k">while</span> <span class="n">조건</span><span class="p">:</span>
+<a id="__codelineno-22-2" name="__codelineno-22-2"></a><a href="#__codelineno-22-2"><span class="linenos" data-linenos="2 "></span></a>    <span class="n">실행문</span>
+</code></pre></div>
+<h3 id="_16">예시<a class="headerlink" href="#_16" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1"></a><a href="#__codelineno-23-1"><span class="linenos" data-linenos="1 "></span></a><span class="n">count</span> <span class="o">=</span> <span class="mi">1</span>
+<a id="__codelineno-23-2" name="__codelineno-23-2"></a><a href="#__codelineno-23-2"><span class="linenos" data-linenos="2 "></span></a><span class="k">while</span> <span class="n">count</span> <span class="o">&lt;=</span> <span class="mi">5</span><span class="p">:</span>
+<a id="__codelineno-23-3" name="__codelineno-23-3"></a><a href="#__codelineno-23-3"><span class="linenos" data-linenos="3 "></span></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">count</span><span class="si">}</span><span class="s2">번째 출력&quot;</span><span class="p">)</span>
+<a id="__codelineno-23-4" name="__codelineno-23-4"></a><a href="#__codelineno-23-4"><span class="linenos" data-linenos="4 "></span></a>    <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
+</code></pre></div>
+<h3 id="while-vs-for"><code>while</code> vs <code>for</code><a class="headerlink" href="#while-vs-for" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>특징</th>
+<th><code>for</code> 문</th>
+<th><code>while</code> 문</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>반복 조건</td>
+<td>반복 횟수가 명확할 때</td>
+<td>조건이 만족하는 동안</td>
+</tr>
+<tr>
+<td>제어 방식</td>
+<td>반복 가능한 객체에 대해 반복</td>
+<td>조건을 직접 검사</td>
+</tr>
+<tr>
+<td>종료 조건</td>
+<td>범위가 끝나면 자동 종료</td>
+<td>조건이 <code>False</code>가 되어야 종료</td>
+</tr>
+</tbody>
+</table>
+<h3 id="9">실습 9: 비밀번호 입력 반복<a class="headerlink" href="#9" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1"></a><a href="#__codelineno-24-1"><span class="linenos" data-linenos="1 "></span></a><span class="n">correct_pw</span> <span class="o">=</span> <span class="s2">&quot;1234&quot;</span>
+<a id="__codelineno-24-2" name="__codelineno-24-2"></a><a href="#__codelineno-24-2"><span class="linenos" data-linenos="2 "></span></a>
+<a id="__codelineno-24-3" name="__codelineno-24-3"></a><a href="#__codelineno-24-3"><span class="linenos" data-linenos="3 "></span></a><span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+<a id="__codelineno-24-4" name="__codelineno-24-4"></a><a href="#__codelineno-24-4"><span class="linenos" data-linenos="4 "></span></a>    <span class="n">pw</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;비밀번호를 입력하세요: &quot;</span><span class="p">)</span>
+<a id="__codelineno-24-5" name="__codelineno-24-5"></a><a href="#__codelineno-24-5"><span class="linenos" data-linenos="5 "></span></a>    <span class="k">if</span> <span class="n">pw</span> <span class="o">==</span> <span class="n">correct_pw</span><span class="p">:</span>
+<a id="__codelineno-24-6" name="__codelineno-24-6"></a><a href="#__codelineno-24-6"><span class="linenos" data-linenos="6 "></span></a>        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;접속 성공!&quot;</span><span class="p">)</span>
+<a id="__codelineno-24-7" name="__codelineno-24-7"></a><a href="#__codelineno-24-7"><span class="linenos" data-linenos="7 "></span></a>        <span class="k">break</span>
+<a id="__codelineno-24-8" name="__codelineno-24-8"></a><a href="#__codelineno-24-8"><span class="linenos" data-linenos="8 "></span></a>    <span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-24-9" name="__codelineno-24-9"></a><a href="#__codelineno-24-9"><span class="linenos" data-linenos="9 "></span></a>        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;틀렸습니다. 다시 시도하세요.&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="10-1-n">실습 10: 1부터 n까지의 합 구하기<a class="headerlink" href="#10-1-n" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1"></a><a href="#__codelineno-25-1"><span class="linenos" data-linenos="1 "></span></a><span class="n">n</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;숫자를 입력하세요: &quot;</span><span class="p">))</span>
+<a id="__codelineno-25-2" name="__codelineno-25-2"></a><a href="#__codelineno-25-2"><span class="linenos" data-linenos="2 "></span></a><span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
+<a id="__codelineno-25-3" name="__codelineno-25-3"></a><a href="#__codelineno-25-3"><span class="linenos" data-linenos="3 "></span></a><span class="n">i</span> <span class="o">=</span> <span class="mi">1</span>
+<a id="__codelineno-25-4" name="__codelineno-25-4"></a><a href="#__codelineno-25-4"><span class="linenos" data-linenos="4 "></span></a>
+<a id="__codelineno-25-5" name="__codelineno-25-5"></a><a href="#__codelineno-25-5"><span class="linenos" data-linenos="5 "></span></a><span class="k">while</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">:</span>
+<a id="__codelineno-25-6" name="__codelineno-25-6"></a><a href="#__codelineno-25-6"><span class="linenos" data-linenos="6 "></span></a>    <span class="n">total</span> <span class="o">+=</span> <span class="n">i</span>
+<a id="__codelineno-25-7" name="__codelineno-25-7"></a><a href="#__codelineno-25-7"><span class="linenos" data-linenos="7 "></span></a>    <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+<a id="__codelineno-25-8" name="__codelineno-25-8"></a><a href="#__codelineno-25-8"><span class="linenos" data-linenos="8 "></span></a>
+<a id="__codelineno-25-9" name="__codelineno-25-9"></a><a href="#__codelineno-25-9"><span class="linenos" data-linenos="9 "></span></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;1부터 </span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s2">까지의 합은 </span><span class="si">{</span><span class="n">total</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="4-7">4-7. 흐름 제어 키워드<a class="headerlink" href="#4-7" title="Permanent link">&para;</a></h2>
+<h3 id="1-break">① <code>break</code><a class="headerlink" href="#1-break" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p>반복문을 <strong>강제로 종료</strong>시킬 때 사용합니다.</p>
+</blockquote>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1"></a><a href="#__codelineno-26-1"><span class="linenos" data-linenos="1 "></span></a><span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+<a id="__codelineno-26-2" name="__codelineno-26-2"></a><a href="#__codelineno-26-2"><span class="linenos" data-linenos="2 "></span></a>    <span class="n">word</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;단어 입력 (종료하려면 exit 입력): &quot;</span><span class="p">)</span>
+<a id="__codelineno-26-3" name="__codelineno-26-3"></a><a href="#__codelineno-26-3"><span class="linenos" data-linenos="3 "></span></a>    <span class="k">if</span> <span class="n">word</span> <span class="o">==</span> <span class="s2">&quot;exit&quot;</span><span class="p">:</span>
+<a id="__codelineno-26-4" name="__codelineno-26-4"></a><a href="#__codelineno-26-4"><span class="linenos" data-linenos="4 "></span></a>        <span class="k">break</span>
+<a id="__codelineno-26-5" name="__codelineno-26-5"></a><a href="#__codelineno-26-5"><span class="linenos" data-linenos="5 "></span></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;입력한 단어: </span><span class="si">{</span><span class="n">word</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="2-continue">② <code>continue</code><a class="headerlink" href="#2-continue" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p>반복문 안에서 <strong>다음 반복으로 건너뜁니다.</strong></p>
+</blockquote>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1"></a><a href="#__codelineno-27-1"><span class="linenos" data-linenos="1 "></span></a><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">):</span>
+<a id="__codelineno-27-2" name="__codelineno-27-2"></a><a href="#__codelineno-27-2"><span class="linenos" data-linenos="2 "></span></a>    <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+<a id="__codelineno-27-3" name="__codelineno-27-3"></a><a href="#__codelineno-27-3"><span class="linenos" data-linenos="3 "></span></a>        <span class="k">continue</span>
+<a id="__codelineno-27-4" name="__codelineno-27-4"></a><a href="#__codelineno-27-4"><span class="linenos" data-linenos="4 "></span></a>    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>  <span class="c1"># 1, 2, 4, 5</span>
+</code></pre></div>
+<h3 id="3-pass">③ <code>pass</code><a class="headerlink" href="#3-pass" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p><strong>아무것도 하지 않고 넘어감</strong>. 문법적으로 코드 블록이 필요한 자리에 임시로 사용.</p>
+</blockquote>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1"></a><a href="#__codelineno-28-1"><span class="linenos" data-linenos="1 "></span></a><span class="n">score</span> <span class="o">=</span> <span class="mi">80</span>
+<a id="__codelineno-28-2" name="__codelineno-28-2"></a><a href="#__codelineno-28-2"><span class="linenos" data-linenos="2 "></span></a>
+<a id="__codelineno-28-3" name="__codelineno-28-3"></a><a href="#__codelineno-28-3"><span class="linenos" data-linenos="3 "></span></a><span class="k">if</span> <span class="n">score</span> <span class="o">&gt;=</span> <span class="mi">90</span><span class="p">:</span>
+<a id="__codelineno-28-4" name="__codelineno-28-4"></a><a href="#__codelineno-28-4"><span class="linenos" data-linenos="4 "></span></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;A등급&quot;</span><span class="p">)</span>
+<a id="__codelineno-28-5" name="__codelineno-28-5"></a><a href="#__codelineno-28-5"><span class="linenos" data-linenos="5 "></span></a><span class="k">elif</span> <span class="n">score</span> <span class="o">&gt;=</span> <span class="mi">80</span><span class="p">:</span>
+<a id="__codelineno-28-6" name="__codelineno-28-6"></a><a href="#__codelineno-28-6"><span class="linenos" data-linenos="6 "></span></a>    <span class="k">pass</span>  <span class="c1"># 아직 처리할 코드 없음</span>
+<a id="__codelineno-28-7" name="__codelineno-28-7"></a><a href="#__codelineno-28-7"><span class="linenos" data-linenos="7 "></span></a><span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-28-8" name="__codelineno-28-8"></a><a href="#__codelineno-28-8"><span class="linenos" data-linenos="8 "></span></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;C등급&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="11">실습 11: 짝수만 출력하기<a class="headerlink" href="#11" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1"></a><a href="#__codelineno-29-1"><span class="linenos" data-linenos="1 "></span></a><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">11</span><span class="p">):</span>
+<a id="__codelineno-29-2" name="__codelineno-29-2"></a><a href="#__codelineno-29-2"><span class="linenos" data-linenos="2 "></span></a>    <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+<a id="__codelineno-29-3" name="__codelineno-29-3"></a><a href="#__codelineno-29-3"><span class="linenos" data-linenos="3 "></span></a>        <span class="k">continue</span>
+<a id="__codelineno-29-4" name="__codelineno-29-4"></a><a href="#__codelineno-29-4"><span class="linenos" data-linenos="4 "></span></a>    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="12-30">실습 12: 첫 번째로 30 이상인 숫자 찾기<a class="headerlink" href="#12-30" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1"></a><a href="#__codelineno-30-1"><span class="linenos" data-linenos="1 "></span></a><span class="n">nums</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">50</span><span class="p">]</span>
+<a id="__codelineno-30-2" name="__codelineno-30-2"></a><a href="#__codelineno-30-2"><span class="linenos" data-linenos="2 "></span></a>
+<a id="__codelineno-30-3" name="__codelineno-30-3"></a><a href="#__codelineno-30-3"><span class="linenos" data-linenos="3 "></span></a><span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">nums</span><span class="p">:</span>
+<a id="__codelineno-30-4" name="__codelineno-30-4"></a><a href="#__codelineno-30-4"><span class="linenos" data-linenos="4 "></span></a>    <span class="k">if</span> <span class="n">n</span> <span class="o">&gt;=</span> <span class="mi">30</span><span class="p">:</span>
+<a id="__codelineno-30-5" name="__codelineno-30-5"></a><a href="#__codelineno-30-5"><span class="linenos" data-linenos="5 "></span></a>        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;30 이상인 첫 수: </span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-30-6" name="__codelineno-30-6"></a><a href="#__codelineno-30-6"><span class="linenos" data-linenos="6 "></span></a>        <span class="k">break</span>
+</code></pre></div>
+<h2 id="4-8">4-8. 리스트 컴프리헨션 심화<a class="headerlink" href="#4-8" title="Permanent link">&para;</a></h2>
+<h3 id="_17">복습: 기본 형태<a class="headerlink" href="#_17" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1"></a><a href="#__codelineno-31-1"><span class="linenos" data-linenos="1 "></span></a><span class="p">[</span><span class="n">표현식</span> <span class="k">for</span> <span class="n">변수</span> <span class="ow">in</span> <span class="n">반복가능한객체</span><span class="p">]</span>
+</code></pre></div>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1"></a><a href="#__codelineno-32-1"><span class="linenos" data-linenos="1 "></span></a><span class="n">squares</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="o">*</span> <span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">)]</span>
+<a id="__codelineno-32-2" name="__codelineno-32-2"></a><a href="#__codelineno-32-2"><span class="linenos" data-linenos="2 "></span></a><span class="nb">print</span><span class="p">(</span><span class="n">squares</span><span class="p">)</span>  <span class="c1"># [1, 4, 9, 16, 25]</span>
+</code></pre></div>
+<h3 id="_18">조건부 리스트 컴프리헨션<a class="headerlink" href="#_18" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1"></a><a href="#__codelineno-33-1"><span class="linenos" data-linenos="1 "></span></a><span class="n">even_nums</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">11</span><span class="p">)</span> <span class="k">if</span> <span class="n">x</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span>
+<a id="__codelineno-33-2" name="__codelineno-33-2"></a><a href="#__codelineno-33-2"><span class="linenos" data-linenos="2 "></span></a><span class="nb">print</span><span class="p">(</span><span class="n">even_nums</span><span class="p">)</span>  <span class="c1"># [2, 4, 6, 8, 10]</span>
+</code></pre></div>
+<h3 id="_19">삼항 연산자 활용<a class="headerlink" href="#_19" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1"></a><a href="#__codelineno-34-1"><span class="linenos" data-linenos="1 "></span></a><span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;짝수&quot;</span> <span class="k">if</span> <span class="n">x</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span> <span class="k">else</span> <span class="s2">&quot;홀수&quot;</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">)]</span>
+<a id="__codelineno-34-2" name="__codelineno-34-2"></a><a href="#__codelineno-34-2"><span class="linenos" data-linenos="2 "></span></a><span class="nb">print</span><span class="p">(</span><span class="n">labels</span><span class="p">)</span>  <span class="c1"># [&#39;홀수&#39;, &#39;짝수&#39;, &#39;홀수&#39;, &#39;짝수&#39;, &#39;홀수&#39;]</span>
+</code></pre></div>
+<h3 id="2-for">중첩 반복 (2중 for문)<a class="headerlink" href="#2-for" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-35-1" name="__codelineno-35-1"></a><a href="#__codelineno-35-1"><span class="linenos" data-linenos="1 "></span></a><span class="n">pairs</span> <span class="o">=</span> <span class="p">[(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">]]</span>
+<a id="__codelineno-35-2" name="__codelineno-35-2"></a><a href="#__codelineno-35-2"><span class="linenos" data-linenos="2 "></span></a><span class="nb">print</span><span class="p">(</span><span class="n">pairs</span><span class="p">)</span>  <span class="c1"># [(1, &#39;a&#39;), (1, &#39;b&#39;), (2, &#39;a&#39;), (2, &#39;b&#39;)]</span>
+</code></pre></div>
+<h3 id="13-3">실습 13: 문자열 길이 3 이상만 필터링<a class="headerlink" href="#13-3" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-36-1" name="__codelineno-36-1"></a><a href="#__codelineno-36-1"><span class="linenos" data-linenos="1 "></span></a><span class="n">words</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;hi&quot;</span><span class="p">,</span> <span class="s2">&quot;hello&quot;</span><span class="p">,</span> <span class="s2">&quot;안녕&quot;</span><span class="p">,</span> <span class="s2">&quot;python&quot;</span><span class="p">,</span> <span class="s2">&quot;go&quot;</span><span class="p">]</span>
+<a id="__codelineno-36-2" name="__codelineno-36-2"></a><a href="#__codelineno-36-2"><span class="linenos" data-linenos="2 "></span></a><span class="n">long_words</span> <span class="o">=</span> <span class="p">[</span><span class="n">w</span> <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">words</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">w</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">3</span><span class="p">]</span>
+<a id="__codelineno-36-3" name="__codelineno-36-3"></a><a href="#__codelineno-36-3"><span class="linenos" data-linenos="3 "></span></a><span class="nb">print</span><span class="p">(</span><span class="n">long_words</span><span class="p">)</span>  <span class="c1"># [&#39;hello&#39;, &#39;안녕&#39;, &#39;python&#39;]</span>
+</code></pre></div>
+<h3 id="14-24">실습 14: 구구단 (2~4단) 곱셈 쌍 만들기<a class="headerlink" href="#14-24" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-37-1" name="__codelineno-37-1"></a><a href="#__codelineno-37-1"><span class="linenos" data-linenos="1 "></span></a><span class="n">pairs</span> <span class="o">=</span> <span class="p">[(</span><span class="n">dan</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">dan</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">)]</span>
+<a id="__codelineno-37-2" name="__codelineno-37-2"></a><a href="#__codelineno-37-2"><span class="linenos" data-linenos="2 "></span></a><span class="k">for</span> <span class="n">dan</span><span class="p">,</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">pairs</span><span class="p">:</span>
+<a id="__codelineno-37-3" name="__codelineno-37-3"></a><a href="#__codelineno-37-3"><span class="linenos" data-linenos="3 "></span></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">dan</span><span class="si">}</span><span class="s2"> x </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2"> = </span><span class="si">{</span><span class="n">dan</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">i</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="4-9">4-9. 종합 실습: 메뉴 기반 프로그램<a class="headerlink" href="#4-9" title="Permanent link">&para;</a></h2>
+<h3 id="15">실습 15: 명언 저장소 만들기<a class="headerlink" href="#15" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-38-1" name="__codelineno-38-1"></a><a href="#__codelineno-38-1"><span class="linenos" data-linenos=" 1 "></span></a><span class="n">quotes</span> <span class="o">=</span> <span class="p">[]</span>
+<a id="__codelineno-38-2" name="__codelineno-38-2"></a><a href="#__codelineno-38-2"><span class="linenos" data-linenos=" 2 "></span></a>
+<a id="__codelineno-38-3" name="__codelineno-38-3"></a><a href="#__codelineno-38-3"><span class="linenos" data-linenos=" 3 "></span></a><span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+<a id="__codelineno-38-4" name="__codelineno-38-4"></a><a href="#__codelineno-38-4"><span class="linenos" data-linenos=" 4 "></span></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">==== 명언 저장소 ====&quot;</span><span class="p">)</span>
+<a id="__codelineno-38-5" name="__codelineno-38-5"></a><a href="#__codelineno-38-5"><span class="linenos" data-linenos=" 5 "></span></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;1. 추가&quot;</span><span class="p">)</span>
+<a id="__codelineno-38-6" name="__codelineno-38-6"></a><a href="#__codelineno-38-6"><span class="linenos" data-linenos=" 6 "></span></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;2. 목록 보기&quot;</span><span class="p">)</span>
+<a id="__codelineno-38-7" name="__codelineno-38-7"></a><a href="#__codelineno-38-7"><span class="linenos" data-linenos=" 7 "></span></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;3. 삭제&quot;</span><span class="p">)</span>
+<a id="__codelineno-38-8" name="__codelineno-38-8"></a><a href="#__codelineno-38-8"><span class="linenos" data-linenos=" 8 "></span></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;4. 종료&quot;</span><span class="p">)</span>
+<a id="__codelineno-38-9" name="__codelineno-38-9"></a><a href="#__codelineno-38-9"><span class="linenos" data-linenos=" 9 "></span></a>    <span class="n">choice</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;&gt;&gt; &quot;</span><span class="p">)</span>
+<a id="__codelineno-38-10" name="__codelineno-38-10"></a><a href="#__codelineno-38-10"><span class="linenos" data-linenos="10 "></span></a>
+<a id="__codelineno-38-11" name="__codelineno-38-11"></a><a href="#__codelineno-38-11"><span class="linenos" data-linenos="11 "></span></a>    <span class="k">if</span> <span class="n">choice</span> <span class="o">==</span> <span class="s2">&quot;1&quot;</span><span class="p">:</span>
+<a id="__codelineno-38-12" name="__codelineno-38-12"></a><a href="#__codelineno-38-12"><span class="linenos" data-linenos="12 "></span></a>        <span class="n">new_quote</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;추가할 명언: &quot;</span><span class="p">)</span>
+<a id="__codelineno-38-13" name="__codelineno-38-13"></a><a href="#__codelineno-38-13"><span class="linenos" data-linenos="13 "></span></a>        <span class="n">quotes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">new_quote</span><span class="p">)</span>
+<a id="__codelineno-38-14" name="__codelineno-38-14"></a><a href="#__codelineno-38-14"><span class="linenos" data-linenos="14 "></span></a>
+<a id="__codelineno-38-15" name="__codelineno-38-15"></a><a href="#__codelineno-38-15"><span class="linenos" data-linenos="15 "></span></a>    <span class="k">elif</span> <span class="n">choice</span> <span class="o">==</span> <span class="s2">&quot;2&quot;</span><span class="p">:</span>
+<a id="__codelineno-38-16" name="__codelineno-38-16"></a><a href="#__codelineno-38-16"><span class="linenos" data-linenos="16 "></span></a>        <span class="k">if</span> <span class="ow">not</span> <span class="n">quotes</span><span class="p">:</span>
+<a id="__codelineno-38-17" name="__codelineno-38-17"></a><a href="#__codelineno-38-17"><span class="linenos" data-linenos="17 "></span></a>            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;아직 등록된 명언이 없습니다.&quot;</span><span class="p">)</span>
+<a id="__codelineno-38-18" name="__codelineno-38-18"></a><a href="#__codelineno-38-18"><span class="linenos" data-linenos="18 "></span></a>        <span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-38-19" name="__codelineno-38-19"></a><a href="#__codelineno-38-19"><span class="linenos" data-linenos="19 "></span></a>            <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">q</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">quotes</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span>
+<a id="__codelineno-38-20" name="__codelineno-38-20"></a><a href="#__codelineno-38-20"><span class="linenos" data-linenos="20 "></span></a>                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;[</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">] </span><span class="si">{</span><span class="n">q</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-38-21" name="__codelineno-38-21"></a><a href="#__codelineno-38-21"><span class="linenos" data-linenos="21 "></span></a>
+<a id="__codelineno-38-22" name="__codelineno-38-22"></a><a href="#__codelineno-38-22"><span class="linenos" data-linenos="22 "></span></a>    <span class="k">elif</span> <span class="n">choice</span> <span class="o">==</span> <span class="s2">&quot;3&quot;</span><span class="p">:</span>
+<a id="__codelineno-38-23" name="__codelineno-38-23"></a><a href="#__codelineno-38-23"><span class="linenos" data-linenos="23 "></span></a>        <span class="n">num</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;삭제할 번호: &quot;</span><span class="p">))</span>
+<a id="__codelineno-38-24" name="__codelineno-38-24"></a><a href="#__codelineno-38-24"><span class="linenos" data-linenos="24 "></span></a>        <span class="k">if</span> <span class="mi">1</span> <span class="o">&lt;=</span> <span class="n">num</span> <span class="o">&lt;=</span> <span class="nb">len</span><span class="p">(</span><span class="n">quotes</span><span class="p">):</span>
+<a id="__codelineno-38-25" name="__codelineno-38-25"></a><a href="#__codelineno-38-25"><span class="linenos" data-linenos="25 "></span></a>            <span class="n">removed</span> <span class="o">=</span> <span class="n">quotes</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">num</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+<a id="__codelineno-38-26" name="__codelineno-38-26"></a><a href="#__codelineno-38-26"><span class="linenos" data-linenos="26 "></span></a>            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;삭제됨: </span><span class="si">{</span><span class="n">removed</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-38-27" name="__codelineno-38-27"></a><a href="#__codelineno-38-27"><span class="linenos" data-linenos="27 "></span></a>        <span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-38-28" name="__codelineno-38-28"></a><a href="#__codelineno-38-28"><span class="linenos" data-linenos="28 "></span></a>            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;유효하지 않은 번호입니다.&quot;</span><span class="p">)</span>
+<a id="__codelineno-38-29" name="__codelineno-38-29"></a><a href="#__codelineno-38-29"><span class="linenos" data-linenos="29 "></span></a>
+<a id="__codelineno-38-30" name="__codelineno-38-30"></a><a href="#__codelineno-38-30"><span class="linenos" data-linenos="30 "></span></a>    <span class="k">elif</span> <span class="n">choice</span> <span class="o">==</span> <span class="s2">&quot;4&quot;</span><span class="p">:</span>
+<a id="__codelineno-38-31" name="__codelineno-38-31"></a><a href="#__codelineno-38-31"><span class="linenos" data-linenos="31 "></span></a>        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;프로그램을 종료합니다.&quot;</span><span class="p">)</span>
+<a id="__codelineno-38-32" name="__codelineno-38-32"></a><a href="#__codelineno-38-32"><span class="linenos" data-linenos="32 "></span></a>        <span class="k">break</span>
+<a id="__codelineno-38-33" name="__codelineno-38-33"></a><a href="#__codelineno-38-33"><span class="linenos" data-linenos="33 "></span></a>
+<a id="__codelineno-38-34" name="__codelineno-38-34"></a><a href="#__codelineno-38-34"><span class="linenos" data-linenos="34 "></span></a>    <span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-38-35" name="__codelineno-38-35"></a><a href="#__codelineno-38-35"><span class="linenos" data-linenos="35 "></span></a>        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;1~4 사이의 숫자를 입력하세요.&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="4_1">4장 마무리 요약<a class="headerlink" href="#4_1" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>주제</th>
+<th>핵심 내용 요약</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>조건문</td>
+<td>if, elif, else / 비교 &amp; 논리 연산자</td>
+</tr>
+<tr>
+<td>반복문 (for)</td>
+<td>리스트, 문자열, range, enumerate</td>
+</tr>
+<tr>
+<td>반복문 (while)</td>
+<td>조건 반복, 무한 루프, break</td>
+</tr>
+<tr>
+<td>흐름 제어 키워드</td>
+<td>break, continue, pass</td>
+</tr>
+<tr>
+<td>리스트 컴프리헨션</td>
+<td>표현식 + 조건 필터링</td>
+</tr>
+<tr>
+<td>실습 종합</td>
+<td>조건 + 반복 + 입력/출력 통합 사용</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="하단/푸터" >
+        
+          
+          <a href="../03_python_list_tutorial/" class="md-footer__link md-footer__link--prev" aria-label="이전: 3장 자료구조 - 리스트(List)">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                이전
+              </span>
+              <div class="md-ellipsis">
+                3장 자료구조 - 리스트(List)
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../05_python_function_chapter/" class="md-footer__link md-footer__link--next" aria-label="다음: 5장. 함수(Function)">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                다음
+              </span>
+              <div class="md-ellipsis">
+                5장. 함수(Function)
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant", "navigation.tabs", "navigation.footer", "content.code.copy", "content.code.annotate", "content.tooltips", "content.footnote.tooltips"], "search": "../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "\ud074\ub9bd\ubcf4\ub4dc\uc5d0 \ubcf5\uc0ac\ub428", "clipboard.copy": "\ud074\ub9bd\ubcf4\ub4dc\ub85c \ubcf5\uc0ac", "search.result.more.one": "\uc774 \ubb38\uc11c\uc5d0\uc11c 1\uac1c\uc758 \uac80\uc0c9 \uacb0\uacfc \ub354 \ubcf4\uae30", "search.result.more.other": "\uc774 \ubb38\uc11c\uc5d0\uc11c #\uac1c\uc758 \uac80\uc0c9 \uacb0\uacfc \ub354 \ubcf4\uae30", "search.result.none": "\uac80\uc0c9\uc5b4\uc640 \uc77c\uce58\ud558\ub294 \ubb38\uc11c\uac00 \uc5c6\uc2b5\ub2c8\ub2e4", "search.result.one": "1\uac1c\uc758 \uc77c\uce58\ud558\ub294 \ubb38\uc11c", "search.result.other": "#\uac1c\uc758 \uc77c\uce58\ud558\ub294 \ubb38\uc11c", "search.result.placeholder": "\uac80\uc0c9\uc5b4\ub97c \uc785\ub825\ud558\uc138\uc694", "search.result.term.missing": "\ud3ec\ud568\ub418\uc9c0 \uc54a\uc740 \uac80\uc0c9\uc5b4", "select.version": "\ubc84\uc804 \uc120\ud0dd"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.56ea9cef.min.js"></script>
+      
+        <script src="../javascripts/extra.js"></script>
+      
+    
+  </body>
+</html>

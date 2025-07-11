@@ -1,0 +1,2950 @@
+
+<!doctype html>
+<html lang="ko" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="MKDocs로 작성한 테스트 문서입니다.">
+      
+      
+        <meta name="author" content="ExpandSource">
+      
+      
+        <link rel="canonical" href="https://expandsource.github.io/mkdocs-test/07_python_class_oop/">
+      
+      
+        <link rel="prev" href="../07_python_class_guide_unit/">
+      
+      
+        <link rel="next" href="../08_python_exception_handling/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.15">
+    
+    
+      
+        <title>객체지향 프로그래밍 가이드 - MKDocs 테스트</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.342714a4.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Gowun+Dodum:300,300i,400,400i,700,700i%7CSource+Code+Pro:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Gowun Dodum";--md-code-font:"Source Code Pro"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          콘텐츠로 이동
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="상단/헤더">
+    <a href=".." title="MKDocs 테스트" class="md-header__button md-logo" aria-label="MKDocs 테스트" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            MKDocs 테스트
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              객체지향 프로그래밍 가이드
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="검색" placeholder="검색" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="검색">
+        
+        <button type="reset" class="md-search__icon md-icon" title="지우기" aria-label="지우기" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            검색 초기화
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="탭" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Welcome to MkDocs
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../02_cleaned_python_tutorial/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Python 기초 - 2장 정리
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../03_python_list_tutorial/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  3장 자료구조 - 리스트(List)
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../04_python_flow_control/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  4장. 흐름 제어(Control Flow)
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../05_python_function_chapter/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  5장. 함수(Function)
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../06_python_file_io/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  06 python file io
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../07_python_class_guide_unit/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  파이썬 클래스와 객체지향 프로그래밍 🎮
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+  
+    
+  
+  객체지향 프로그래밍 가이드
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../08_python_exception_handling/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  8장. 예외 처리 (Exception Handling)
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../09_python_module_package/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  9장. 모듈과 패키지
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../10_python_database_guide/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  🧭 10장. 파이썬과 MySQL 연동
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../11_gui-tkinter/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Chapter 11: GUI 프로그래밍 (Tkinter)
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../test/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  테스트
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="네비게이션" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="MKDocs 테스트" class="md-nav__button md-logo" aria-label="MKDocs 테스트" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    MKDocs 테스트
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Welcome to MkDocs
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02_cleaned_python_tutorial/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Python 기초 - 2장 정리
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03_python_list_tutorial/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    3장 자료구조 - 리스트(List)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04_python_flow_control/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    4장. 흐름 제어(Control Flow)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05_python_function_chapter/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    5장. 함수(Function)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06_python_file_io/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    06 python file io
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07_python_class_guide_unit/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    파이썬 클래스와 객체지향 프로그래밍 🎮
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    객체지향 프로그래밍 가이드
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    객체지향 프로그래밍 가이드
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="목차">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      목차
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#7-1-object-oriented-programming-oop" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧾 7-1. 객체지향이란? (Object-Oriented Programming, OOP)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🧾 7-1. 객체지향이란? (Object-Oriented Programming, OOP)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      📌 객체지향이란 무엇인가요?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      📘 실생활 예시 1: 택배 시스템
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      📘 실생활 예시 2: 커피 자판기
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ 객체지향 3대 핵심 개념
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vs" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ 절차지향 vs 객체지향 차이
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧪 미니 실습: 클래스 없는 절차지향 방식
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧾 7-2. 클래스와 객체 만들기
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🧾 7-2. 클래스와 객체 만들기">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#class" class="md-nav__link">
+    <span class="md-ellipsis">
+      📌 클래스(class)란?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ 클래스 선언 기본형
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ 객체(인스턴스) 생성
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dog" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ 예제: Dog 클래스 만들기
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#__init__" class="md-nav__link">
+    <span class="md-ellipsis">
+      📌 __init__() 메서드: 생성자
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#self" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ self의 의미
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="✅ self의 의미">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-person" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧪 실습 1: Person 클래스 만들기
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧾 7-3. 인스턴스 변수와 메서드
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🧾 7-3. 인스턴스 변수와 메서드">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      📌 인스턴스 변수란?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#student" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ 예제: Student 클래스
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      📌 인스턴스 메서드란?
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📌 인스턴스 메서드란?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ 메서드 내부에서 변수 변경하기
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ 객체가 서로 독립적이라는 것 확인
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧪 실습 2: 은행 계좌 클래스 만들기
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧾 7-4. 클래스 변수와 인스턴스 변수의 차이
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🧾 7-4. 클래스 변수와 인스턴스 변수의 차이">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#vs_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      📌 인스턴스 변수 vs 클래스 변수
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ 예제: 고양이 클래스
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ 클래스 변수는 공유됨
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ 인스턴스에서 클래스 변수 수정?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧪 실습 3: 인스턴스 수 세기
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-5-inheritance" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧾 7-5. 클래스의 상속 (Inheritance)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🧾 7-5. 클래스의 상속 (Inheritance)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      📌 상속이란?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ 상속의 기본 문법
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#person-student" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ 예제: Person → Student 상속
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#super" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ 생성자 오버라이드와 super()
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="✅ 생성자 오버라이드와 super()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#super_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ super()란?
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-animal-dog" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧪 실습 4: Animal → Dog 상속 구조 만들기
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-6-overriding" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧾 7-6. 메서드 오버라이딩 (Overriding)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🧾 7-6. 메서드 오버라이딩 (Overriding)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      📌 오버라이딩이란?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ 기본 예제
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#super_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ 오버라이딩 + super() 함께 쓰기
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧪 실습 5: 소개 메서드 오버라이딩
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-7" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧾 7-7. 캡슐화와 접근제어
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🧾 7-7. 캡슐화와 접근제어">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#encapsulation" class="md-nav__link">
+    <span class="md-ellipsis">
+      📌 캡슐화(Encapsulation)란?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ 왜 캡슐화가 필요한가요?
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ 접근 제어자 (비공식 규칙)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="✅ 접근 제어자 (비공식 규칙)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gettersetter" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ 예제: 비공개 변수와 getter/setter
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#__" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ __변수명의 비밀
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧪 실습 6: 보호된 속성을 갖는 자동차 클래스
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-8" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧾 7-8. 실습: 부동산 매물 클래스 만들기
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🧾 7-8. 실습: 부동산 매물 클래스 만들기">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_19" class="md-nav__link">
+    <span class="md-ellipsis">
+      🎯 목표
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_20" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ 클래스 설계
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_21" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ 객체 생성 및 리스트에 저장
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_22" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ 출력 기능 구현
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_23" class="md-nav__link">
+    <span class="md-ellipsis">
+      💡 출력 예시
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-9" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧾 7-9. 실습: 학생 출석부 클래스 만들기
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🧾 7-9. 실습: 학생 출석부 클래스 만들기">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_24" class="md-nav__link">
+    <span class="md-ellipsis">
+      🎯 목표
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_25" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ 클래스 설계
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_26" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ 객체 생성 및 리스트 관리
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_27" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ 출석 처리하기
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_28" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ 전체 출석 현황 출력
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_29" class="md-nav__link">
+    <span class="md-ellipsis">
+      💡 출력 예시
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_30" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧪 도전 과제: 사용자 입력 기반 출석 체크
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ 7장 마무리 요약
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08_python_exception_handling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    8장. 예외 처리 (Exception Handling)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09_python_module_package/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    9장. 모듈과 패키지
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10_python_database_guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🧭 10장. 파이썬과 MySQL 연동
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../11_gui-tkinter/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chapter 11: GUI 프로그래밍 (Tkinter)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../test/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    테스트
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="목차">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      목차
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#7-1-object-oriented-programming-oop" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧾 7-1. 객체지향이란? (Object-Oriented Programming, OOP)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🧾 7-1. 객체지향이란? (Object-Oriented Programming, OOP)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      📌 객체지향이란 무엇인가요?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      📘 실생활 예시 1: 택배 시스템
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      📘 실생활 예시 2: 커피 자판기
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ 객체지향 3대 핵심 개념
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vs" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ 절차지향 vs 객체지향 차이
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧪 미니 실습: 클래스 없는 절차지향 방식
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧾 7-2. 클래스와 객체 만들기
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🧾 7-2. 클래스와 객체 만들기">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#class" class="md-nav__link">
+    <span class="md-ellipsis">
+      📌 클래스(class)란?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ 클래스 선언 기본형
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ 객체(인스턴스) 생성
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dog" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ 예제: Dog 클래스 만들기
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#__init__" class="md-nav__link">
+    <span class="md-ellipsis">
+      📌 __init__() 메서드: 생성자
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#self" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ self의 의미
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="✅ self의 의미">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-person" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧪 실습 1: Person 클래스 만들기
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧾 7-3. 인스턴스 변수와 메서드
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🧾 7-3. 인스턴스 변수와 메서드">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      📌 인스턴스 변수란?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#student" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ 예제: Student 클래스
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      📌 인스턴스 메서드란?
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📌 인스턴스 메서드란?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ 메서드 내부에서 변수 변경하기
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ 객체가 서로 독립적이라는 것 확인
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧪 실습 2: 은행 계좌 클래스 만들기
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧾 7-4. 클래스 변수와 인스턴스 변수의 차이
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🧾 7-4. 클래스 변수와 인스턴스 변수의 차이">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#vs_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      📌 인스턴스 변수 vs 클래스 변수
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ 예제: 고양이 클래스
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ 클래스 변수는 공유됨
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ 인스턴스에서 클래스 변수 수정?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧪 실습 3: 인스턴스 수 세기
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-5-inheritance" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧾 7-5. 클래스의 상속 (Inheritance)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🧾 7-5. 클래스의 상속 (Inheritance)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      📌 상속이란?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ 상속의 기본 문법
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#person-student" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ 예제: Person → Student 상속
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#super" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ 생성자 오버라이드와 super()
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="✅ 생성자 오버라이드와 super()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#super_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ super()란?
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-animal-dog" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧪 실습 4: Animal → Dog 상속 구조 만들기
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-6-overriding" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧾 7-6. 메서드 오버라이딩 (Overriding)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🧾 7-6. 메서드 오버라이딩 (Overriding)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      📌 오버라이딩이란?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ 기본 예제
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#super_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ 오버라이딩 + super() 함께 쓰기
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧪 실습 5: 소개 메서드 오버라이딩
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-7" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧾 7-7. 캡슐화와 접근제어
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🧾 7-7. 캡슐화와 접근제어">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#encapsulation" class="md-nav__link">
+    <span class="md-ellipsis">
+      📌 캡슐화(Encapsulation)란?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ 왜 캡슐화가 필요한가요?
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ 접근 제어자 (비공식 규칙)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="✅ 접근 제어자 (비공식 규칙)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gettersetter" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ 예제: 비공개 변수와 getter/setter
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#__" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ __변수명의 비밀
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧪 실습 6: 보호된 속성을 갖는 자동차 클래스
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-8" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧾 7-8. 실습: 부동산 매물 클래스 만들기
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🧾 7-8. 실습: 부동산 매물 클래스 만들기">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_19" class="md-nav__link">
+    <span class="md-ellipsis">
+      🎯 목표
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_20" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ 클래스 설계
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_21" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ 객체 생성 및 리스트에 저장
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_22" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ 출력 기능 구현
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_23" class="md-nav__link">
+    <span class="md-ellipsis">
+      💡 출력 예시
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-9" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧾 7-9. 실습: 학생 출석부 클래스 만들기
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🧾 7-9. 실습: 학생 출석부 클래스 만들기">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_24" class="md-nav__link">
+    <span class="md-ellipsis">
+      🎯 목표
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_25" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ 클래스 설계
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_26" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ 객체 생성 및 리스트 관리
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_27" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ 출석 처리하기
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_28" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ 전체 출석 현황 출력
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_29" class="md-nav__link">
+    <span class="md-ellipsis">
+      💡 출력 예시
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_30" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧪 도전 과제: 사용자 입력 기반 출석 체크
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ 7장 마무리 요약
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="_1">객체지향 프로그래밍 가이드<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<h2 id="7-1-object-oriented-programming-oop">🧾 7-1. 객체지향이란? (Object-Oriented Programming, OOP)<a class="headerlink" href="#7-1-object-oriented-programming-oop" title="Permanent link">&para;</a></h2>
+<h3 id="_2">📌 객체지향이란 무엇인가요?<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p>프로그램을 <strong>'객체'라는 단위로 나누어</strong> 만들고,
+객체들이 <strong>서로 메시지를 주고받으며 협력</strong>하는 방식의 프로그래밍입니다.</p>
+</blockquote>
+<h3 id="1">📘 실생활 예시 1: 택배 시스템<a class="headerlink" href="#1" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>구성</th>
+<th>예시</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>객체(Object)</td>
+<td>택배 기사, 고객, 택배 물건, 배송차량</td>
+</tr>
+<tr>
+<td>속성(변수)</td>
+<td>기사: 이름, 연락처 / 물건: 무게, 크기</td>
+</tr>
+<tr>
+<td>동작(메서드)</td>
+<td>배송하기, 수거하기, 위치조회</td>
+</tr>
+</tbody>
+</table>
+<p>각 <strong>객체는 독립적으로 존재</strong>하고,
+<strong>자기 역할과 정보를 가지고</strong>,
+필요할 때 <strong>다른 객체와 상호작용</strong>합니다.</p>
+<h3 id="2">📘 실생활 예시 2: 커피 자판기<a class="headerlink" href="#2" title="Permanent link">&para;</a></h3>
+<ul>
+<li>커피자판기 = 객체</li>
+<li>속성: 재고, 가격, 컵 수</li>
+<li>동작: 주문받기, 커피내리기, 잔액반환</li>
+</ul>
+<div class="language-text highlight"><span class="filename">Text Only</span><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a><a href="#__codelineno-0-1"><span class="linenos" data-linenos="1 "></span></a>[버튼 누름] → [자판기: 커피 내림] → [컵 나옴]
+</code></pre></div>
+<h3 id="3">✅ 객체지향 3대 핵심 개념<a class="headerlink" href="#3" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>개념</th>
+<th>뜻</th>
+<th>예시 비유</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>캡슐화</strong></td>
+<td>속성과 기능을 하나로 묶기</td>
+<td>스마트폰: 버튼만 누르면 내부 동작은 몰라도 됨</td>
+</tr>
+<tr>
+<td><strong>상속</strong></td>
+<td>기존 클래스를 물려받아 재사용</td>
+<td>부모 클래스 → 자식 클래스</td>
+</tr>
+<tr>
+<td><strong>다형성</strong></td>
+<td>같은 기능을 다른 방식으로 구현</td>
+<td><code>speak()</code> → 강아지는 "멍", 고양이는 "야옹"</td>
+</tr>
+</tbody>
+</table>
+<h3 id="vs">✅ 절차지향 vs 객체지향 차이<a class="headerlink" href="#vs" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>절차지향</th>
+<th>객체지향</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>명령 중심</td>
+<td>객체 중심</td>
+</tr>
+<tr>
+<td>함수 → 함수 흐름</td>
+<td>객체 → 메서드 호출</td>
+</tr>
+<tr>
+<td>코드 재사용 어려움</td>
+<td>코드 재사용성 높음</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_3">🧪 미니 실습: 클래스 없는 절차지향 방식<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1"></a><a href="#__codelineno-1-1"><span class="linenos" data-linenos="1 "></span></a><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;홍길동&quot;</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2"></a><a href="#__codelineno-1-2"><span class="linenos" data-linenos="2 "></span></a><span class="n">age</span> <span class="o">=</span> <span class="mi">30</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3"></a><a href="#__codelineno-1-3"><span class="linenos" data-linenos="3 "></span></a>
+<a id="__codelineno-1-4" name="__codelineno-1-4"></a><a href="#__codelineno-1-4"><span class="linenos" data-linenos="4 "></span></a><span class="k">def</span><span class="w"> </span><span class="nf">introduce</span><span class="p">():</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5"></a><a href="#__codelineno-1-5"><span class="linenos" data-linenos="5 "></span></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">님은 </span><span class="si">{</span><span class="n">age</span><span class="si">}</span><span class="s2">살입니다.&quot;</span><span class="p">)</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6"></a><a href="#__codelineno-1-6"><span class="linenos" data-linenos="6 "></span></a>
+<a id="__codelineno-1-7" name="__codelineno-1-7"></a><a href="#__codelineno-1-7"><span class="linenos" data-linenos="7 "></span></a><span class="n">introduce</span><span class="p">()</span>
+</code></pre></div>
+<p>→ 상태와 동작이 <strong>흩어져 있음</strong></p>
+<hr />
+<h2 id="7-2">🧾 7-2. 클래스와 객체 만들기<a class="headerlink" href="#7-2" title="Permanent link">&para;</a></h2>
+<h3 id="class">📌 클래스(class)란?<a class="headerlink" href="#class" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p>어떤 <strong>객체를 만들기 위한 설계도</strong></p>
+</blockquote>
+<ul>
+<li>객체: 실제로 만들어지는 개체</li>
+<li>클래스: 객체를 만드는 틀(템플릿)</li>
+</ul>
+<h3 id="_4">✅ 클래스 선언 기본형<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a><a href="#__codelineno-2-1"><span class="linenos" data-linenos="1 "></span></a><span class="k">class</span><span class="w"> </span><span class="nc">클래스이름</span><span class="p">:</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2"></a><a href="#__codelineno-2-2"><span class="linenos" data-linenos="2 "></span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">메서드</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3"></a><a href="#__codelineno-2-3"><span class="linenos" data-linenos="3 "></span></a>        <span class="n">실행할</span> <span class="n">코드</span>
+</code></pre></div>
+<ul>
+<li>클래스 이름은 <strong>대문자로 시작</strong>하는 것이 관례</li>
+<li>메서드는 <strong>함수와 비슷하지만, 반드시 <code>self</code></strong>를 첫 번째 인자로 가짐</li>
+</ul>
+<h3 id="_5">✅ 객체(인스턴스) 생성<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1"></a><a href="#__codelineno-3-1"><span class="linenos" data-linenos="1 "></span></a><span class="n">객체이름</span> <span class="o">=</span> <span class="n">클래스이름</span><span class="p">()</span>
+</code></pre></div>
+<h3 id="dog">✅ 예제: Dog 클래스 만들기<a class="headerlink" href="#dog" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1"></a><a href="#__codelineno-4-1"><span class="linenos" data-linenos="1 "></span></a><span class="k">class</span><span class="w"> </span><span class="nc">Dog</span><span class="p">:</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2"></a><a href="#__codelineno-4-2"><span class="linenos" data-linenos="2 "></span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">bark</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3"></a><a href="#__codelineno-4-3"><span class="linenos" data-linenos="3 "></span></a>        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;멍멍!&quot;</span><span class="p">)</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4"></a><a href="#__codelineno-4-4"><span class="linenos" data-linenos="4 "></span></a>
+<a id="__codelineno-4-5" name="__codelineno-4-5"></a><a href="#__codelineno-4-5"><span class="linenos" data-linenos="5 "></span></a><span class="c1"># 객체 생성</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6"></a><a href="#__codelineno-4-6"><span class="linenos" data-linenos="6 "></span></a><span class="n">d1</span> <span class="o">=</span> <span class="n">Dog</span><span class="p">()</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7"></a><a href="#__codelineno-4-7"><span class="linenos" data-linenos="7 "></span></a><span class="n">d1</span><span class="o">.</span><span class="n">bark</span><span class="p">()</span>   <span class="c1"># 출력: 멍멍!</span>
+</code></pre></div>
+<h2 id="__init__">📌 <code>__init__()</code> 메서드: 생성자<a class="headerlink" href="#__init__" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>객체가 생성될 때 <strong>자동으로 실행되는 함수</strong></p>
+</blockquote>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1"></a><a href="#__codelineno-5-1"><span class="linenos" data-linenos=" 1 "></span></a><span class="k">class</span><span class="w"> </span><span class="nc">Dog</span><span class="p">:</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2"></a><a href="#__codelineno-5-2"><span class="linenos" data-linenos=" 2 "></span></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3"></a><a href="#__codelineno-5-3"><span class="linenos" data-linenos=" 3 "></span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>  <span class="c1"># 인스턴스 변수 설정</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4"></a><a href="#__codelineno-5-4"><span class="linenos" data-linenos=" 4 "></span></a>
+<a id="__codelineno-5-5" name="__codelineno-5-5"></a><a href="#__codelineno-5-5"><span class="linenos" data-linenos=" 5 "></span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">bark</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6"></a><a href="#__codelineno-5-6"><span class="linenos" data-linenos=" 6 "></span></a>        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">가 멍멍 짖습니다!&quot;</span><span class="p">)</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7"></a><a href="#__codelineno-5-7"><span class="linenos" data-linenos=" 7 "></span></a>
+<a id="__codelineno-5-8" name="__codelineno-5-8"></a><a href="#__codelineno-5-8"><span class="linenos" data-linenos=" 8 "></span></a><span class="n">d1</span> <span class="o">=</span> <span class="n">Dog</span><span class="p">(</span><span class="s2">&quot;초코&quot;</span><span class="p">)</span>
+<a id="__codelineno-5-9" name="__codelineno-5-9"></a><a href="#__codelineno-5-9"><span class="linenos" data-linenos=" 9 "></span></a><span class="n">d2</span> <span class="o">=</span> <span class="n">Dog</span><span class="p">(</span><span class="s2">&quot;바둑이&quot;</span><span class="p">)</span>
+<a id="__codelineno-5-10" name="__codelineno-5-10"></a><a href="#__codelineno-5-10"><span class="linenos" data-linenos="10 "></span></a>
+<a id="__codelineno-5-11" name="__codelineno-5-11"></a><a href="#__codelineno-5-11"><span class="linenos" data-linenos="11 "></span></a><span class="n">d1</span><span class="o">.</span><span class="n">bark</span><span class="p">()</span>  <span class="c1"># 초코가 멍멍 짖습니다!</span>
+<a id="__codelineno-5-12" name="__codelineno-5-12"></a><a href="#__codelineno-5-12"><span class="linenos" data-linenos="12 "></span></a><span class="n">d2</span><span class="o">.</span><span class="n">bark</span><span class="p">()</span>  <span class="c1"># 바둑이가 멍멍 짖습니다!</span>
+</code></pre></div>
+<ul>
+<li><code>__init__()</code>은 객체 초기 설정용</li>
+<li><code>self.name</code>은 <strong>객체마다 개별적으로 저장되는 값</strong></li>
+</ul>
+<h2 id="self">✅ self의 의미<a class="headerlink" href="#self" title="Permanent link">&para;</a></h2>
+<ul>
+<li><code>self</code>는 <strong>자기 자신(instance)</strong>를 가리키는 변수</li>
+<li>클래스 내부에서 <strong>자신의 변수나 메서드에 접근할 때 사용</strong></li>
+</ul>
+<h3 id="1-person">🧪 실습 1: Person 클래스 만들기<a class="headerlink" href="#1-person" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1"></a><a href="#__codelineno-6-1"><span class="linenos" data-linenos=" 1 "></span></a><span class="k">class</span><span class="w"> </span><span class="nc">Person</span><span class="p">:</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2"></a><a href="#__codelineno-6-2"><span class="linenos" data-linenos=" 2 "></span></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">age</span><span class="p">):</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3"></a><a href="#__codelineno-6-3"><span class="linenos" data-linenos=" 3 "></span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4"></a><a href="#__codelineno-6-4"><span class="linenos" data-linenos=" 4 "></span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">age</span> <span class="o">=</span> <span class="n">age</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5"></a><a href="#__codelineno-6-5"><span class="linenos" data-linenos=" 5 "></span></a>
+<a id="__codelineno-6-6" name="__codelineno-6-6"></a><a href="#__codelineno-6-6"><span class="linenos" data-linenos=" 6 "></span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">introduce</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<a id="__codelineno-6-7" name="__codelineno-6-7"></a><a href="#__codelineno-6-7"><span class="linenos" data-linenos=" 7 "></span></a>        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;안녕하세요! 저는 </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">age</span><span class="si">}</span><span class="s2">살입니다.&quot;</span><span class="p">)</span>
+<a id="__codelineno-6-8" name="__codelineno-6-8"></a><a href="#__codelineno-6-8"><span class="linenos" data-linenos=" 8 "></span></a>
+<a id="__codelineno-6-9" name="__codelineno-6-9"></a><a href="#__codelineno-6-9"><span class="linenos" data-linenos=" 9 "></span></a><span class="n">p1</span> <span class="o">=</span> <span class="n">Person</span><span class="p">(</span><span class="s2">&quot;홍길동&quot;</span><span class="p">,</span> <span class="mi">25</span><span class="p">)</span>
+<a id="__codelineno-6-10" name="__codelineno-6-10"></a><a href="#__codelineno-6-10"><span class="linenos" data-linenos="10 "></span></a><span class="n">p2</span> <span class="o">=</span> <span class="n">Person</span><span class="p">(</span><span class="s2">&quot;이몽룡&quot;</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span>
+<a id="__codelineno-6-11" name="__codelineno-6-11"></a><a href="#__codelineno-6-11"><span class="linenos" data-linenos="11 "></span></a>
+<a id="__codelineno-6-12" name="__codelineno-6-12"></a><a href="#__codelineno-6-12"><span class="linenos" data-linenos="12 "></span></a><span class="n">p1</span><span class="o">.</span><span class="n">introduce</span><span class="p">()</span>
+<a id="__codelineno-6-13" name="__codelineno-6-13"></a><a href="#__codelineno-6-13"><span class="linenos" data-linenos="13 "></span></a><span class="n">p2</span><span class="o">.</span><span class="n">introduce</span><span class="p">()</span>
+</code></pre></div>
+<hr />
+<h2 id="7-3">🧾 7-3. 인스턴스 변수와 메서드<a class="headerlink" href="#7-3" title="Permanent link">&para;</a></h2>
+<h3 id="_6">📌 인스턴스 변수란?<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p>객체(인스턴스) <strong>각각이 갖고 있는 고유한 정보</strong>를 저장하는 변수입니다.</p>
+</blockquote>
+<ul>
+<li><code>self.변수이름</code> 형식으로 사용</li>
+<li>객체마다 <strong>값이 다르게</strong> 저장됨</li>
+</ul>
+<h3 id="student">✅ 예제: <code>Student</code> 클래스<a class="headerlink" href="#student" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1"></a><a href="#__codelineno-7-1"><span class="linenos" data-linenos="1 "></span></a><span class="k">class</span><span class="w"> </span><span class="nc">Student</span><span class="p">:</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2"></a><a href="#__codelineno-7-2"><span class="linenos" data-linenos="2 "></span></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">grade</span><span class="p">):</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3"></a><a href="#__codelineno-7-3"><span class="linenos" data-linenos="3 "></span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4"></a><a href="#__codelineno-7-4"><span class="linenos" data-linenos="4 "></span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">grade</span> <span class="o">=</span> <span class="n">grade</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5"></a><a href="#__codelineno-7-5"><span class="linenos" data-linenos="5 "></span></a>
+<a id="__codelineno-7-6" name="__codelineno-7-6"></a><a href="#__codelineno-7-6"><span class="linenos" data-linenos="6 "></span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">introduce</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<a id="__codelineno-7-7" name="__codelineno-7-7"></a><a href="#__codelineno-7-7"><span class="linenos" data-linenos="7 "></span></a>        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;저는 </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">이고, </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">grade</span><span class="si">}</span><span class="s2">학년입니다.&quot;</span><span class="p">)</span>
+</code></pre></div>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1"></a><a href="#__codelineno-8-1"><span class="linenos" data-linenos="1 "></span></a><span class="n">s1</span> <span class="o">=</span> <span class="n">Student</span><span class="p">(</span><span class="s2">&quot;홍길동&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2"></a><a href="#__codelineno-8-2"><span class="linenos" data-linenos="2 "></span></a><span class="n">s2</span> <span class="o">=</span> <span class="n">Student</span><span class="p">(</span><span class="s2">&quot;이몽룡&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3"></a><a href="#__codelineno-8-3"><span class="linenos" data-linenos="3 "></span></a>
+<a id="__codelineno-8-4" name="__codelineno-8-4"></a><a href="#__codelineno-8-4"><span class="linenos" data-linenos="4 "></span></a><span class="n">s1</span><span class="o">.</span><span class="n">introduce</span><span class="p">()</span>  <span class="c1"># 저는 홍길동이고, 1학년입니다.</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5"></a><a href="#__codelineno-8-5"><span class="linenos" data-linenos="5 "></span></a><span class="n">s2</span><span class="o">.</span><span class="n">introduce</span><span class="p">()</span>  <span class="c1"># 저는 이몽룡이고, 2학년입니다.</span>
+</code></pre></div>
+<ul>
+<li><code>self.name</code>, <code>self.grade</code> → 인스턴스 변수</li>
+<li><code>s1</code>과 <code>s2</code>는 <strong>서로 다른 데이터를 가지고 있음</strong></li>
+</ul>
+<h2 id="_7">📌 인스턴스 메서드란?<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>클래스 안에 정의된 <strong>동작(함수)</strong>
+호출 시 자동으로 <strong>자기 객체(self)</strong>를 넘겨받음</p>
+</blockquote>
+<h3 id="_8">✅ 메서드 내부에서 변수 변경하기<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1"></a><a href="#__codelineno-9-1"><span class="linenos" data-linenos="1 "></span></a><span class="k">class</span><span class="w"> </span><span class="nc">Counter</span><span class="p">:</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2"></a><a href="#__codelineno-9-2"><span class="linenos" data-linenos="2 "></span></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3"></a><a href="#__codelineno-9-3"><span class="linenos" data-linenos="3 "></span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="mi">0</span>
+<a id="__codelineno-9-4" name="__codelineno-9-4"></a><a href="#__codelineno-9-4"><span class="linenos" data-linenos="4 "></span></a>
+<a id="__codelineno-9-5" name="__codelineno-9-5"></a><a href="#__codelineno-9-5"><span class="linenos" data-linenos="5 "></span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">increase</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<a id="__codelineno-9-6" name="__codelineno-9-6"></a><a href="#__codelineno-9-6"><span class="linenos" data-linenos="6 "></span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">+=</span> <span class="mi">1</span>
+<a id="__codelineno-9-7" name="__codelineno-9-7"></a><a href="#__codelineno-9-7"><span class="linenos" data-linenos="7 "></span></a>        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;현재 값: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">value</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1"></a><a href="#__codelineno-10-1"><span class="linenos" data-linenos="1 "></span></a><span class="n">c</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">()</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2"></a><a href="#__codelineno-10-2"><span class="linenos" data-linenos="2 "></span></a><span class="n">c</span><span class="o">.</span><span class="n">increase</span><span class="p">()</span>  <span class="c1"># 현재 값: 1</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3"></a><a href="#__codelineno-10-3"><span class="linenos" data-linenos="3 "></span></a><span class="n">c</span><span class="o">.</span><span class="n">increase</span><span class="p">()</span>  <span class="c1"># 현재 값: 2</span>
+</code></pre></div>
+<h3 id="_9">✅ 객체가 서로 독립적이라는 것 확인<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1"></a><a href="#__codelineno-11-1"><span class="linenos" data-linenos="1 "></span></a><span class="n">a</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">()</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2"></a><a href="#__codelineno-11-2"><span class="linenos" data-linenos="2 "></span></a><span class="n">b</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">()</span>
+<a id="__codelineno-11-3" name="__codelineno-11-3"></a><a href="#__codelineno-11-3"><span class="linenos" data-linenos="3 "></span></a>
+<a id="__codelineno-11-4" name="__codelineno-11-4"></a><a href="#__codelineno-11-4"><span class="linenos" data-linenos="4 "></span></a><span class="n">a</span><span class="o">.</span><span class="n">increase</span><span class="p">()</span>  <span class="c1"># a의 값만 증가</span>
+<a id="__codelineno-11-5" name="__codelineno-11-5"></a><a href="#__codelineno-11-5"><span class="linenos" data-linenos="5 "></span></a><span class="nb">print</span><span class="p">(</span><span class="n">b</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>  <span class="c1"># 0 (영향 없음)</span>
+</code></pre></div>
+<blockquote>
+<p>각 객체는 자기만의 <code>value</code>를 가짐 (서로 격리)</p>
+</blockquote>
+<h2 id="2_1">🧪 실습 2: 은행 계좌 클래스 만들기<a class="headerlink" href="#2_1" title="Permanent link">&para;</a></h2>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1"></a><a href="#__codelineno-12-1"><span class="linenos" data-linenos=" 1 "></span></a><span class="k">class</span><span class="w"> </span><span class="nc">BankAccount</span><span class="p">:</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2"></a><a href="#__codelineno-12-2"><span class="linenos" data-linenos=" 2 "></span></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+<a id="__codelineno-12-3" name="__codelineno-12-3"></a><a href="#__codelineno-12-3"><span class="linenos" data-linenos=" 3 "></span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+<a id="__codelineno-12-4" name="__codelineno-12-4"></a><a href="#__codelineno-12-4"><span class="linenos" data-linenos=" 4 "></span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">balance</span> <span class="o">=</span> <span class="mi">0</span>
+<a id="__codelineno-12-5" name="__codelineno-12-5"></a><a href="#__codelineno-12-5"><span class="linenos" data-linenos=" 5 "></span></a>
+<a id="__codelineno-12-6" name="__codelineno-12-6"></a><a href="#__codelineno-12-6"><span class="linenos" data-linenos=" 6 "></span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">deposit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">amount</span><span class="p">):</span>
+<a id="__codelineno-12-7" name="__codelineno-12-7"></a><a href="#__codelineno-12-7"><span class="linenos" data-linenos=" 7 "></span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">balance</span> <span class="o">+=</span> <span class="n">amount</span>
+<a id="__codelineno-12-8" name="__codelineno-12-8"></a><a href="#__codelineno-12-8"><span class="linenos" data-linenos=" 8 "></span></a>        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">님의 잔액: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">balance</span><span class="si">}</span><span class="s2">원&quot;</span><span class="p">)</span>
+<a id="__codelineno-12-9" name="__codelineno-12-9"></a><a href="#__codelineno-12-9"><span class="linenos" data-linenos=" 9 "></span></a>
+<a id="__codelineno-12-10" name="__codelineno-12-10"></a><a href="#__codelineno-12-10"><span class="linenos" data-linenos="10 "></span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">withdraw</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">amount</span><span class="p">):</span>
+<a id="__codelineno-12-11" name="__codelineno-12-11"></a><a href="#__codelineno-12-11"><span class="linenos" data-linenos="11 "></span></a>        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">balance</span> <span class="o">&gt;=</span> <span class="n">amount</span><span class="p">:</span>
+<a id="__codelineno-12-12" name="__codelineno-12-12"></a><a href="#__codelineno-12-12"><span class="linenos" data-linenos="12 "></span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">balance</span> <span class="o">-=</span> <span class="n">amount</span>
+<a id="__codelineno-12-13" name="__codelineno-12-13"></a><a href="#__codelineno-12-13"><span class="linenos" data-linenos="13 "></span></a>            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">amount</span><span class="si">}</span><span class="s2">원 출금 완료&quot;</span><span class="p">)</span>
+<a id="__codelineno-12-14" name="__codelineno-12-14"></a><a href="#__codelineno-12-14"><span class="linenos" data-linenos="14 "></span></a>        <span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-12-15" name="__codelineno-12-15"></a><a href="#__codelineno-12-15"><span class="linenos" data-linenos="15 "></span></a>            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;잔액이 부족합니다.&quot;</span><span class="p">)</span>
+<a id="__codelineno-12-16" name="__codelineno-12-16"></a><a href="#__codelineno-12-16"><span class="linenos" data-linenos="16 "></span></a>
+<a id="__codelineno-12-17" name="__codelineno-12-17"></a><a href="#__codelineno-12-17"><span class="linenos" data-linenos="17 "></span></a><span class="c1"># 사용 예</span>
+<a id="__codelineno-12-18" name="__codelineno-12-18"></a><a href="#__codelineno-12-18"><span class="linenos" data-linenos="18 "></span></a><span class="n">acc1</span> <span class="o">=</span> <span class="n">BankAccount</span><span class="p">(</span><span class="s2">&quot;홍길동&quot;</span><span class="p">)</span>
+<a id="__codelineno-12-19" name="__codelineno-12-19"></a><a href="#__codelineno-12-19"><span class="linenos" data-linenos="19 "></span></a><span class="n">acc1</span><span class="o">.</span><span class="n">deposit</span><span class="p">(</span><span class="mi">10000</span><span class="p">)</span>
+<a id="__codelineno-12-20" name="__codelineno-12-20"></a><a href="#__codelineno-12-20"><span class="linenos" data-linenos="20 "></span></a><span class="n">acc1</span><span class="o">.</span><span class="n">withdraw</span><span class="p">(</span><span class="mi">5000</span><span class="p">)</span>
+</code></pre></div>
+<hr />
+<h2 id="7-4">🧾 7-4. 클래스 변수와 인스턴스 변수의 차이<a class="headerlink" href="#7-4" title="Permanent link">&para;</a></h2>
+<h3 id="vs_1">📌 인스턴스 변수 vs 클래스 변수<a class="headerlink" href="#vs_1" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>구분</th>
+<th>정의</th>
+<th>공유 여부</th>
+<th>선언 위치</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>인스턴스 변수</strong></td>
+<td>각 객체마다 따로 존재</td>
+<td>❌ (개별 객체만)</td>
+<td><code>__init__</code> 안에서 <code>self.변수명</code></td>
+</tr>
+<tr>
+<td><strong>클래스 변수</strong></td>
+<td>모든 객체가 공유</td>
+<td>✅ (전체 클래스가 공유)</td>
+<td>클래스 바로 아래에서 선언</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_10">✅ 예제: 고양이 클래스<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h2>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1"></a><a href="#__codelineno-13-1"><span class="linenos" data-linenos=" 1 "></span></a><span class="k">class</span><span class="w"> </span><span class="nc">Cat</span><span class="p">:</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2"></a><a href="#__codelineno-13-2"><span class="linenos" data-linenos=" 2 "></span></a>    <span class="n">species</span> <span class="o">=</span> <span class="s2">&quot;고양이&quot;</span>  <span class="c1"># 클래스 변수 (모든 고양이의 공통)</span>
+<a id="__codelineno-13-3" name="__codelineno-13-3"></a><a href="#__codelineno-13-3"><span class="linenos" data-linenos=" 3 "></span></a>
+<a id="__codelineno-13-4" name="__codelineno-13-4"></a><a href="#__codelineno-13-4"><span class="linenos" data-linenos=" 4 "></span></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+<a id="__codelineno-13-5" name="__codelineno-13-5"></a><a href="#__codelineno-13-5"><span class="linenos" data-linenos=" 5 "></span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>  <span class="c1"># 인스턴스 변수 (개별 고양이의 이름)</span>
+<a id="__codelineno-13-6" name="__codelineno-13-6"></a><a href="#__codelineno-13-6"><span class="linenos" data-linenos=" 6 "></span></a>
+<a id="__codelineno-13-7" name="__codelineno-13-7"></a><a href="#__codelineno-13-7"><span class="linenos" data-linenos=" 7 "></span></a><span class="n">c1</span> <span class="o">=</span> <span class="n">Cat</span><span class="p">(</span><span class="s2">&quot;나비&quot;</span><span class="p">)</span>
+<a id="__codelineno-13-8" name="__codelineno-13-8"></a><a href="#__codelineno-13-8"><span class="linenos" data-linenos=" 8 "></span></a><span class="n">c2</span> <span class="o">=</span> <span class="n">Cat</span><span class="p">(</span><span class="s2">&quot;야옹이&quot;</span><span class="p">)</span>
+<a id="__codelineno-13-9" name="__codelineno-13-9"></a><a href="#__codelineno-13-9"><span class="linenos" data-linenos=" 9 "></span></a>
+<a id="__codelineno-13-10" name="__codelineno-13-10"></a><a href="#__codelineno-13-10"><span class="linenos" data-linenos="10 "></span></a><span class="nb">print</span><span class="p">(</span><span class="n">c1</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>      <span class="c1"># 나비</span>
+<a id="__codelineno-13-11" name="__codelineno-13-11"></a><a href="#__codelineno-13-11"><span class="linenos" data-linenos="11 "></span></a><span class="nb">print</span><span class="p">(</span><span class="n">c2</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>      <span class="c1"># 야옹이</span>
+<a id="__codelineno-13-12" name="__codelineno-13-12"></a><a href="#__codelineno-13-12"><span class="linenos" data-linenos="12 "></span></a><span class="nb">print</span><span class="p">(</span><span class="n">c1</span><span class="o">.</span><span class="n">species</span><span class="p">)</span>   <span class="c1"># 고양이</span>
+<a id="__codelineno-13-13" name="__codelineno-13-13"></a><a href="#__codelineno-13-13"><span class="linenos" data-linenos="13 "></span></a><span class="nb">print</span><span class="p">(</span><span class="n">c2</span><span class="o">.</span><span class="n">species</span><span class="p">)</span>   <span class="c1"># 고양이</span>
+</code></pre></div>
+<p>✅ <code>species</code>는 <strong>모든 객체가 동일하게 사용</strong>
+✅ <code>name</code>은 <strong>각 객체마다 다름</strong></p>
+<h2 id="_11">✅ 클래스 변수는 공유됨<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h2>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1"></a><a href="#__codelineno-14-1"><span class="linenos" data-linenos="1 "></span></a><span class="n">Cat</span><span class="o">.</span><span class="n">species</span> <span class="o">=</span> <span class="s2">&quot;고양잇과 동물&quot;</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2"></a><a href="#__codelineno-14-2"><span class="linenos" data-linenos="2 "></span></a><span class="nb">print</span><span class="p">(</span><span class="n">c1</span><span class="o">.</span><span class="n">species</span><span class="p">)</span>  <span class="c1"># 고양잇과 동물</span>
+<a id="__codelineno-14-3" name="__codelineno-14-3"></a><a href="#__codelineno-14-3"><span class="linenos" data-linenos="3 "></span></a><span class="nb">print</span><span class="p">(</span><span class="n">c2</span><span class="o">.</span><span class="n">species</span><span class="p">)</span>  <span class="c1"># 고양잇과 동물</span>
+</code></pre></div>
+<blockquote>
+<p><strong>클래스 변수 하나만 바꿔도 전체 인스턴스에 반영</strong></p>
+</blockquote>
+<h2 id="_12">✅ 인스턴스에서 클래스 변수 수정?<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h2>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1"></a><a href="#__codelineno-15-1"><span class="linenos" data-linenos="1 "></span></a><span class="n">c1</span><span class="o">.</span><span class="n">species</span> <span class="o">=</span> <span class="s2">&quot;개&quot;</span>
+<a id="__codelineno-15-2" name="__codelineno-15-2"></a><a href="#__codelineno-15-2"><span class="linenos" data-linenos="2 "></span></a><span class="nb">print</span><span class="p">(</span><span class="n">c1</span><span class="o">.</span><span class="n">species</span><span class="p">)</span>  <span class="c1"># 개 (인스턴스에 새로 생성된 변수!)</span>
+<a id="__codelineno-15-3" name="__codelineno-15-3"></a><a href="#__codelineno-15-3"><span class="linenos" data-linenos="3 "></span></a><span class="nb">print</span><span class="p">(</span><span class="n">c2</span><span class="o">.</span><span class="n">species</span><span class="p">)</span>  <span class="c1"># 고양잇과 동물</span>
+</code></pre></div>
+<blockquote>
+<p>클래스 변수와 <strong>같은 이름의 인스턴스 변수를 새로 만든 것</strong>일 뿐
+클래스 변수는 그대로입니다.</p>
+</blockquote>
+<h2 id="3_1">🧪 실습 3: 인스턴스 수 세기<a class="headerlink" href="#3_1" title="Permanent link">&para;</a></h2>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1"></a><a href="#__codelineno-16-1"><span class="linenos" data-linenos=" 1 "></span></a><span class="k">class</span><span class="w"> </span><span class="nc">Counter</span><span class="p">:</span>
+<a id="__codelineno-16-2" name="__codelineno-16-2"></a><a href="#__codelineno-16-2"><span class="linenos" data-linenos=" 2 "></span></a>    <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># 클래스 변수</span>
+<a id="__codelineno-16-3" name="__codelineno-16-3"></a><a href="#__codelineno-16-3"><span class="linenos" data-linenos=" 3 "></span></a>
+<a id="__codelineno-16-4" name="__codelineno-16-4"></a><a href="#__codelineno-16-4"><span class="linenos" data-linenos=" 4 "></span></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<a id="__codelineno-16-5" name="__codelineno-16-5"></a><a href="#__codelineno-16-5"><span class="linenos" data-linenos=" 5 "></span></a>        <span class="n">Counter</span><span class="o">.</span><span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
+<a id="__codelineno-16-6" name="__codelineno-16-6"></a><a href="#__codelineno-16-6"><span class="linenos" data-linenos=" 6 "></span></a>        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">Counter</span><span class="o">.</span><span class="n">count</span><span class="si">}</span><span class="s2">번째 인스턴스 생성됨&quot;</span><span class="p">)</span>
+<a id="__codelineno-16-7" name="__codelineno-16-7"></a><a href="#__codelineno-16-7"><span class="linenos" data-linenos=" 7 "></span></a>
+<a id="__codelineno-16-8" name="__codelineno-16-8"></a><a href="#__codelineno-16-8"><span class="linenos" data-linenos=" 8 "></span></a><span class="n">a</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">()</span>
+<a id="__codelineno-16-9" name="__codelineno-16-9"></a><a href="#__codelineno-16-9"><span class="linenos" data-linenos=" 9 "></span></a><span class="n">b</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">()</span>
+<a id="__codelineno-16-10" name="__codelineno-16-10"></a><a href="#__codelineno-16-10"><span class="linenos" data-linenos="10 "></span></a><span class="n">c</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">()</span>
+</code></pre></div>
+<blockquote>
+<p>클래스 전체에서 공유되는 <code>count</code> 변수를 사용해 <strong>생성된 인스턴스 개수 추적</strong></p>
+</blockquote>
+<hr />
+<h2 id="7-5-inheritance">🧾 7-5. 클래스의 상속 (Inheritance)<a class="headerlink" href="#7-5-inheritance" title="Permanent link">&para;</a></h2>
+<h3 id="_13">📌 상속이란?<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p>기존 클래스를 <strong>물려받아</strong>, 새로운 클래스를 <strong>확장하거나 변경</strong>할 수 있는 기능</p>
+</blockquote>
+<ul>
+<li>기존 클래스: <strong>부모 클래스(Parent / Superclass)</strong></li>
+<li>새 클래스: <strong>자식 클래스(Child / Subclass)</strong></li>
+</ul>
+<h3 id="_14">✅ 상속의 기본 문법<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1"></a><a href="#__codelineno-17-1"><span class="linenos" data-linenos="1 "></span></a><span class="k">class</span><span class="w"> </span><span class="nc">부모클래스</span><span class="p">:</span>
+<a id="__codelineno-17-2" name="__codelineno-17-2"></a><a href="#__codelineno-17-2"><span class="linenos" data-linenos="2 "></span></a>    <span class="o">...</span>
+<a id="__codelineno-17-3" name="__codelineno-17-3"></a><a href="#__codelineno-17-3"><span class="linenos" data-linenos="3 "></span></a>
+<a id="__codelineno-17-4" name="__codelineno-17-4"></a><a href="#__codelineno-17-4"><span class="linenos" data-linenos="4 "></span></a><span class="k">class</span><span class="w"> </span><span class="nc">자식클래스</span><span class="p">(</span><span class="n">부모클래스</span><span class="p">):</span>
+<a id="__codelineno-17-5" name="__codelineno-17-5"></a><a href="#__codelineno-17-5"><span class="linenos" data-linenos="5 "></span></a>    <span class="o">...</span>
+</code></pre></div>
+<blockquote>
+<p>자식 클래스는 부모 클래스의 <strong>속성과 메서드를 그대로 사용할 수 있음</strong></p>
+</blockquote>
+<h3 id="person-student">✅ 예제: <code>Person</code> → <code>Student</code> 상속<a class="headerlink" href="#person-student" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1"></a><a href="#__codelineno-18-1"><span class="linenos" data-linenos=" 1 "></span></a><span class="k">class</span><span class="w"> </span><span class="nc">Person</span><span class="p">:</span>
+<a id="__codelineno-18-2" name="__codelineno-18-2"></a><a href="#__codelineno-18-2"><span class="linenos" data-linenos=" 2 "></span></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+<a id="__codelineno-18-3" name="__codelineno-18-3"></a><a href="#__codelineno-18-3"><span class="linenos" data-linenos=" 3 "></span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+<a id="__codelineno-18-4" name="__codelineno-18-4"></a><a href="#__codelineno-18-4"><span class="linenos" data-linenos=" 4 "></span></a>
+<a id="__codelineno-18-5" name="__codelineno-18-5"></a><a href="#__codelineno-18-5"><span class="linenos" data-linenos=" 5 "></span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">introduce</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<a id="__codelineno-18-6" name="__codelineno-18-6"></a><a href="#__codelineno-18-6"><span class="linenos" data-linenos=" 6 "></span></a>        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;안녕하세요, </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">입니다.&quot;</span><span class="p">)</span>
+<a id="__codelineno-18-7" name="__codelineno-18-7"></a><a href="#__codelineno-18-7"><span class="linenos" data-linenos=" 7 "></span></a>
+<a id="__codelineno-18-8" name="__codelineno-18-8"></a><a href="#__codelineno-18-8"><span class="linenos" data-linenos=" 8 "></span></a><span class="k">class</span><span class="w"> </span><span class="nc">Student</span><span class="p">(</span><span class="n">Person</span><span class="p">):</span>
+<a id="__codelineno-18-9" name="__codelineno-18-9"></a><a href="#__codelineno-18-9"><span class="linenos" data-linenos=" 9 "></span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">study</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<a id="__codelineno-18-10" name="__codelineno-18-10"></a><a href="#__codelineno-18-10"><span class="linenos" data-linenos="10 "></span></a>        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">는 공부 중입니다.&quot;</span><span class="p">)</span>
+</code></pre></div>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1"></a><a href="#__codelineno-19-1"><span class="linenos" data-linenos="1 "></span></a><span class="n">s</span> <span class="o">=</span> <span class="n">Student</span><span class="p">(</span><span class="s2">&quot;홍길동&quot;</span><span class="p">)</span>
+<a id="__codelineno-19-2" name="__codelineno-19-2"></a><a href="#__codelineno-19-2"><span class="linenos" data-linenos="2 "></span></a><span class="n">s</span><span class="o">.</span><span class="n">introduce</span><span class="p">()</span>  <span class="c1"># 부모 메서드</span>
+<a id="__codelineno-19-3" name="__codelineno-19-3"></a><a href="#__codelineno-19-3"><span class="linenos" data-linenos="3 "></span></a><span class="n">s</span><span class="o">.</span><span class="n">study</span><span class="p">()</span>      <span class="c1"># 자식 메서드</span>
+</code></pre></div>
+<p>✅ <code>Student</code>는 <code>Person</code>의 기능을 그대로 <strong>상속받아 사용 가능</strong></p>
+<ul>
+<li>본인만의 기능도 추가할 수 있음</li>
+</ul>
+<h2 id="super">✅ 생성자 오버라이드와 <code>super()</code><a class="headerlink" href="#super" title="Permanent link">&para;</a></h2>
+<p>자식 클래스에서 <code>__init__()</code>을 <strong>재정의하면</strong>, 부모의 초기화는 안 불림
+→ <strong><code>super()</code>로 부모 생성자를 호출해야 함</strong></p>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1"></a><a href="#__codelineno-20-1"><span class="linenos" data-linenos="1 "></span></a><span class="k">class</span><span class="w"> </span><span class="nc">Student</span><span class="p">(</span><span class="n">Person</span><span class="p">):</span>
+<a id="__codelineno-20-2" name="__codelineno-20-2"></a><a href="#__codelineno-20-2"><span class="linenos" data-linenos="2 "></span></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">grade</span><span class="p">):</span>
+<a id="__codelineno-20-3" name="__codelineno-20-3"></a><a href="#__codelineno-20-3"><span class="linenos" data-linenos="3 "></span></a>        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>     <span class="c1"># 부모 생성자 호출</span>
+<a id="__codelineno-20-4" name="__codelineno-20-4"></a><a href="#__codelineno-20-4"><span class="linenos" data-linenos="4 "></span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">grade</span> <span class="o">=</span> <span class="n">grade</span>
+<a id="__codelineno-20-5" name="__codelineno-20-5"></a><a href="#__codelineno-20-5"><span class="linenos" data-linenos="5 "></span></a>
+<a id="__codelineno-20-6" name="__codelineno-20-6"></a><a href="#__codelineno-20-6"><span class="linenos" data-linenos="6 "></span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">study</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<a id="__codelineno-20-7" name="__codelineno-20-7"></a><a href="#__codelineno-20-7"><span class="linenos" data-linenos="7 "></span></a>        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">는 </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">grade</span><span class="si">}</span><span class="s2">학년이고 공부 중입니다.&quot;</span><span class="p">)</span>
+</code></pre></div>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1"></a><a href="#__codelineno-21-1"><span class="linenos" data-linenos="1 "></span></a><span class="n">s</span> <span class="o">=</span> <span class="n">Student</span><span class="p">(</span><span class="s2">&quot;이몽룡&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<a id="__codelineno-21-2" name="__codelineno-21-2"></a><a href="#__codelineno-21-2"><span class="linenos" data-linenos="2 "></span></a><span class="n">s</span><span class="o">.</span><span class="n">introduce</span><span class="p">()</span>
+<a id="__codelineno-21-3" name="__codelineno-21-3"></a><a href="#__codelineno-21-3"><span class="linenos" data-linenos="3 "></span></a><span class="n">s</span><span class="o">.</span><span class="n">study</span><span class="p">()</span>
+</code></pre></div>
+<h3 id="super_1">✅ <code>super()</code>란?<a class="headerlink" href="#super_1" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p>부모 클래스의 메서드나 생성자를 <strong>가져와 실행</strong>할 수 있게 해주는 내장 함수</p>
+</blockquote>
+<h2 id="4-animal-dog">🧪 실습 4: Animal → Dog 상속 구조 만들기<a class="headerlink" href="#4-animal-dog" title="Permanent link">&para;</a></h2>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1"></a><a href="#__codelineno-22-1"><span class="linenos" data-linenos=" 1 "></span></a><span class="k">class</span><span class="w"> </span><span class="nc">Animal</span><span class="p">:</span>
+<a id="__codelineno-22-2" name="__codelineno-22-2"></a><a href="#__codelineno-22-2"><span class="linenos" data-linenos=" 2 "></span></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+<a id="__codelineno-22-3" name="__codelineno-22-3"></a><a href="#__codelineno-22-3"><span class="linenos" data-linenos=" 3 "></span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+<a id="__codelineno-22-4" name="__codelineno-22-4"></a><a href="#__codelineno-22-4"><span class="linenos" data-linenos=" 4 "></span></a>
+<a id="__codelineno-22-5" name="__codelineno-22-5"></a><a href="#__codelineno-22-5"><span class="linenos" data-linenos=" 5 "></span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">speak</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<a id="__codelineno-22-6" name="__codelineno-22-6"></a><a href="#__codelineno-22-6"><span class="linenos" data-linenos=" 6 "></span></a>        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;동물이 소리 낸다&quot;</span><span class="p">)</span>
+<a id="__codelineno-22-7" name="__codelineno-22-7"></a><a href="#__codelineno-22-7"><span class="linenos" data-linenos=" 7 "></span></a>
+<a id="__codelineno-22-8" name="__codelineno-22-8"></a><a href="#__codelineno-22-8"><span class="linenos" data-linenos=" 8 "></span></a><span class="k">class</span><span class="w"> </span><span class="nc">Dog</span><span class="p">(</span><span class="n">Animal</span><span class="p">):</span>
+<a id="__codelineno-22-9" name="__codelineno-22-9"></a><a href="#__codelineno-22-9"><span class="linenos" data-linenos=" 9 "></span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">bark</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<a id="__codelineno-22-10" name="__codelineno-22-10"></a><a href="#__codelineno-22-10"><span class="linenos" data-linenos="10 "></span></a>        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">가 멍멍!&quot;</span><span class="p">)</span>
+<a id="__codelineno-22-11" name="__codelineno-22-11"></a><a href="#__codelineno-22-11"><span class="linenos" data-linenos="11 "></span></a>
+<a id="__codelineno-22-12" name="__codelineno-22-12"></a><a href="#__codelineno-22-12"><span class="linenos" data-linenos="12 "></span></a><span class="n">d</span> <span class="o">=</span> <span class="n">Dog</span><span class="p">(</span><span class="s2">&quot;초코&quot;</span><span class="p">)</span>
+<a id="__codelineno-22-13" name="__codelineno-22-13"></a><a href="#__codelineno-22-13"><span class="linenos" data-linenos="13 "></span></a><span class="n">d</span><span class="o">.</span><span class="n">speak</span><span class="p">()</span>  <span class="c1"># 부모 메서드</span>
+<a id="__codelineno-22-14" name="__codelineno-22-14"></a><a href="#__codelineno-22-14"><span class="linenos" data-linenos="14 "></span></a><span class="n">d</span><span class="o">.</span><span class="n">bark</span><span class="p">()</span>   <span class="c1"># 자식 메서드</span>
+</code></pre></div>
+<hr />
+<h2 id="7-6-overriding">🧾 7-6. 메서드 오버라이딩 (Overriding)<a class="headerlink" href="#7-6-overriding" title="Permanent link">&para;</a></h2>
+<h3 id="_15">📌 오버라이딩이란?<a class="headerlink" href="#_15" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p>부모 클래스에서 정의된 메서드를
+<strong>자식 클래스에서 같은 이름으로 다시 정의하는 것</strong></p>
+</blockquote>
+<p>→ 기존 기능을 <strong>그 상황에 맞게 바꿔서 사용</strong>할 수 있음</p>
+<h3 id="_16">✅ 기본 예제<a class="headerlink" href="#_16" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1"></a><a href="#__codelineno-23-1"><span class="linenos" data-linenos=" 1 "></span></a><span class="k">class</span><span class="w"> </span><span class="nc">Animal</span><span class="p">:</span>
+<a id="__codelineno-23-2" name="__codelineno-23-2"></a><a href="#__codelineno-23-2"><span class="linenos" data-linenos=" 2 "></span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">sound</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<a id="__codelineno-23-3" name="__codelineno-23-3"></a><a href="#__codelineno-23-3"><span class="linenos" data-linenos=" 3 "></span></a>        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;동물이 소리를 냅니다.&quot;</span><span class="p">)</span>
+<a id="__codelineno-23-4" name="__codelineno-23-4"></a><a href="#__codelineno-23-4"><span class="linenos" data-linenos=" 4 "></span></a>
+<a id="__codelineno-23-5" name="__codelineno-23-5"></a><a href="#__codelineno-23-5"><span class="linenos" data-linenos=" 5 "></span></a><span class="k">class</span><span class="w"> </span><span class="nc">Dog</span><span class="p">(</span><span class="n">Animal</span><span class="p">):</span>
+<a id="__codelineno-23-6" name="__codelineno-23-6"></a><a href="#__codelineno-23-6"><span class="linenos" data-linenos=" 6 "></span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">sound</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<a id="__codelineno-23-7" name="__codelineno-23-7"></a><a href="#__codelineno-23-7"><span class="linenos" data-linenos=" 7 "></span></a>        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;멍멍!&quot;</span><span class="p">)</span>
+<a id="__codelineno-23-8" name="__codelineno-23-8"></a><a href="#__codelineno-23-8"><span class="linenos" data-linenos=" 8 "></span></a>
+<a id="__codelineno-23-9" name="__codelineno-23-9"></a><a href="#__codelineno-23-9"><span class="linenos" data-linenos=" 9 "></span></a><span class="k">class</span><span class="w"> </span><span class="nc">Cat</span><span class="p">(</span><span class="n">Animal</span><span class="p">):</span>
+<a id="__codelineno-23-10" name="__codelineno-23-10"></a><a href="#__codelineno-23-10"><span class="linenos" data-linenos="10 "></span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">sound</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<a id="__codelineno-23-11" name="__codelineno-23-11"></a><a href="#__codelineno-23-11"><span class="linenos" data-linenos="11 "></span></a>        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;야옹~&quot;</span><span class="p">)</span>
+</code></pre></div>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1"></a><a href="#__codelineno-24-1"><span class="linenos" data-linenos="1 "></span></a><span class="n">a</span> <span class="o">=</span> <span class="n">Animal</span><span class="p">()</span>
+<a id="__codelineno-24-2" name="__codelineno-24-2"></a><a href="#__codelineno-24-2"><span class="linenos" data-linenos="2 "></span></a><span class="n">d</span> <span class="o">=</span> <span class="n">Dog</span><span class="p">()</span>
+<a id="__codelineno-24-3" name="__codelineno-24-3"></a><a href="#__codelineno-24-3"><span class="linenos" data-linenos="3 "></span></a><span class="n">c</span> <span class="o">=</span> <span class="n">Cat</span><span class="p">()</span>
+<a id="__codelineno-24-4" name="__codelineno-24-4"></a><a href="#__codelineno-24-4"><span class="linenos" data-linenos="4 "></span></a>
+<a id="__codelineno-24-5" name="__codelineno-24-5"></a><a href="#__codelineno-24-5"><span class="linenos" data-linenos="5 "></span></a><span class="n">a</span><span class="o">.</span><span class="n">sound</span><span class="p">()</span>  <span class="c1"># 동물이 소리를 냅니다.</span>
+<a id="__codelineno-24-6" name="__codelineno-24-6"></a><a href="#__codelineno-24-6"><span class="linenos" data-linenos="6 "></span></a><span class="n">d</span><span class="o">.</span><span class="n">sound</span><span class="p">()</span>  <span class="c1"># 멍멍!</span>
+<a id="__codelineno-24-7" name="__codelineno-24-7"></a><a href="#__codelineno-24-7"><span class="linenos" data-linenos="7 "></span></a><span class="n">c</span><span class="o">.</span><span class="n">sound</span><span class="p">()</span>  <span class="c1"># 야옹~</span>
+</code></pre></div>
+<ul>
+<li>같은 <code>sound()</code> 메서드지만 클래스에 따라 동작이 달라짐</li>
+<li>이것이 <strong>다형성(polymorphism)</strong>의 핵심 예시이기도 함</li>
+</ul>
+<h2 id="super_2">✅ 오버라이딩 + super() 함께 쓰기<a class="headerlink" href="#super_2" title="Permanent link">&para;</a></h2>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1"></a><a href="#__codelineno-25-1"><span class="linenos" data-linenos=" 1 "></span></a><span class="k">class</span><span class="w"> </span><span class="nc">Animal</span><span class="p">:</span>
+<a id="__codelineno-25-2" name="__codelineno-25-2"></a><a href="#__codelineno-25-2"><span class="linenos" data-linenos=" 2 "></span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">sound</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<a id="__codelineno-25-3" name="__codelineno-25-3"></a><a href="#__codelineno-25-3"><span class="linenos" data-linenos=" 3 "></span></a>        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;동물이 소리를 냅니다.&quot;</span><span class="p">)</span>
+<a id="__codelineno-25-4" name="__codelineno-25-4"></a><a href="#__codelineno-25-4"><span class="linenos" data-linenos=" 4 "></span></a>
+<a id="__codelineno-25-5" name="__codelineno-25-5"></a><a href="#__codelineno-25-5"><span class="linenos" data-linenos=" 5 "></span></a><span class="k">class</span><span class="w"> </span><span class="nc">Dog</span><span class="p">(</span><span class="n">Animal</span><span class="p">):</span>
+<a id="__codelineno-25-6" name="__codelineno-25-6"></a><a href="#__codelineno-25-6"><span class="linenos" data-linenos=" 6 "></span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">sound</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<a id="__codelineno-25-7" name="__codelineno-25-7"></a><a href="#__codelineno-25-7"><span class="linenos" data-linenos=" 7 "></span></a>        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">sound</span><span class="p">()</span>  <span class="c1"># 부모의 sound도 호출</span>
+<a id="__codelineno-25-8" name="__codelineno-25-8"></a><a href="#__codelineno-25-8"><span class="linenos" data-linenos=" 8 "></span></a>        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;멍멍!&quot;</span><span class="p">)</span>
+<a id="__codelineno-25-9" name="__codelineno-25-9"></a><a href="#__codelineno-25-9"><span class="linenos" data-linenos=" 9 "></span></a>
+<a id="__codelineno-25-10" name="__codelineno-25-10"></a><a href="#__codelineno-25-10"><span class="linenos" data-linenos="10 "></span></a><span class="n">d</span> <span class="o">=</span> <span class="n">Dog</span><span class="p">()</span>
+<a id="__codelineno-25-11" name="__codelineno-25-11"></a><a href="#__codelineno-25-11"><span class="linenos" data-linenos="11 "></span></a><span class="n">d</span><span class="o">.</span><span class="n">sound</span><span class="p">()</span>
+</code></pre></div>
+<p>출력:
+<div class="language-text highlight"><span class="filename">Text Only</span><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1"></a><a href="#__codelineno-26-1"><span class="linenos" data-linenos="1 "></span></a>동물이 소리를 냅니다.
+<a id="__codelineno-26-2" name="__codelineno-26-2"></a><a href="#__codelineno-26-2"><span class="linenos" data-linenos="2 "></span></a>멍멍!
+</code></pre></div></p>
+<ul>
+<li>자식 클래스에서 <strong>부모 기능을 유지하면서 추가</strong>하고 싶을 때 사용</li>
+</ul>
+<h2 id="5">🧪 실습 5: 소개 메서드 오버라이딩<a class="headerlink" href="#5" title="Permanent link">&para;</a></h2>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1"></a><a href="#__codelineno-27-1"><span class="linenos" data-linenos=" 1 "></span></a><span class="k">class</span><span class="w"> </span><span class="nc">Person</span><span class="p">:</span>
+<a id="__codelineno-27-2" name="__codelineno-27-2"></a><a href="#__codelineno-27-2"><span class="linenos" data-linenos=" 2 "></span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">introduce</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<a id="__codelineno-27-3" name="__codelineno-27-3"></a><a href="#__codelineno-27-3"><span class="linenos" data-linenos=" 3 "></span></a>        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;안녕하세요. 사람입니다.&quot;</span><span class="p">)</span>
+<a id="__codelineno-27-4" name="__codelineno-27-4"></a><a href="#__codelineno-27-4"><span class="linenos" data-linenos=" 4 "></span></a>
+<a id="__codelineno-27-5" name="__codelineno-27-5"></a><a href="#__codelineno-27-5"><span class="linenos" data-linenos=" 5 "></span></a><span class="k">class</span><span class="w"> </span><span class="nc">Student</span><span class="p">(</span><span class="n">Person</span><span class="p">):</span>
+<a id="__codelineno-27-6" name="__codelineno-27-6"></a><a href="#__codelineno-27-6"><span class="linenos" data-linenos=" 6 "></span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">introduce</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<a id="__codelineno-27-7" name="__codelineno-27-7"></a><a href="#__codelineno-27-7"><span class="linenos" data-linenos=" 7 "></span></a>        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;안녕하세요. 학생입니다.&quot;</span><span class="p">)</span>
+<a id="__codelineno-27-8" name="__codelineno-27-8"></a><a href="#__codelineno-27-8"><span class="linenos" data-linenos=" 8 "></span></a>
+<a id="__codelineno-27-9" name="__codelineno-27-9"></a><a href="#__codelineno-27-9"><span class="linenos" data-linenos=" 9 "></span></a><span class="n">p</span> <span class="o">=</span> <span class="n">Person</span><span class="p">()</span>
+<a id="__codelineno-27-10" name="__codelineno-27-10"></a><a href="#__codelineno-27-10"><span class="linenos" data-linenos="10 "></span></a><span class="n">s</span> <span class="o">=</span> <span class="n">Student</span><span class="p">()</span>
+<a id="__codelineno-27-11" name="__codelineno-27-11"></a><a href="#__codelineno-27-11"><span class="linenos" data-linenos="11 "></span></a>
+<a id="__codelineno-27-12" name="__codelineno-27-12"></a><a href="#__codelineno-27-12"><span class="linenos" data-linenos="12 "></span></a><span class="n">p</span><span class="o">.</span><span class="n">introduce</span><span class="p">()</span>  <span class="c1"># 안녕하세요. 사람입니다.</span>
+<a id="__codelineno-27-13" name="__codelineno-27-13"></a><a href="#__codelineno-27-13"><span class="linenos" data-linenos="13 "></span></a><span class="n">s</span><span class="o">.</span><span class="n">introduce</span><span class="p">()</span>  <span class="c1"># 안녕하세요. 학생입니다.</span>
+</code></pre></div>
+<hr />
+<h2 id="7-7">🧾 7-7. 캡슐화와 접근제어<a class="headerlink" href="#7-7" title="Permanent link">&para;</a></h2>
+<h3 id="encapsulation">📌 캡슐화(Encapsulation)란?<a class="headerlink" href="#encapsulation" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p>객체의 <strong>속성(변수)</strong>을 외부에서 <strong>직접 접근하지 못하게 보호</strong>하고,
+대신 <strong>메서드를 통해 간접적으로 접근하도록 만드는 것</strong></p>
+</blockquote>
+<h3 id="_17">✅ 왜 캡슐화가 필요한가요?<a class="headerlink" href="#_17" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>이유</th>
+<th>설명</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>내부 상태 보호</td>
+<td>실수로 변수 값을 잘못 바꾸는 것을 방지</td>
+</tr>
+<tr>
+<td>안정성 확보</td>
+<td>잘못된 값이 들어가지 않도록 검증 가능</td>
+</tr>
+<tr>
+<td>유지보수 쉬움</td>
+<td>인터페이스를 유지하면서 내부 구현만 바꿀 수 있음</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_18">✅ 접근 제어자 (비공식 규칙)<a class="headerlink" href="#_18" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>방식</th>
+<th>사용 예시</th>
+<th>의미</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>public</td>
+<td><code>self.name</code></td>
+<td>어디서든 접근 가능</td>
+</tr>
+<tr>
+<td>protected</td>
+<td><code>_name</code></td>
+<td>내부용 (접근은 가능하지만 권장하지 않음)</td>
+</tr>
+<tr>
+<td>private</td>
+<td><code>__name</code></td>
+<td>외부에서 접근 불가 (이름 맹글링 처리됨)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="gettersetter">✅ 예제: 비공개 변수와 getter/setter<a class="headerlink" href="#gettersetter" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1"></a><a href="#__codelineno-28-1"><span class="linenos" data-linenos=" 1 "></span></a><span class="k">class</span><span class="w"> </span><span class="nc">Account</span><span class="p">:</span>
+<a id="__codelineno-28-2" name="__codelineno-28-2"></a><a href="#__codelineno-28-2"><span class="linenos" data-linenos=" 2 "></span></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">balance</span><span class="p">):</span>
+<a id="__codelineno-28-3" name="__codelineno-28-3"></a><a href="#__codelineno-28-3"><span class="linenos" data-linenos=" 3 "></span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+<a id="__codelineno-28-4" name="__codelineno-28-4"></a><a href="#__codelineno-28-4"><span class="linenos" data-linenos=" 4 "></span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">__balance</span> <span class="o">=</span> <span class="n">balance</span>  <span class="c1"># 외부에서 접근 불가</span>
+<a id="__codelineno-28-5" name="__codelineno-28-5"></a><a href="#__codelineno-28-5"><span class="linenos" data-linenos=" 5 "></span></a>
+<a id="__codelineno-28-6" name="__codelineno-28-6"></a><a href="#__codelineno-28-6"><span class="linenos" data-linenos=" 6 "></span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">get_balance</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<a id="__codelineno-28-7" name="__codelineno-28-7"></a><a href="#__codelineno-28-7"><span class="linenos" data-linenos=" 7 "></span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__balance</span>
+<a id="__codelineno-28-8" name="__codelineno-28-8"></a><a href="#__codelineno-28-8"><span class="linenos" data-linenos=" 8 "></span></a>
+<a id="__codelineno-28-9" name="__codelineno-28-9"></a><a href="#__codelineno-28-9"><span class="linenos" data-linenos=" 9 "></span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">set_balance</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">amount</span><span class="p">):</span>
+<a id="__codelineno-28-10" name="__codelineno-28-10"></a><a href="#__codelineno-28-10"><span class="linenos" data-linenos="10 "></span></a>        <span class="k">if</span> <span class="n">amount</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
+<a id="__codelineno-28-11" name="__codelineno-28-11"></a><a href="#__codelineno-28-11"><span class="linenos" data-linenos="11 "></span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">__balance</span> <span class="o">=</span> <span class="n">amount</span>
+<a id="__codelineno-28-12" name="__codelineno-28-12"></a><a href="#__codelineno-28-12"><span class="linenos" data-linenos="12 "></span></a>        <span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-28-13" name="__codelineno-28-13"></a><a href="#__codelineno-28-13"><span class="linenos" data-linenos="13 "></span></a>            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;❌ 금액은 음수가 될 수 없습니다.&quot;</span><span class="p">)</span>
+<a id="__codelineno-28-14" name="__codelineno-28-14"></a><a href="#__codelineno-28-14"><span class="linenos" data-linenos="14 "></span></a>
+<a id="__codelineno-28-15" name="__codelineno-28-15"></a><a href="#__codelineno-28-15"><span class="linenos" data-linenos="15 "></span></a><span class="n">acc</span> <span class="o">=</span> <span class="n">Account</span><span class="p">(</span><span class="s2">&quot;홍길동&quot;</span><span class="p">,</span> <span class="mi">10000</span><span class="p">)</span>
+<a id="__codelineno-28-16" name="__codelineno-28-16"></a><a href="#__codelineno-28-16"><span class="linenos" data-linenos="16 "></span></a>
+<a id="__codelineno-28-17" name="__codelineno-28-17"></a><a href="#__codelineno-28-17"><span class="linenos" data-linenos="17 "></span></a><span class="nb">print</span><span class="p">(</span><span class="n">acc</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>               <span class="c1"># 홍길동</span>
+<a id="__codelineno-28-18" name="__codelineno-28-18"></a><a href="#__codelineno-28-18"><span class="linenos" data-linenos="18 "></span></a><span class="c1"># print(acc.__balance)       # ❌ 접근 불가 (에러 발생)</span>
+<a id="__codelineno-28-19" name="__codelineno-28-19"></a><a href="#__codelineno-28-19"><span class="linenos" data-linenos="19 "></span></a><span class="nb">print</span><span class="p">(</span><span class="n">acc</span><span class="o">.</span><span class="n">get_balance</span><span class="p">())</span>      <span class="c1"># ✅ 10000</span>
+<a id="__codelineno-28-20" name="__codelineno-28-20"></a><a href="#__codelineno-28-20"><span class="linenos" data-linenos="20 "></span></a>
+<a id="__codelineno-28-21" name="__codelineno-28-21"></a><a href="#__codelineno-28-21"><span class="linenos" data-linenos="21 "></span></a><span class="n">acc</span><span class="o">.</span><span class="n">set_balance</span><span class="p">(</span><span class="mi">20000</span><span class="p">)</span>        <span class="c1"># ✅ 금액 변경</span>
+<a id="__codelineno-28-22" name="__codelineno-28-22"></a><a href="#__codelineno-28-22"><span class="linenos" data-linenos="22 "></span></a><span class="n">acc</span><span class="o">.</span><span class="n">set_balance</span><span class="p">(</span><span class="o">-</span><span class="mi">500</span><span class="p">)</span>         <span class="c1"># ❌ 음수 방지</span>
+</code></pre></div>
+<h3 id="__">✅ <code>__변수명</code>의 비밀<a class="headerlink" href="#__" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1"></a><a href="#__codelineno-29-1"><span class="linenos" data-linenos="1 "></span></a><span class="nb">print</span><span class="p">(</span><span class="n">acc</span><span class="o">.</span><span class="n">__balance</span><span class="p">)</span>         <span class="c1"># ❌ AttributeError</span>
+<a id="__codelineno-29-2" name="__codelineno-29-2"></a><a href="#__codelineno-29-2"><span class="linenos" data-linenos="2 "></span></a>
+<a id="__codelineno-29-3" name="__codelineno-29-3"></a><a href="#__codelineno-29-3"><span class="linenos" data-linenos="3 "></span></a><span class="nb">print</span><span class="p">(</span><span class="n">acc</span><span class="o">.</span><span class="n">_Account__balance</span><span class="p">)</span> <span class="c1"># 가능하지만 ❌ 권장하지 않음</span>
+</code></pre></div>
+<blockquote>
+<p><code>__변수명</code> → 내부적으로 <code>_클래스명__변수명</code>으로 변경되어 저장됨
+→ 진짜 private은 아니지만, <strong>실수 방지를 위한 장치</strong></p>
+</blockquote>
+<h2 id="6">🧪 실습 6: 보호된 속성을 갖는 자동차 클래스<a class="headerlink" href="#6" title="Permanent link">&para;</a></h2>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1"></a><a href="#__codelineno-30-1"><span class="linenos" data-linenos=" 1 "></span></a><span class="k">class</span><span class="w"> </span><span class="nc">Car</span><span class="p">:</span>
+<a id="__codelineno-30-2" name="__codelineno-30-2"></a><a href="#__codelineno-30-2"><span class="linenos" data-linenos=" 2 "></span></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">brand</span><span class="p">):</span>
+<a id="__codelineno-30-3" name="__codelineno-30-3"></a><a href="#__codelineno-30-3"><span class="linenos" data-linenos=" 3 "></span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_speed</span> <span class="o">=</span> <span class="mi">0</span>
+<a id="__codelineno-30-4" name="__codelineno-30-4"></a><a href="#__codelineno-30-4"><span class="linenos" data-linenos=" 4 "></span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">brand</span> <span class="o">=</span> <span class="n">brand</span>
+<a id="__codelineno-30-5" name="__codelineno-30-5"></a><a href="#__codelineno-30-5"><span class="linenos" data-linenos=" 5 "></span></a>
+<a id="__codelineno-30-6" name="__codelineno-30-6"></a><a href="#__codelineno-30-6"><span class="linenos" data-linenos=" 6 "></span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">accelerate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">amount</span><span class="p">):</span>
+<a id="__codelineno-30-7" name="__codelineno-30-7"></a><a href="#__codelineno-30-7"><span class="linenos" data-linenos=" 7 "></span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_speed</span> <span class="o">+=</span> <span class="n">amount</span>
+<a id="__codelineno-30-8" name="__codelineno-30-8"></a><a href="#__codelineno-30-8"><span class="linenos" data-linenos=" 8 "></span></a>        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">brand</span><span class="si">}</span><span class="s2"> 속도: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_speed</span><span class="si">}</span><span class="s2">km/h&quot;</span><span class="p">)</span>
+<a id="__codelineno-30-9" name="__codelineno-30-9"></a><a href="#__codelineno-30-9"><span class="linenos" data-linenos=" 9 "></span></a>
+<a id="__codelineno-30-10" name="__codelineno-30-10"></a><a href="#__codelineno-30-10"><span class="linenos" data-linenos="10 "></span></a><span class="n">c</span> <span class="o">=</span> <span class="n">Car</span><span class="p">(</span><span class="s2">&quot;현대&quot;</span><span class="p">)</span>
+<a id="__codelineno-30-11" name="__codelineno-30-11"></a><a href="#__codelineno-30-11"><span class="linenos" data-linenos="11 "></span></a><span class="n">c</span><span class="o">.</span><span class="n">accelerate</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
+<a id="__codelineno-30-12" name="__codelineno-30-12"></a><a href="#__codelineno-30-12"><span class="linenos" data-linenos="12 "></span></a><span class="nb">print</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">_speed</span><span class="p">)</span>  <span class="c1"># 가능은 하지만 직접 접근은 권장되지 않음</span>
+</code></pre></div>
+<hr />
+<h2 id="7-8">🧾 7-8. 실습: 부동산 매물 클래스 만들기<a class="headerlink" href="#7-8" title="Permanent link">&para;</a></h2>
+<h3 id="_19">🎯 목표<a class="headerlink" href="#_19" title="Permanent link">&para;</a></h3>
+<ul>
+<li>부동산 매물 객체를 만들고 여러 매물 정보를 관리해보기</li>
+<li>실제로 많이 쓰이는 부동산 정보를 모델링</li>
+</ul>
+<h3 id="_20">✅ 클래스 설계<a class="headerlink" href="#_20" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1"></a><a href="#__codelineno-31-1"><span class="linenos" data-linenos=" 1 "></span></a><span class="k">class</span><span class="w"> </span><span class="nc">House</span><span class="p">:</span>
+<a id="__codelineno-31-2" name="__codelineno-31-2"></a><a href="#__codelineno-31-2"><span class="linenos" data-linenos=" 2 "></span></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">location</span><span class="p">,</span> <span class="n">house_type</span><span class="p">,</span> <span class="n">deal_type</span><span class="p">,</span> <span class="n">price</span><span class="p">,</span> <span class="n">completion_year</span><span class="p">):</span>
+<a id="__codelineno-31-3" name="__codelineno-31-3"></a><a href="#__codelineno-31-3"><span class="linenos" data-linenos=" 3 "></span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">location</span> <span class="o">=</span> <span class="n">location</span>
+<a id="__codelineno-31-4" name="__codelineno-31-4"></a><a href="#__codelineno-31-4"><span class="linenos" data-linenos=" 4 "></span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">house_type</span> <span class="o">=</span> <span class="n">house_type</span>
+<a id="__codelineno-31-5" name="__codelineno-31-5"></a><a href="#__codelineno-31-5"><span class="linenos" data-linenos=" 5 "></span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">deal_type</span> <span class="o">=</span> <span class="n">deal_type</span>
+<a id="__codelineno-31-6" name="__codelineno-31-6"></a><a href="#__codelineno-31-6"><span class="linenos" data-linenos=" 6 "></span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">price</span> <span class="o">=</span> <span class="n">price</span>
+<a id="__codelineno-31-7" name="__codelineno-31-7"></a><a href="#__codelineno-31-7"><span class="linenos" data-linenos=" 7 "></span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">completion_year</span> <span class="o">=</span> <span class="n">completion_year</span>
+<a id="__codelineno-31-8" name="__codelineno-31-8"></a><a href="#__codelineno-31-8"><span class="linenos" data-linenos=" 8 "></span></a>
+<a id="__codelineno-31-9" name="__codelineno-31-9"></a><a href="#__codelineno-31-9"><span class="linenos" data-linenos=" 9 "></span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">show_detail</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<a id="__codelineno-31-10" name="__codelineno-31-10"></a><a href="#__codelineno-31-10"><span class="linenos" data-linenos="10 "></span></a>        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">location</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">house_type</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">completion_year</span><span class="si">}</span><span class="s2">년 준공)&quot;</span><span class="p">)</span>
+<a id="__codelineno-31-11" name="__codelineno-31-11"></a><a href="#__codelineno-31-11"><span class="linenos" data-linenos="11 "></span></a>        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;[거래: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">deal_type</span><span class="si">}</span><span class="s2">] 가격: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">price</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="_21">✅ 객체 생성 및 리스트에 저장<a class="headerlink" href="#_21" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1"></a><a href="#__codelineno-32-1"><span class="linenos" data-linenos="1 "></span></a><span class="n">house1</span> <span class="o">=</span> <span class="n">House</span><span class="p">(</span><span class="s2">&quot;강남&quot;</span><span class="p">,</span> <span class="s2">&quot;아파트&quot;</span><span class="p">,</span> <span class="s2">&quot;매매&quot;</span><span class="p">,</span> <span class="s2">&quot;15억&quot;</span><span class="p">,</span> <span class="mi">2003</span><span class="p">)</span>
+<a id="__codelineno-32-2" name="__codelineno-32-2"></a><a href="#__codelineno-32-2"><span class="linenos" data-linenos="2 "></span></a><span class="n">house2</span> <span class="o">=</span> <span class="n">House</span><span class="p">(</span><span class="s2">&quot;마포&quot;</span><span class="p">,</span> <span class="s2">&quot;오피스텔&quot;</span><span class="p">,</span> <span class="s2">&quot;전세&quot;</span><span class="p">,</span> <span class="s2">&quot;5억&quot;</span><span class="p">,</span> <span class="mi">2010</span><span class="p">)</span>
+<a id="__codelineno-32-3" name="__codelineno-32-3"></a><a href="#__codelineno-32-3"><span class="linenos" data-linenos="3 "></span></a><span class="n">house3</span> <span class="o">=</span> <span class="n">House</span><span class="p">(</span><span class="s2">&quot;송파&quot;</span><span class="p">,</span> <span class="s2">&quot;빌라&quot;</span><span class="p">,</span> <span class="s2">&quot;월세&quot;</span><span class="p">,</span> <span class="s2">&quot;500/50&quot;</span><span class="p">,</span> <span class="mi">1995</span><span class="p">)</span>
+<a id="__codelineno-32-4" name="__codelineno-32-4"></a><a href="#__codelineno-32-4"><span class="linenos" data-linenos="4 "></span></a>
+<a id="__codelineno-32-5" name="__codelineno-32-5"></a><a href="#__codelineno-32-5"><span class="linenos" data-linenos="5 "></span></a><span class="n">houses</span> <span class="o">=</span> <span class="p">[</span><span class="n">house1</span><span class="p">,</span> <span class="n">house2</span><span class="p">,</span> <span class="n">house3</span><span class="p">]</span>
+</code></pre></div>
+<h3 id="_22">✅ 출력 기능 구현<a class="headerlink" href="#_22" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1"></a><a href="#__codelineno-33-1"><span class="linenos" data-linenos="1 "></span></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;총 </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">houses</span><span class="p">)</span><span class="si">}</span><span class="s2">개의 매물이 있습니다.</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-33-2" name="__codelineno-33-2"></a><a href="#__codelineno-33-2"><span class="linenos" data-linenos="2 "></span></a>
+<a id="__codelineno-33-3" name="__codelineno-33-3"></a><a href="#__codelineno-33-3"><span class="linenos" data-linenos="3 "></span></a><span class="k">for</span> <span class="n">house</span> <span class="ow">in</span> <span class="n">houses</span><span class="p">:</span>
+<a id="__codelineno-33-4" name="__codelineno-33-4"></a><a href="#__codelineno-33-4"><span class="linenos" data-linenos="4 "></span></a>    <span class="n">house</span><span class="o">.</span><span class="n">show_detail</span><span class="p">()</span>
+<a id="__codelineno-33-5" name="__codelineno-33-5"></a><a href="#__codelineno-33-5"><span class="linenos" data-linenos="5 "></span></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-&quot;</span> <span class="o">*</span> <span class="mi">30</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="_23">💡 출력 예시<a class="headerlink" href="#_23" title="Permanent link">&para;</a></h3>
+<div class="language-text highlight"><span class="filename">Text Only</span><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1"></a><a href="#__codelineno-34-1"><span class="linenos" data-linenos="1 "></span></a>총 3개의 매물이 있습니다.
+<a id="__codelineno-34-2" name="__codelineno-34-2"></a><a href="#__codelineno-34-2"><span class="linenos" data-linenos="2 "></span></a>
+<a id="__codelineno-34-3" name="__codelineno-34-3"></a><a href="#__codelineno-34-3"><span class="linenos" data-linenos="3 "></span></a>강남 아파트 (2003년 준공)
+<a id="__codelineno-34-4" name="__codelineno-34-4"></a><a href="#__codelineno-34-4"><span class="linenos" data-linenos="4 "></span></a>[거래: 매매] 가격: 15억
+<a id="__codelineno-34-5" name="__codelineno-34-5"></a><a href="#__codelineno-34-5"><span class="linenos" data-linenos="5 "></span></a>------------------------------
+<a id="__codelineno-34-6" name="__codelineno-34-6"></a><a href="#__codelineno-34-6"><span class="linenos" data-linenos="6 "></span></a>마포 오피스텔 (2010년 준공)
+<a id="__codelineno-34-7" name="__codelineno-34-7"></a><a href="#__codelineno-34-7"><span class="linenos" data-linenos="7 "></span></a>[거래: 전세] 가격: 5억
+<a id="__codelineno-34-8" name="__codelineno-34-8"></a><a href="#__codelineno-34-8"><span class="linenos" data-linenos="8 "></span></a>------------------------------
+<a id="__codelineno-34-9" name="__codelineno-34-9"></a><a href="#__codelineno-34-9"><span class="linenos" data-linenos="9 "></span></a>...
+</code></pre></div>
+<hr />
+<h2 id="7-9">🧾 7-9. 실습: 학생 출석부 클래스 만들기<a class="headerlink" href="#7-9" title="Permanent link">&para;</a></h2>
+<h3 id="_24">🎯 목표<a class="headerlink" href="#_24" title="Permanent link">&para;</a></h3>
+<ul>
+<li>학생마다 이름, 학번, 출석 상태를 저장하는 클래스를 설계</li>
+<li>여러 학생을 리스트로 관리</li>
+<li>출석 처리 / 조회 기능 구현</li>
+</ul>
+<h3 id="_25">✅ 클래스 설계<a class="headerlink" href="#_25" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-35-1" name="__codelineno-35-1"></a><a href="#__codelineno-35-1"><span class="linenos" data-linenos=" 1 "></span></a><span class="k">class</span><span class="w"> </span><span class="nc">Student</span><span class="p">:</span>
+<a id="__codelineno-35-2" name="__codelineno-35-2"></a><a href="#__codelineno-35-2"><span class="linenos" data-linenos=" 2 "></span></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">student_id</span><span class="p">):</span>
+<a id="__codelineno-35-3" name="__codelineno-35-3"></a><a href="#__codelineno-35-3"><span class="linenos" data-linenos=" 3 "></span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+<a id="__codelineno-35-4" name="__codelineno-35-4"></a><a href="#__codelineno-35-4"><span class="linenos" data-linenos=" 4 "></span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">student_id</span> <span class="o">=</span> <span class="n">student_id</span>
+<a id="__codelineno-35-5" name="__codelineno-35-5"></a><a href="#__codelineno-35-5"><span class="linenos" data-linenos=" 5 "></span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">attendance</span> <span class="o">=</span> <span class="kc">False</span>  <span class="c1"># 기본값: 결석(False)</span>
+<a id="__codelineno-35-6" name="__codelineno-35-6"></a><a href="#__codelineno-35-6"><span class="linenos" data-linenos=" 6 "></span></a>
+<a id="__codelineno-35-7" name="__codelineno-35-7"></a><a href="#__codelineno-35-7"><span class="linenos" data-linenos=" 7 "></span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">check_attendance</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<a id="__codelineno-35-8" name="__codelineno-35-8"></a><a href="#__codelineno-35-8"><span class="linenos" data-linenos=" 8 "></span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">attendance</span> <span class="o">=</span> <span class="kc">True</span>
+<a id="__codelineno-35-9" name="__codelineno-35-9"></a><a href="#__codelineno-35-9"><span class="linenos" data-linenos=" 9 "></span></a>
+<a id="__codelineno-35-10" name="__codelineno-35-10"></a><a href="#__codelineno-35-10"><span class="linenos" data-linenos="10 "></span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">show_status</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<a id="__codelineno-35-11" name="__codelineno-35-11"></a><a href="#__codelineno-35-11"><span class="linenos" data-linenos="11 "></span></a>        <span class="n">status</span> <span class="o">=</span> <span class="s2">&quot;출석&quot;</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">attendance</span> <span class="k">else</span> <span class="s2">&quot;결석&quot;</span>
+<a id="__codelineno-35-12" name="__codelineno-35-12"></a><a href="#__codelineno-35-12"><span class="linenos" data-linenos="12 "></span></a>        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">student_id</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">status</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="_26">✅ 객체 생성 및 리스트 관리<a class="headerlink" href="#_26" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-36-1" name="__codelineno-36-1"></a><a href="#__codelineno-36-1"><span class="linenos" data-linenos="1 "></span></a><span class="n">students</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-36-2" name="__codelineno-36-2"></a><a href="#__codelineno-36-2"><span class="linenos" data-linenos="2 "></span></a>    <span class="n">Student</span><span class="p">(</span><span class="s2">&quot;홍길동&quot;</span><span class="p">,</span> <span class="s2">&quot;202301&quot;</span><span class="p">),</span>
+<a id="__codelineno-36-3" name="__codelineno-36-3"></a><a href="#__codelineno-36-3"><span class="linenos" data-linenos="3 "></span></a>    <span class="n">Student</span><span class="p">(</span><span class="s2">&quot;성춘향&quot;</span><span class="p">,</span> <span class="s2">&quot;202302&quot;</span><span class="p">),</span>
+<a id="__codelineno-36-4" name="__codelineno-36-4"></a><a href="#__codelineno-36-4"><span class="linenos" data-linenos="4 "></span></a>    <span class="n">Student</span><span class="p">(</span><span class="s2">&quot;이몽룡&quot;</span><span class="p">,</span> <span class="s2">&quot;202303&quot;</span><span class="p">),</span>
+<a id="__codelineno-36-5" name="__codelineno-36-5"></a><a href="#__codelineno-36-5"><span class="linenos" data-linenos="5 "></span></a><span class="p">]</span>
+</code></pre></div>
+<h3 id="_27">✅ 출석 처리하기<a class="headerlink" href="#_27" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-37-1" name="__codelineno-37-1"></a><a href="#__codelineno-37-1"><span class="linenos" data-linenos="1 "></span></a><span class="n">students</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">check_attendance</span><span class="p">()</span>
+<a id="__codelineno-37-2" name="__codelineno-37-2"></a><a href="#__codelineno-37-2"><span class="linenos" data-linenos="2 "></span></a><span class="n">students</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">check_attendance</span><span class="p">()</span>
+</code></pre></div>
+<h3 id="_28">✅ 전체 출석 현황 출력<a class="headerlink" href="#_28" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-38-1" name="__codelineno-38-1"></a><a href="#__codelineno-38-1"><span class="linenos" data-linenos="1 "></span></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;📋 오늘의 출석 현황&quot;</span><span class="p">)</span>
+<a id="__codelineno-38-2" name="__codelineno-38-2"></a><a href="#__codelineno-38-2"><span class="linenos" data-linenos="2 "></span></a>
+<a id="__codelineno-38-3" name="__codelineno-38-3"></a><a href="#__codelineno-38-3"><span class="linenos" data-linenos="3 "></span></a><span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">students</span><span class="p">:</span>
+<a id="__codelineno-38-4" name="__codelineno-38-4"></a><a href="#__codelineno-38-4"><span class="linenos" data-linenos="4 "></span></a>    <span class="n">s</span><span class="o">.</span><span class="n">show_status</span><span class="p">()</span>
+</code></pre></div>
+<h3 id="_29">💡 출력 예시<a class="headerlink" href="#_29" title="Permanent link">&para;</a></h3>
+<div class="language-text highlight"><span class="filename">Text Only</span><pre><span></span><code><a id="__codelineno-39-1" name="__codelineno-39-1"></a><a href="#__codelineno-39-1"><span class="linenos" data-linenos="1 "></span></a>📋 오늘의 출석 현황
+<a id="__codelineno-39-2" name="__codelineno-39-2"></a><a href="#__codelineno-39-2"><span class="linenos" data-linenos="2 "></span></a>202301 홍길동: 출석
+<a id="__codelineno-39-3" name="__codelineno-39-3"></a><a href="#__codelineno-39-3"><span class="linenos" data-linenos="3 "></span></a>202302 성춘향: 결석
+<a id="__codelineno-39-4" name="__codelineno-39-4"></a><a href="#__codelineno-39-4"><span class="linenos" data-linenos="4 "></span></a>202303 이몽룡: 출석
+</code></pre></div>
+<h3 id="_30">🧪 도전 과제: 사용자 입력 기반 출석 체크<a class="headerlink" href="#_30" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><span class="filename">Python</span><pre><span></span><code><a id="__codelineno-40-1" name="__codelineno-40-1"></a><a href="#__codelineno-40-1"><span class="linenos" data-linenos="1 "></span></a><span class="k">for</span> <span class="n">student</span> <span class="ow">in</span> <span class="n">students</span><span class="p">:</span>
+<a id="__codelineno-40-2" name="__codelineno-40-2"></a><a href="#__codelineno-40-2"><span class="linenos" data-linenos="2 "></span></a>    <span class="n">answer</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">student</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> 출석했나요? (y/n): &quot;</span><span class="p">)</span>
+<a id="__codelineno-40-3" name="__codelineno-40-3"></a><a href="#__codelineno-40-3"><span class="linenos" data-linenos="3 "></span></a>    <span class="k">if</span> <span class="n">answer</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;y&quot;</span><span class="p">:</span>
+<a id="__codelineno-40-4" name="__codelineno-40-4"></a><a href="#__codelineno-40-4"><span class="linenos" data-linenos="4 "></span></a>        <span class="n">student</span><span class="o">.</span><span class="n">check_attendance</span><span class="p">()</span>
+</code></pre></div>
+<hr />
+<h2 id="7">✅ 7장 마무리 요약<a class="headerlink" href="#7" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>개념</th>
+<th>핵심 내용</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>클래스</td>
+<td>객체를 만들기 위한 설계도</td>
+</tr>
+<tr>
+<td>인스턴스</td>
+<td>실제로 만들어진 객체</td>
+</tr>
+<tr>
+<td><code>__init__</code></td>
+<td>생성자, 초기값 설정</td>
+</tr>
+<tr>
+<td><code>self</code></td>
+<td>자기 자신 객체</td>
+</tr>
+<tr>
+<td>인스턴스 변수</td>
+<td>객체마다 다른 데이터</td>
+</tr>
+<tr>
+<td>클래스 변수</td>
+<td>객체끼리 공유하는 데이터</td>
+</tr>
+<tr>
+<td>상속</td>
+<td>부모의 속성과 기능을 물려받음</td>
+</tr>
+<tr>
+<td>오버라이딩</td>
+<td>부모 기능을 자식이 재정의</td>
+</tr>
+<tr>
+<td>캡슐화</td>
+<td>내부 상태 보호 (비공개 변수 등)</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="하단/푸터" >
+        
+          
+          <a href="../07_python_class_guide_unit/" class="md-footer__link md-footer__link--prev" aria-label="이전: 파이썬 클래스와 객체지향 프로그래밍 🎮">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                이전
+              </span>
+              <div class="md-ellipsis">
+                파이썬 클래스와 객체지향 프로그래밍 🎮
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../08_python_exception_handling/" class="md-footer__link md-footer__link--next" aria-label="다음: 8장. 예외 처리 (Exception Handling)">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                다음
+              </span>
+              <div class="md-ellipsis">
+                8장. 예외 처리 (Exception Handling)
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant", "navigation.tabs", "navigation.footer", "content.code.copy", "content.code.annotate", "content.tooltips", "content.footnote.tooltips"], "search": "../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "\ud074\ub9bd\ubcf4\ub4dc\uc5d0 \ubcf5\uc0ac\ub428", "clipboard.copy": "\ud074\ub9bd\ubcf4\ub4dc\ub85c \ubcf5\uc0ac", "search.result.more.one": "\uc774 \ubb38\uc11c\uc5d0\uc11c 1\uac1c\uc758 \uac80\uc0c9 \uacb0\uacfc \ub354 \ubcf4\uae30", "search.result.more.other": "\uc774 \ubb38\uc11c\uc5d0\uc11c #\uac1c\uc758 \uac80\uc0c9 \uacb0\uacfc \ub354 \ubcf4\uae30", "search.result.none": "\uac80\uc0c9\uc5b4\uc640 \uc77c\uce58\ud558\ub294 \ubb38\uc11c\uac00 \uc5c6\uc2b5\ub2c8\ub2e4", "search.result.one": "1\uac1c\uc758 \uc77c\uce58\ud558\ub294 \ubb38\uc11c", "search.result.other": "#\uac1c\uc758 \uc77c\uce58\ud558\ub294 \ubb38\uc11c", "search.result.placeholder": "\uac80\uc0c9\uc5b4\ub97c \uc785\ub825\ud558\uc138\uc694", "search.result.term.missing": "\ud3ec\ud568\ub418\uc9c0 \uc54a\uc740 \uac80\uc0c9\uc5b4", "select.version": "\ubc84\uc804 \uc120\ud0dd"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.56ea9cef.min.js"></script>
+      
+        <script src="../javascripts/extra.js"></script>
+      
+    
+  </body>
+</html>
